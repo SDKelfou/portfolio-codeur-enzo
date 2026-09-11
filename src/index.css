@@ -1,0 +1,486 @@
+@import "tailwindcss";
+@import "@fontsource/syne/700.css";
+@import "@fontsource/syne/800.css";
+@import "@fontsource-variable/dm-sans";
+
+/* ==========================================================================
+   Design tokens — 4 accent modes: ice / neon / violet / obsidian
+   ========================================================================== */
+
+:root {
+  --font-display: "Syne", "DM Sans Variable", system-ui, sans-serif;
+  --font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
+
+  /* Light "commercial" surface (Home) */
+  --home-bg: #faf9f6;
+  --home-bg-soft: #f2f0ea;
+  --home-surface: #ffffff;
+  --home-text: #14140f;
+  --home-text-muted: #5c5b52;
+  --home-border: rgba(20, 20, 15, 0.09);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-solid: rgba(255, 255, 255, 0.94);
+
+  /* Dark "immersive" surface (Experience, and Home when data-scheme="dark") */
+  --dark-bg: #08080a;
+  --dark-surface: #101014;
+  --dark-text: #f4f3ee;
+  --dark-text-muted: #9a9a94;
+  --dark-border: rgba(244, 243, 238, 0.1);
+
+  /* Accent — default: ice */
+  --accent: #17c3ff;
+  --accent-2: #6a5bff;
+  --accent-soft: #bfe8fa;
+  --accent-strong: #0f7fb8;
+  --accent-rgb: 23, 195, 255;
+  --accent-2-rgb: 106, 91, 255;
+
+  /* AA-safe "ink" text variants: darkened accent/accent-2 for use as TEXT
+     on the light home surface (badges, labels, headline gradient text).
+     The raw --accent/--accent-2 are tuned to glow on dark backgrounds and
+     fall well below 4.5:1 on the light surface in several modes — these
+     ink tokens fix that while staying in the same hue family. They flip
+     back to the bright originals under [data-scheme="dark"] below, where
+     the surface itself goes dark. Never used inside .dark-scope (Experience),
+     which is unconditionally dark and always uses the bright originals. */
+  --accent-ink: #0d7194;
+  --accent-2-ink: #6254eb;
+  --accent-on: #0b0b0d;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  color-scheme: light;
+}
+
+[data-mode="ice"] {
+  --accent: #17c3ff;
+  --accent-2: #6a5bff;
+  --accent-soft: #bfe8fa;
+  --accent-strong: #0f7fb8;
+  --accent-rgb: 23, 195, 255;
+  --accent-2-rgb: 106, 91, 255;
+  --accent-ink: #0d7194;
+  --accent-2-ink: #6254eb;
+}
+
+[data-mode="neon"] {
+  --accent: #39ff88;
+  --accent-2: #d6ff2f;
+  --accent-soft: #c6ffde;
+  --accent-strong: #12c25f;
+  --accent-rgb: 57, 255, 136;
+  --accent-2-rgb: 214, 255, 47;
+  --accent-ink: #1b7a41;
+  --accent-2-ink: #5e7015;
+}
+
+[data-mode="violet"] {
+  --accent: #b565ff;
+  --accent-2: #ff5ec4;
+  --accent-soft: #e5d1fd;
+  --accent-strong: #8b2ee8;
+  --accent-rgb: 181, 101, 255;
+  --accent-2-rgb: 255, 94, 196;
+  --accent-ink: #8a4dc2;
+  --accent-2-ink: #ad4085;
+}
+
+[data-mode="obsidian"] {
+  --accent: #f5c14e;
+  --accent-2: #ff6a3d;
+  --accent-soft: #f6e2b3;
+  --accent-strong: #c98a2c;
+  --accent-rgb: 245, 193, 78;
+  --accent-2-rgb: 255, 106, 61;
+  --accent-ink: #7f6429;
+  --accent-2-ink: #b24a2b;
+}
+
+/* ==========================================================================
+   Light / dark scheme — independent of the 4 accent modes above.
+   Applies to the light/commercial Home page; /experience is always dark.
+   ========================================================================== */
+
+[data-scheme="dark"] {
+  --home-bg: var(--dark-bg);
+  --home-bg-soft: #0c0c10;
+  --home-surface: #111116;
+  --home-text: var(--dark-text);
+  --home-text-muted: var(--dark-text-muted);
+  --home-border: var(--dark-border);
+  --glass-bg: rgba(20, 20, 26, 0.6);
+  --glass-bg-solid: rgba(20, 20, 26, 0.92);
+  /* Home surface is now dark — the bright originals read fine on it. */
+  --accent-ink: var(--accent);
+  --accent-2-ink: var(--accent-2);
+  color-scheme: dark;
+}
+
+/* Experience is unconditionally dark regardless of the Home light/dark
+   toggle — give native form controls / scrollbars the matching hint. */
+.dark-scope {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--home-bg);
+  color: var(--home-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #08080a;
+}
+
+/* Focus visibility — never removed */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Sensible default tap behaviour: no double-tap-zoom delay, no lingering
+   grey flash on mobile (every interactive element already has its own
+   hover/active feedback, so the native highlight is redundant, not the
+   only feedback — focus-visible above still always applies). */
+button, a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Jump targets for the in-page nav links and the skip link land clear of
+   the fixed header instead of half-hidden behind it. */
+#top, #methode, #projets, #offres {
+  scroll-margin-top: 96px;
+}
+
+/* ==========================================================================
+   Skip link — hidden until keyboard-focused, first thing in tab order
+   ========================================================================== */
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 500;
+  background: var(--home-surface);
+  color: var(--home-text);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.4);
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+/* ==========================================================================
+   Mode-sweep transition (theme switch)
+   ========================================================================== */
+
+.mode-sweep {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--sweep-x, 50%) var(--sweep-y, 50%), var(--accent) 0%, transparent 70%);
+  opacity: 0;
+}
+
+.mode-changing .mode-sweep {
+  animation: sweep 0.7s var(--ease-out);
+}
+
+@keyframes sweep {
+  0% { opacity: 0.55; transform: scale(0.2); }
+  60% { opacity: 0.22; }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mode-changing .mode-sweep {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Pointer-tracked halo (Hero)
+   ========================================================================== */
+
+.pointer-halo {
+  background: radial-gradient(
+    480px circle at var(--pointer-x, 50%) var(--pointer-y, 40%),
+    rgba(var(--accent-rgb), 0.16),
+    transparent 65%
+  );
+  transition: background 0.4s var(--ease-out);
+}
+
+/* ==========================================================================
+   Glass cards
+   ========================================================================== */
+
+.glass-light {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--home-border);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+
+.glass-dark {
+  background: rgba(16, 16, 20, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--dark-border);
+}
+
+/* Solid (non-backdrop-filter) equivalents — required for any card that also
+   gets a 3D tilt transform: combining backdrop-filter with a perspective/
+   rotate transform triggers a Chromium compositing bug that renders the
+   card permanently blurred. Use these inside .tilt-card instead. */
+.glass-light-solid {
+  background: var(--glass-bg-solid);
+  border: 1px solid var(--home-border);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+
+.glass-dark-solid {
+  background: rgba(18, 18, 23, 0.92);
+  border: 1px solid var(--dark-border);
+}
+
+/* ==========================================================================
+   Scrollbar (dark surfaces)
+   ========================================================================== */
+
+/* Scrollbar (dark experience page) */
+.dark-scope ::-webkit-scrollbar {
+  width: 10px;
+}
+.dark-scope ::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+.dark-scope ::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-rgb), 0.4);
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   Gradient text
+   ========================================================================== */
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Same treatment, AA-safe on the light home surface (see --accent-ink
+   above). Use this — not .text-gradient — for headline text that sits
+   directly on --home-bg / --home-bg-soft. Components that live on their
+   own always-dark surface (the Experience phases, the DemoCards banner)
+   keep .text-gradient. */
+.text-gradient-ink {
+  background: linear-gradient(100deg, var(--accent-ink), var(--accent-2-ink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   Primary accent button — solid-ish accent surface + guaranteed-readable
+   ink text. Replaces the earlier white-text-on-bright-gradient buttons,
+   which dropped as low as 1.3:1 contrast in the neon/obsidian modes.
+   ========================================================================== */
+
+.btn-accent {
+  background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 80%, black));
+  color: var(--accent-on);
+}
+
+/* ==========================================================================
+   Floating gradient orbs (ambient depth)
+   ========================================================================== */
+
+.orb-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: orbFloat 16s ease-in-out infinite;
+}
+
+.orb-a {
+  width: 42vw;
+  height: 42vw;
+  max-width: 560px;
+  max-height: 560px;
+  top: -14%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.55), transparent 70%);
+  animation-duration: 18s;
+}
+
+.orb-b {
+  width: 34vw;
+  height: 34vw;
+  max-width: 460px;
+  max-height: 460px;
+  bottom: -12%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(var(--accent-2-rgb), 0.5), transparent 70%);
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(4%, 6%) scale(1.08); }
+  66% { transform: translate(-3%, -4%) scale(0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   3D tilt cards (mouse-tracked perspective)
+   ========================================================================== */
+
+.tilt-card {
+  perspective: 1000px;
+}
+
+.tilt-card-inner {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+.tilt-card:hover .tilt-card-inner,
+.tilt-card:focus-within .tilt-card-inner {
+  transition: transform 0.08s linear, box-shadow 0.4s var(--ease-out);
+}
+
+.tilt-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(220px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(var(--accent-rgb), 0.22), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+  pointer-events: none;
+}
+
+.tilt-card:hover .tilt-glow,
+.tilt-card:focus-within .tilt-glow {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card-inner {
+    transform: none !important;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Glow-pulse CTA accent
+   ========================================================================== */
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(var(--accent-rgb), 0); }
+}
+
+.glow-pulse {
+  animation: glowPulse 2.6s var(--ease-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-pulse {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Easter egg (secret logo click)
+   ========================================================================== */
+
+.egg-pop {
+  animation: eggPop 0.5s var(--ease-spring);
+}
+
+@keyframes eggPop {
+  0% { opacity: 0; transform: scale(0.7) translateY(-10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.egg-particle {
+  animation: eggBurst 1.1s var(--ease-out) forwards;
+}
+
+@keyframes eggBurst {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.4) rotate(0deg); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--eggx, 0), 90px) scale(1.1) rotate(180deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .egg-pop, .egg-particle {
+    animation: none;
+    opacity: 1;
+  }
+}
+
