@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "wouter";
-import { useAudio } from "../lib/audio";
+import { Check } from "lucide-react";
+import { useI18n } from "../i18n";
 import { useMagnetic } from "../lib/useMagnetic";
 import { useReducedMotion } from "../lib/useReducedMotion";
 import { useTheme, MODE_COLORS } from "../lib/theme";
@@ -15,7 +16,7 @@ import { useRealityWarp } from "../lib/warp/useRealityWarp";
 const HeroScene = lazy(() => import("../lib/three/HeroScene"));
 
 export default function Hero() {
-  const { clickSfx, hoverSfx } = useAudio();
+  const { t } = useI18n();
   const { mode } = useTheme();
   const reducedMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
@@ -57,21 +58,23 @@ export default function Hero() {
           style={{ ...enter(0), borderColor: "rgba(244,243,238,0.18)", color: "var(--accent)" }}
           className="inline-block rounded-full border px-4 py-1.5 text-xs font-semibold tracking-[0.2em] backdrop-blur-sm"
         >
-          ENZO.DEV · CODEUR WEB
+          {t.hero.badge}
         </span>
 
         <h1
           id="hero-heading"
           tabIndex={-1}
           style={enter(90)}
-          className="font-display mt-7 max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight text-white outline-none sm:text-7xl lg:text-[6.5rem]"
+          className="font-display mt-7 max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight text-white outline-none sm:text-7xl lg:text-[5.5rem]"
         >
-          Faites décoller <span className="text-gradient">votre projet.</span>
+          {t.hero.title1} <span className="text-gradient">{t.hero.title2}</span>
         </h1>
 
         <p style={{ ...enter(190), color: "rgba(244,243,238,0.72)" }} className="mt-7 max-w-lg text-base leading-relaxed sm:text-lg">
-          Sous vos yeux, pas dans six mois. Je code en direct, sur mesure, sans template
-          recyclé — chaque interaction est pensée pour transformer vos visiteurs en clients.
+          {t.hero.subtitle}
+        </p>
+        <p style={{ ...enter(240), color: "var(--accent)" }} className="mt-4 text-sm font-semibold tracking-wide">
+          {t.hero.price}
         </p>
 
         <div style={enter(300)} className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -84,20 +87,17 @@ export default function Hero() {
             type="button"
             ref={primaryCta.ref}
             onClick={() => triggerWarp("/projets")}
-            onPointerEnter={hoverSfx}
             onPointerMove={primaryCta.onPointerMove}
             onPointerLeave={primaryCta.onPointerLeave}
             className="btn-accent glow-pulse rounded-full px-8 py-3.5 text-center text-sm font-semibold shadow-[0_14px_45px_-16px_rgba(var(--accent-rgb),0.85)] will-change-transform"
           >
-            Voir de quoi je suis capable
+            {t.hero.ctaPrimary}
           </button>
           {/* eslint-disable @typescript-eslint/no-explicit-any */}
           <Link
             {...({
               ref: secondaryCta.ref,
-              href: "/contact",
-              onClick: clickSfx,
-              onPointerEnter: hoverSfx,
+              href: "/contact#contact",
               onPointerMove: secondaryCta.onPointerMove,
               onPointerLeave: secondaryCta.onPointerLeave,
               className:
@@ -105,15 +105,24 @@ export default function Hero() {
               style: { borderColor: "rgba(244,243,238,0.22)" },
             } as any)}
           >
-            Parlons de votre idée →
+            {t.hero.ctaSecondary} →
           </Link>
           {/* eslint-enable @typescript-eslint/no-explicit-any */}
         </div>
+
+        <ul style={enter(400)} className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm">
+          {t.hero.trust.map((item) => (
+            <li key={item} className="flex items-center gap-1.5" style={{ color: "rgba(244,243,238,0.7)" }}>
+              <Check size={14} style={{ color: "var(--accent)" }} aria-hidden="true" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div style={enter(520)} className="pointer-events-none absolute inset-x-0 bottom-8 z-10 flex flex-col items-center gap-2">
         <span className="font-mono text-[10px] tracking-[0.3em]" style={{ color: "rgba(244,243,238,0.45)" }}>
-          DÉFILEZ
+          {t.hero.scroll}
         </span>
         <span className="h-8 w-px animate-pulse" style={{ background: "var(--accent)" }} />
       </div>

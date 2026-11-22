@@ -3,11 +3,11 @@ import type { PointerEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { GsapReveal } from "../lib/GsapReveal";
-import { useAudio } from "../lib/audio";
+import { useI18n } from "../i18n";
 
 /** Dark banner CTA on Home driving into the full Catalogue page. */
 export default function CatalogueTeaser() {
-  const { clickSfx, hoverSfx } = useAudio();
+  const { t } = useI18n();
   const wrapRef = useRef<HTMLAnchorElement>(null);
 
   const handleMove = (e: PointerEvent<HTMLAnchorElement>) => {
@@ -23,9 +23,7 @@ export default function CatalogueTeaser() {
       <GsapReveal dir="scale">
         <Link
           href="/projets"
-          aria-label="Voir le catalogue de projets"
-          onClick={clickSfx}
-          onPointerEnter={hoverSfx}
+          aria-label={t.teaser.aria}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={wrapRef as any}
           onPointerMove={handleMove}
@@ -45,20 +43,19 @@ export default function CatalogueTeaser() {
           />
 
           <span className="relative z-10 font-mono text-xs tracking-[0.4em]" style={{ color: "var(--accent)" }}>
-            CATALOGUE
+            {t.teaser.kicker}
           </span>
 
           <h2 className="font-display relative z-10 mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl">
-            Des projets réels, <span className="text-gradient">livrés.</span>
+            {t.teaser.title1} <span className="text-gradient">{t.teaser.title2}</span>
           </h2>
 
           <p className="relative z-10 mt-6 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-            Pas un portfolio statique. Des sites construits avec le même savoir-faire que celui
-            que vous venez de voir décoller : profondeur, mouvement, réactivité en direct.
+            {t.teaser.text}
           </p>
 
           <span className="btn-accent glow-pulse relative z-10 mt-10 inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-semibold transition-transform duration-300 group-hover:scale-105">
-            Voir le catalogue
+            {t.teaser.cta}
             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </span>
         </Link>

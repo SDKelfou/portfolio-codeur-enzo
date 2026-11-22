@@ -2,6 +2,7 @@ import { useRef } from "react";
 import type { PointerEvent } from "react";
 import { GsapReveal } from "../lib/GsapReveal";
 import { TiltCard } from "../lib/TiltCard";
+import { useI18n } from "../i18n";
 
 /* ---------------------------------------------------------------------- */
 /* 01 — Profondeur : parallax multi-couches piloté par le curseur          */
@@ -162,27 +163,27 @@ function MagnetDemo() {
 /* ---------------------------------------------------------------------- */
 
 const MODULES = [
-  { key: "depth", title: "Profondeur", text: "Trois couches, trois vitesses. Bougez le curseur sur la zone.", visual: <DepthDemo />, dir: "left" as const },
-  { key: "fluid", title: "Fluidité", text: "Une forme organique qui ne s'arrête jamais de respirer.", visual: <FluidDemo />, dir: "up" as const },
-  { key: "magnet", title: "Interaction", text: "Chaque point réagit à votre présence. Approchez le curseur.", visual: <MagnetDemo />, dir: "right" as const },
+  { key: "depth", visual: <DepthDemo />, dir: "left" as const },
+  { key: "fluid", visual: <FluidDemo />, dir: "up" as const },
+  { key: "magnet", visual: <MagnetDemo />, dir: "right" as const },
 ];
 
 /** Proof-of-capability strip: not screenshots, real running techniques —
  *  visitors can put their cursor on each and see it react immediately. */
 export default function CapabilityDemos() {
+  const { t } = useI18n();
   return (
     <section className="relative px-6 py-20 sm:px-10 sm:py-28">
       <GsapReveal>
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-mono text-xs tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-            CE DONT JE SUIS CAPABLE
+            {t.demos.kicker}
           </span>
           <h2 className="font-display mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-            Pas des maquettes. <span className="text-gradient-ink">Du code, en direct.</span>
+            {t.demos.title1} <span className="text-gradient-ink">{t.demos.title2}</span>
           </h2>
           <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
-            Trois techniques que j'utilise vraiment sur mes projets. Passez le curseur dessus —
-            tout ce que vous voyez tourne devant vous, là, maintenant.
+            {t.demos.text}
           </p>
         </div>
       </GsapReveal>
@@ -193,10 +194,10 @@ export default function CapabilityDemos() {
             <TiltCard maxTilt={6} className="h-full rounded-2xl">
               <div className="glass-light-solid h-full min-w-0 rounded-2xl p-7">
                 <h3 className="font-display text-lg font-bold">
-                  {String(i + 1).padStart(2, "0")} · {mod.title}
+                  {String(i + 1).padStart(2, "0")} · {t.demos.items[i].title}
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
-                  {mod.text}
+                  {t.demos.items[i].text}
                 </p>
                 {mod.visual}
               </div>

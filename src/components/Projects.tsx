@@ -1,31 +1,34 @@
 import { ArrowUpRight } from "lucide-react";
 import { GsapReveal as Reveal } from "../lib/GsapReveal";
 import { TiltCard } from "../lib/TiltCard";
-import { useAudio } from "../lib/audio";
+import { useI18n } from "../i18n";
 
 const PROJECTS = [
   {
-    name: "KL",
-    type: "Chaîne YouTube",
-    text: "Habillage et présence en ligne pensés pour une audience créative.",
-    href: "https://www.youtube.com/@KL",
+    name: "NEXUS",
+    type: "Logiciel",
+    text: "Logiciel conçu et développé par moi pour optimiser un PC Windows : nettoyage, monitoring, pilotes, confidentialité et IA locale.",
+    href: "https://nexus-multitools.nexus-multitools.workers.dev/",
+    external: true,
   },
   {
-    name: "Doktor",
-    type: "Portfolio",
-    text: "Un portfolio clair, orienté conversion, pour présenter un univers créatif.",
-    href: "https://doktor-portfolio.example.com",
+    name: "Café Mistral",
+    type: "Site vitrine · exemple",
+    text: "Un café-bar de village imaginaire : carte, horaires et bouton d'appel visibles dès l'ouverture. À visiter comme le ferait un client.",
+    href: "/exemples/cafe-mistral/",
+    external: false,
   },
   {
-    name: "Unique Melba",
-    type: "Site vitrine",
-    text: "Direction artistique sur mesure et structure responsive de bout en bout.",
-    href: "https://unique-melba.example.com",
+    name: "Atelier Lune",
+    type: "Site vitrine · exemple",
+    text: "Un salon de coiffure imaginaire, à l'ambiance douce et élégante : tarifs clairs, accès simple, prise de rendez-vous par téléphone.",
+    href: "/exemples/atelier-lune/",
+    external: false,
   },
 ];
 
 export default function Projects() {
-  const { clickSfx } = useAudio();
+  const { t } = useI18n();
   return (
     <section id="projets" className="relative overflow-hidden px-6 py-24 sm:px-10 sm:py-32" style={{ background: "var(--home-bg-soft)" }}>
       <div className="orb-field">
@@ -35,10 +38,10 @@ export default function Projects() {
       <Reveal>
         <div className="relative z-10 mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-            PROJETS
+            {t.projects.kicker}
           </span>
           <h2 className="font-display mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-            Des projets réels, <span className="text-gradient-ink">livrés.</span>
+            {t.projects.title1} <span className="text-gradient-ink">{t.projects.title2}</span>
           </h2>
         </div>
       </Reveal>
@@ -49,9 +52,7 @@ export default function Projects() {
             <TiltCard
               as="a"
               href={p.href}
-              target="_blank"
-              rel="noreferrer"
-              onClick={clickSfx}
+              {...(p.external ? { target: "_blank", rel: "noreferrer" } : {})}
               maxTilt={9}
               className="group flex h-full rounded-2xl"
             >
@@ -66,10 +67,10 @@ export default function Projects() {
                   />
                 </div>
                 <span className="mt-1 text-xs font-semibold tracking-[0.15em]" style={{ color: "var(--accent-ink)" }}>
-                  {p.type.toUpperCase()}
+                  {t.projects.items[i].type.toUpperCase()}
                 </span>
                 <p className="mt-4 flex-1 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
-                  {p.text}
+                  {t.projects.items[i].text}
                 </p>
               </div>
             </TiltCard>

@@ -1,5 +1,4 @@
 import { Link } from "wouter";
-import { useAudio } from "../lib/audio";
 import { useMagnetic } from "../lib/useMagnetic";
 import { GsapReveal } from "../lib/GsapReveal";
 
@@ -12,7 +11,6 @@ interface EndCTAProps {
 /** Compact closing nudge used at the end of a page to route toward the
  *  next natural step, without repeating a full contact block. */
 export default function EndCTA({ text, buttonLabel, href }: EndCTAProps) {
-  const { clickSfx, hoverSfx } = useAudio();
   const cta = useMagnetic<HTMLAnchorElement>(0.28);
 
   return (
@@ -25,8 +23,6 @@ export default function EndCTA({ text, buttonLabel, href }: EndCTAProps) {
         <Link
           {...({
             href,
-            onClick: clickSfx,
-            onPointerEnter: hoverSfx,
             ref: cta.ref,
             onPointerMove: cta.onPointerMove,
             onPointerLeave: cta.onPointerLeave,

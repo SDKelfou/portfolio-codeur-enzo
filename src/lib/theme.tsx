@@ -1,6 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { useAudio } from "./audio";
 
 export type Mode = "ice" | "neon" | "violet" | "obsidian";
 export type Scheme = "light" | "dark";
@@ -42,7 +41,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // explicit system preference for light, or a stored choice, still wins.
   const [scheme, setScheme] = useState<Scheme>("dark");
   const [isChangingMode, setIsChangingMode] = useState(false);
-  const { playModeSfx } = useAudio();
 
   useEffect(() => {
     try {
@@ -90,7 +88,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       } catch {
         /* ignore */
       }
-      playModeSfx();
       if (!reduced) {
         setIsChangingMode(true);
         document.documentElement.classList.add("mode-changing");
@@ -100,7 +97,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }, 700);
       }
     },
-    [mode, playModeSfx]
+    [mode]
   );
 
   const toggleScheme = useCallback(() => {

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Café Mistral · Café-bar à Valmont</title>
+<meta name="description" content="Café Mistral, café-bar de village à Valmont : terrasse sous les platanes, petits-déjeuners, plat du jour et apéro. Commerce fictif, site d'exemple.">
+<meta name="theme-color" content="#f5c05a">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#haut" aria-label="Café Mistral, accueil">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><circle cx="16" cy="16" r="9" fill="#e8743b"/><g stroke="#e8743b" stroke-width="2.4" stroke-linecap="round"><path d="M16 2v4M16 26v4M2 16h4M26 16h4M6 6l3 3M23 23l3 3M26 6l-3 3M9 23l-3 3"/></g></svg>
+    <span>Café Mistral</span>
+  </a>
+  <nav aria-label="Navigation">
+    <a href="#presentation">Le café</a>
+    <a href="#carte">La carte</a>
+    <a href="#horaires">Horaires</a>
+    <a href="#acces">Accès</a>
+  </nav>
+  <a class="call call-small" href="tel:+33465712031">Appeler</a>
+</header>
+
+<main id="haut">
+<section class="hero" aria-labelledby="titre">
+  <svg class="sun" viewBox="-300 -300 600 600" aria-hidden="true" focusable="false">
+    <g class="sun-rays" stroke="#e8743b" stroke-width="14" stroke-linecap="round">
+      <path d="M0 -250V-210M0 250V210M-250 0H-210M250 0H210"/>
+      <path d="M177 -177l-28 28M-177 177l28 -28M177 177l-28 -28M-177 -177l28 28"/>
+      <path d="M96 -231l-15 36M-96 231l15 -36M96 231l-15 -36M-96 -231l15 36M231 -96l-36 15M-231 96l36 -15M231 96l-36 -15M-231 -96l36 15"/>
+    </g>
+    <circle r="190" fill="none" stroke="#e8743b" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round" opacity=".7"/>
+    <circle r="160" fill="#e8743b"/>
+    <circle r="124" fill="#ee8a4a"/>
+    <circle r="82" fill="#f4a65a"/>
+  </svg>
+
+  <div class="hero-text">
+    <p class="eyebrow rise" style="--i:0">Café-bar de village · Valmont</p>
+    <h1 id="titre" class="rise" style="--i:1">Café <br>Mistral</h1>
+    <p class="lead rise" style="--i:2">Terrasse sous les platanes, petits-déjeuners, plat du jour et apéro.</p>
+    <p class="rating rise" style="--i:3"><span class="stars" aria-hidden="true">★★★★★</span> <strong>4,8</strong> sur 5 · 212 avis</p>
+    <div class="actions rise" style="--i:4">
+      <a class="call" href="tel:+33465712031">Appeler le 04 65 71 20 31</a>
+      <a class="ghost" href="#carte">Voir la carte</a>
+    </div>
+  </div>
+
+  <svg class="scene" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Illustration : la terrasse du café sous les platanes, nappes et feuilles agitées par le mistral">
+    <defs>
+      <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8913a"/><stop offset="1" stop-color="#b9702a"/></linearGradient>
+      <g id="chaise">
+        <path d="M-17 -50v52M17 -50v52" stroke="#2f2a55" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M-17 -50Q-17 -84 0 -84T17 -50" fill="none" stroke="#2f2a55" stroke-width="4" stroke-linecap="round"/>
+        <rect x="-21" y="-54" width="42" height="8" rx="4" fill="#4a5aa8"/>
+      </g>
+      <g id="table">
+        <ellipse cx="0" cy="0" rx="34" ry="6" fill="#2f2a55" opacity=".25"/>
+        <path d="M0 -34V-4M-18 -2Q0 -10 18 -2" stroke="#2f2a55" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <g class="cloth">
+          <path d="M-52 -68Q-56 -44 -46 -28L-36 -36L-24 -26L-12 -36L0 -25L12 -36L24 -26L36 -36L46 -28Q56 -44 52 -68Z" fill="#f7ecd2"/>
+          <path d="M-52 -68Q-56 -44 -46 -28L-36 -36L-24 -26L-12 -36L0 -25L12 -36L24 -26L36 -36L46 -28Q56 -44 52 -68Z" fill="none" stroke="#4a5aa8" stroke-width="2.5" stroke-dasharray="7 6"/>
+          <ellipse cx="0" cy="-68" rx="52" ry="10" fill="#fffaf0"/>
+          <ellipse cx="0" cy="-68" rx="52" ry="10" fill="none" stroke="#4a5aa8" stroke-width="2.5"/>
+        </g>
+        <path d="M-30 -78h14l-2 12h-10z" fill="#c65a3a"/>
+        <path d="M14 -66v-24q-5-4 0-8h8q5 4 0 8v24z" fill="#8e9be0"/>
+      </g>
+      <path id="feuille" d="M0 0C4-9 12-12 20-8C24-4 24 4 20 8C12 12 4 9 0 0Z"/>
+    </defs>
+
+    <path d="M0 290C180 230 330 270 520 238S900 196 1100 244S1360 236 1440 220V460H0Z" fill="#8e9be0"/>
+    <path d="M0 330C220 280 380 320 600 290S1000 270 1200 306S1380 296 1440 290V460H0Z" fill="#6f7cc6"/>
+
+    <g>
+      <rect x="430" y="150" width="520" height="250" fill="#f3d9a4"/>
+      <path d="M412 156L470 100H910L968 156Z" fill="#c4582f"/>
+      <path d="M440 140H940M450 124H930M462 110H918" stroke="#a8461f" stroke-width="3" opacity=".6"/>
+      <rect x="430" y="150" width="520" height="12" fill="#e2bf84"/>
+      <g fill="#fffaf0" stroke="#2f2a55" stroke-width="3">
+        <rect x="462" y="208" width="74" height="84" rx="3"/>
+        <rect x="842" y="208" width="74" height="84" rx="3"/>
+        <path d="M660 400V246a31 31 0 0 1 62 0V400z"/>
+      </g>
+      <g fill="#6f7cc6" stroke="#2f2a55" stroke-width="3">
+        <rect x="440" y="206" width="22" height="88"/><rect x="538" y="206" width="22" height="88"/>
+        <rect x="820" y="206" width="22" height="88"/><rect x="918" y="206" width="22" height="88"/>
+      </g>
+      <g stroke="#2f2a55" stroke-width="2"><path d="M499 208v84M462 250h74M879 208v84M842 250h74"/></g>
+      <path d="M452 304h476l22 30H430z" fill="#c4582f"/>
+      <path d="M452 304h31l-8 30h-45zM514 304h31l-4 30h-31zM576 304h31v30h-31zM638 304h31l4 30h-31zM700 304h31l8 30h-31zM762 304h31l12 30h-31zM824 304h31l16 30h-31zM886 304h31l22 30h-31z" fill="#f7ecd2"/>
+      <rect x="590" y="166" width="200" height="38" rx="6" fill="#2f2a55"/>
+      <text x="690" y="192" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="22" letter-spacing="5" fill="#f5c05a">CAFÉ MISTRAL</text>
+    </g>
+
+    <g class="arbre arbre-g">
+      <path d="M180 410C186 360 176 320 184 250L222 250C226 320 214 360 224 410Z" fill="#e8d6ac"/>
+      <path d="M190 330q10-6 8-18q10 10 4 24zM204 270q8 2 10 12q-10-2-10-12zM196 380q10-4 14 6q-10 4-14-6z" fill="#a78a5a" opacity=".75"/>
+      <g class="cime">
+        <circle cx="200" cy="170" r="96" fill="#5f7d3a"/><circle cx="120" cy="210" r="64" fill="#6f8f45"/><circle cx="290" cy="200" r="70" fill="#4f6e30"/><circle cx="210" cy="108" r="60" fill="#76964a"/><circle cx="140" cy="140" r="46" fill="#4f6e30"/><circle cx="268" cy="132" r="42" fill="#6f8f45"/>
+        <circle cx="170" cy="190" r="14" fill="#9db563" opacity=".7"/><circle cx="250" cy="170" r="10" fill="#9db563" opacity=".7"/><circle cx="130" cy="230" r="9" fill="#9db563" opacity=".7"/>
+      </g>
+    </g>
+    <g class="arbre arbre-d">
+      <path d="M1180 410C1186 360 1176 320 1184 240L1226 240C1232 320 1218 360 1230 410Z" fill="#e8d6ac"/>
+      <path d="M1190 320q10-6 8-18q10 10 4 24zM1208 262q8 2 10 12q-10-2-10-12zM1196 372q10-4 14 6q-10 4-14-6z" fill="#a78a5a" opacity=".75"/>
+      <g class="cime">
+        <circle cx="1206" cy="160" r="104" fill="#5f7d3a"/><circle cx="1120" cy="200" r="66" fill="#4f6e30"/><circle cx="1300" cy="196" r="72" fill="#6f8f45"/><circle cx="1210" cy="92" r="62" fill="#76964a"/><circle cx="1140" cy="130" r="48" fill="#6f8f45"/><circle cx="1290" cy="120" r="44" fill="#4f6e30"/>
+        <circle cx="1170" cy="180" r="14" fill="#9db563" opacity=".7"/><circle cx="1260" cy="160" r="10" fill="#9db563" opacity=".7"/>
+      </g>
+    </g>
+
+    <rect x="0" y="396" width="1440" height="64" fill="url(#sol)"/>
+    <path d="M0 412h1440M0 430h1440M0 448h1440" stroke="#a8601f" stroke-width="2" opacity=".35"/>
+
+    <use href="#chaise" x="290" y="414"/>
+    <use href="#table" x="370" y="414"/>
+    <use href="#chaise" x="450" y="414"/>
+    <use href="#chaise" x="494" y="414"/>
+    <use href="#table" x="574" y="414"/>
+    <use href="#chaise" x="780" y="414"/>
+    <use href="#table" x="860" y="414"/>
+    <use href="#chaise" x="940" y="414"/>
+    <use href="#chaise" x="986" y="414"/>
+    <use href="#table" x="1066" y="414"/>
+    <use href="#chaise" x="1146" y="414"/>
+    <g transform="translate(700 452) scale(1.3)"><use href="#table"/></g>
+
+    <g fill="none" stroke="#fffaf0" stroke-width="4" stroke-linecap="round" opacity=".85">
+      <path class="rafale" style="--d:0s" d="M1440 120C1250 100 1100 150 900 120S640 90 520 118c-30 8-34 36-8 34"/>
+      <path class="rafale" style="--d:1.6s" d="M1440 230C1300 214 1160 250 1000 226S760 206 700 228c-24 10-22 32 0 30"/>
+      <path class="rafale" style="--d:3.1s" d="M1440 330C1330 318 1220 346 1100 330S900 320 860 338c-18 8-14 26 4 24"/>
+    </g>
+
+    <g class="feuilles">
+      <use class="f" href="#feuille" fill="#c65a3a" style="--y:60px;--y2:300px;--t:9s;--d:0s"/>
+      <use class="f" href="#feuille" fill="#6f8f45" style="--y:140px;--y2:380px;--t:12s;--d:2s"/>
+      <use class="f" href="#feuille" fill="#e8a43a" style="--y:200px;--y2:360px;--t:10s;--d:4.5s"/>
+      <use class="f" href="#feuille" fill="#c65a3a" style="--y:90px;--y2:340px;--t:13s;--d:6s"/>
+      <use class="f" href="#feuille" fill="#4f6e30" style="--y:250px;--y2:400px;--t:8s;--d:1s"/>
+      <use class="f" href="#feuille" fill="#e8a43a" style="--y:30px;--y2:260px;--t:14s;--d:7.5s"/>
+    </g>
+  </svg>
+</section>
+
+<section class="sec" id="presentation" aria-labelledby="t-pres">
+  <div class="wrap two">
+    <div class="reveal">
+      <p class="kicker">Le café</p>
+      <h2 id="t-pres">À l'ombre des platanes, quand le mistral souffle.</h2>
+    </div>
+    <div class="reveal">
+      <p class="big">Au Café Mistral, on pose le journal sur la nappe à carreaux, on commande un crème et on regarde la place de Valmont se réveiller.</p>
+      <p>Le matin, tartines et viennoiseries. À midi, un plat du jour cuisiné le matin même. Dès 17 h, l'apéro s'installe sous les arbres, avec une planche à partager et un verre de rosé bien frais.</p>
+    </div>
+  </div>
+  <ul class="wrap trio">
+    <li class="reveal"><span class="pic" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 28h26v6a8 8 0 0 1-8 8H16a8 8 0 0 1-8-8zM34 30h4a4 4 0 0 1 0 8h-4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 22c0-4 4-4 4-8M24 22c0-4 4-4 4-8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><h3>Petits-déjeuners</h3><p>Dès 7 h 30, café, jus pressé et tartines.</p></li>
+    <li class="reveal"><span class="pic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="30" cy="26" r="13" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="30" cy="26" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M6 8v14M10 8v14M14 8v14M6 22h8M10 22v18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Plat du jour</h3><p>Cuisine de saison, du mardi au samedi midi.</p></li>
+    <li class="reveal"><span class="pic" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 8h28L24 28zM24 28v12M15 40h18M13 14h22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Apéro</h3><p>Rosé, pastis et planches, dès 17 h.</p></li>
+  </ul>
+</section>
+
+<section class="sec carte" id="carte" aria-labelledby="t-carte">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker">La carte</p>
+      <h2 id="t-carte">Simple, de saison, à prix de village.</h2>
+    </div>
+    <div class="cols">
+      <article class="menu reveal">
+        <h3>Petit-déjeuner <small>7 h 30 – 11 h</small></h3>
+        <ul>
+          <li><span>Café crème ou noisette</span><i></i><b>2,60 €</b></li>
+          <li><span>Chocolat chaud maison</span><i></i><b>3,50 €</b></li>
+          <li><span>Tartine beurre et confiture</span><i></i><b>4,50 €</b></li>
+          <li><span>Croissant ou pain au chocolat</span><i></i><b>1,70 €</b></li>
+          <li class="best"><span>Formule Mistral : boisson chaude, jus pressé, viennoiserie</span><i></i><b>9,90 €</b></li>
+        </ul>
+      </article>
+      <article class="menu reveal plat">
+        <h3>Plat du jour <small>12 h – 14 h 30</small></h3>
+        <p class="plat-prix"><b>14,50 €</b><span>plat + dessert ou café</span></p>
+        <ul>
+          <li><span>Mardi · Daube provençale, polenta</span></li>
+          <li><span>Mercredi · Tian de légumes, œuf mollet</span></li>
+          <li><span>Jeudi · Pissaladière et salade</span></li>
+          <li><span>Vendredi · Poisson du marché, riz de Camargue</span></li>
+          <li><span>Samedi · Poulet rôti aux herbes, pommes sautées</span></li>
+        </ul>
+      </article>
+      <article class="menu reveal">
+        <h3>Apéro <small>dès 17 h</small></h3>
+        <ul>
+          <li><span>Pastis, 2 cl</span><i></i><b>3,80 €</b></li>
+          <li><span>Rosé de Provence, verre</span><i></i><b>4,00 €</b></li>
+          <li><span>Pression, demi</span><i></i><b>3,20 €</b></li>
+          <li><span>Tapenade et pain grillé</span><i></i><b>5,00 €</b></li>
+          <li class="best"><span>Planche à partager : charcuterie, fromages, olives</span><i></i><b>14,00 €</b></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec horaires" id="horaires" aria-labelledby="t-hor">
+  <div class="wrap two">
+    <div class="reveal">
+      <p class="kicker">Horaires</p>
+      <h2 id="t-hor">Ouvert tous les jours, sauf le lundi.</h2>
+      <p class="big">La terrasse ouvre dès que le soleil est là. Les jours de grand mistral, on garde les nappes bien accrochées.</p>
+    </div>
+    <table class="reveal">
+      <caption class="sr">Horaires d'ouverture</caption>
+      <tbody>
+        <tr><th scope="row">Lundi</th><td class="ferme">Fermé</td></tr>
+        <tr><th scope="row">Mardi – Jeudi</th><td>7 h 30 – 22 h</td></tr>
+        <tr><th scope="row">Vendredi</th><td>7 h 30 – 23 h</td></tr>
+        <tr><th scope="row">Samedi</th><td>8 h – 23 h</td></tr>
+        <tr><th scope="row">Dimanche</th><td>8 h – 15 h</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec acces" id="acces" aria-labelledby="t-acces">
+  <div class="wrap two">
+    <svg class="plan reveal" viewBox="0 0 520 380" role="img" aria-label="Plan dessiné à la main : le café donne sur la place des Platanes, à Valmont">
+      <rect width="520" height="380" rx="22" fill="#f4a65a"/>
+      <g fill="none" stroke="#f7ecd2" stroke-width="22" stroke-linecap="round">
+        <path d="M-10 120L200 140L330 90L530 110"/><path d="M120 -10L150 160L130 390"/><path d="M360 -10L330 120L380 250L350 390"/><path d="M-10 290L250 270L530 300"/>
+      </g>
+      <rect x="196" y="150" width="140" height="104" rx="12" fill="#6f8f45"/>
+      <g fill="#4f6e30"><circle cx="226" cy="180" r="12"/><circle cx="270" cy="174" r="12"/><circle cx="312" cy="184" r="12"/><circle cx="240" cy="224" r="12"/><circle cx="296" cy="226" r="12"/></g>
+      <text x="266" y="208" text-anchor="middle" font-family="Georgia, serif" font-size="12" font-weight="700" fill="#f7ecd2" letter-spacing="1">PLACE DES PLATANES</text>
+      <g class="pin"><path d="M266 90c-14 0-24 10-24 22 0 16 24 36 24 36s24-20 24-36c0-12-10-22-24-22z" fill="#c4582f" stroke="#fffaf0" stroke-width="3"/><circle cx="266" cy="112" r="8" fill="#fffaf0"/></g>
+      <g fill="#2f2a55" font-family="Georgia, serif" font-size="12" font-weight="700"><text x="30" y="106">Rue du Marché</text><text x="370" y="326">Chemin des Lavandes</text></g>
+    </svg>
+    <div class="reveal">
+      <p class="kicker">Accès</p>
+      <h2 id="t-acces">Sur la place, face à la fontaine.</h2>
+      <address>
+        <strong>Café Mistral</strong><br>
+        12 place des Platanes<br>
+        Valmont
+      </address>
+      <ul class="infos">
+        <li>Parking gratuit à 50 m, place de la Fontaine.</li>
+        <li>Terrasse de plain-pied, accessible en fauteuil.</li>
+        <li>Chiens bienvenus, un bol d'eau les attend.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact" aria-labelledby="t-contact">
+  <div class="wrap center">
+    <div class="reveal">
+      <p class="kicker">Contact</p>
+      <h2 id="t-contact">Une table ? Un coup de fil suffit.</h2>
+      <p class="big">On répond de 7 h 30 jusqu'à la fermeture. Pas de formulaire, pas d'attente : on décroche.</p>
+      <a class="call call-xl" href="tel:+33465712031">04 65 71 20 31</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p><strong>Commerce fictif, site d'exemple réalisé par Enzo.</strong> Valmont est une ville imaginaire, le numéro appartient à une plage réservée à la fiction.</p>
+    <a href="/#projets">← Retour au portfolio d'Enzo</a>
+  </div>
+</footer>
+
+</body>
+</html>

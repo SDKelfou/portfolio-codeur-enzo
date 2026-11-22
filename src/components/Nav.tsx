@@ -1,21 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Eye, Menu, Moon, Sun, X } from "lucide-react";
-import { useAudio } from "../lib/audio";
+import { useI18n } from "../i18n";
+import LangSwitcher from "./LangSwitcher";
 import { useTheme } from "../lib/theme";
 import { useMagnetic } from "../lib/useMagnetic";
-
-const LINKS = [
-  { href: "/", label: "Accueil" },
-  { href: "/projets", label: "Catalogue" },
-  { href: "/contact", label: "Contact" },
-];
-
-const EGG_MESSAGES = [
-  "Œil pour œil. Vous avez trouvé le mode secret.",
-  "Curieux, vous. J'aime ça.",
-  "D'accord, vous avez gagné le droit de me le dire en entretien.",
-];
 
 export default function Nav() {
   const [location, navigate] = useLocation();
@@ -23,7 +12,13 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [egg, setEgg] = useState<string | null>(null);
   const clicksRef = useRef<number[]>([]);
-  const { clickSfx, hoverSfx, successSfx } = useAudio();
+  const { t } = useI18n();
+  const LINKS = [
+    { href: "/", label: t.nav.home },
+    { href: "/projets", label: t.nav.work },
+    { href: "/contact#offres", label: t.nav.pricing },
+    { href: "/contact#contact", label: t.nav.contact },
+  ];
   const { scheme, toggleScheme } = useTheme();
   const ctaMag = useMagnetic<HTMLAnchorElement>(0.28);
 
@@ -52,15 +47,13 @@ export default function Nav() {
   const closeMenu = () => setMenuOpen(false);
 
   const handleLogoClick = () => {
-    clickSfx();
     const now = Date.now();
     const recent = clicksRef.current.filter((t) => now - t < 1600);
     recent.push(now);
     clicksRef.current = recent;
     if (recent.length >= 5) {
       clicksRef.current = [];
-      successSfx();
-      setEgg(EGG_MESSAGES[Math.floor(Math.random() * EGG_MESSAGES.length)]);
+      setEgg(t.nav.eggs[Math.floor(Math.random() * t.nav.eggs.length)]);
     }
   };
 
@@ -90,15 +83,13 @@ export default function Nav() {
           <span className="text-gradient">enzo.dev</span>
         </a>
 
-        <ul className="hidden items-center gap-8 text-sm font-medium sm:flex" style={{ color: "var(--home-text-muted)" }}>
+        <ul className="hidden items-center gap-6 text-sm font-medium lg:gap-8 md:flex" style={{ color: "var(--home-text-muted)" }}>
           {LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                onClick={clickSfx}
-                onPointerEnter={hoverSfx}
                 className="transition-colors hover:text-[var(--accent-ink)]"
-                style={location === link.href ? { color: "var(--accent-ink)" } : undefined}
+                style={location === link.href.split("#")[0] && (link.href === "/" || link.href === "/projets") ? { color: "var(--accent-ink)" } : undefined}
               >
                 {link.label}
               </Link>
@@ -107,14 +98,11 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <LangSwitcher />
           <button
             type="button"
-            onClick={() => {
-              toggleScheme();
-              clickSfx();
-            }}
-            onPointerEnter={hoverSfx}
-            aria-label={scheme === "dark" ? "Passer en mode clair" : "Passer en mode sombre"}
+            onClick={toggleScheme}
+            aria-label={scheme === "dark" ? t.nav.toLight : t.nav.toDark}
             className="flex h-11 w-11 items-center justify-center rounded-full border transition-transform hover:scale-105"
             style={{ borderColor: "var(--home-border)" }}
           >
@@ -124,28 +112,23 @@ export default function Nav() {
           {/* eslint-disable @typescript-eslint/no-explicit-any */}
           <Link
             {...({
-              href: "/contact",
-              onClick: clickSfx,
-              onPointerEnter: hoverSfx,
+              href: "/contact#contact",
               ref: ctaMag.ref,
               onPointerMove: ctaMag.onPointerMove,
               onPointerLeave: ctaMag.onPointerLeave,
-              className: "btn-accent hidden rounded-full px-5 py-2.5 text-sm font-semibold will-change-transform sm:inline-block",
+              className: "btn-accent hidden rounded-full px-5 py-2.5 text-sm font-semibold will-change-transform lg:inline-block",
             } as any)}
           >
-            Votre projet
+            {t.nav.cta}
           </Link>
           {/* eslint-enable @typescript-eslint/no-explicit-any */}
 
           <button
             type="button"
-            onClick={() => {
-              setMenuOpen((o) => !o);
-              clickSfx();
-            }}
+            onClick={() => setMenuOpen((o) => !o)}
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-            className="flex h-11 w-11 items-center justify-center rounded-full border sm:hidden"
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
+            className="flex h-11 w-11 items-center justify-center rounded-full border md:hidden"
             style={{ borderColor: "var(--home-border)" }}
           >
             {menuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
@@ -154,17 +137,14 @@ export default function Nav() {
       </nav>
 
       {menuOpen && (
-        <div className="glass-light border-t px-6 py-6 sm:hidden" style={{ borderColor: "var(--home-border)" }}>
+        <div className="glass-light border-t px-6 py-6 md:hidden" style={{ borderColor: "var(--home-border)" }}>
           <ul className="flex flex-col gap-5 text-base font-medium">
             {LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  onClick={() => {
-                    clickSfx();
-                    closeMenu();
-                  }}
-                  style={location === link.href ? { color: "var(--accent-ink)" } : undefined}
+                  onClick={closeMenu}
+                  style={location === link.href.split("#")[0] && (link.href === "/" || link.href === "/projets") ? { color: "var(--accent-ink)" } : undefined}
                 >
                   {link.label}
                 </Link>
@@ -172,14 +152,11 @@ export default function Nav() {
             ))}
             <li>
               <Link
-                href="/contact"
-                onClick={() => {
-                  clickSfx();
-                  closeMenu();
-                }}
+                href="/contact#contact"
+                onClick={closeMenu}
                 className="btn-accent inline-block rounded-full px-5 py-2.5 text-sm font-semibold"
               >
-                Votre projet
+                {t.nav.cta}
               </Link>
             </li>
           </ul>

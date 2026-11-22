@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Lune · Salon de coiffure à Valmont</title>
+<meta name="description" content="Atelier Lune, salon de coiffure doux et moderne à Valmont : coupes, couleurs, soins. Commerce fictif, site d'exemple.">
+<meta name="theme-color" content="#0b1330">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#haut" aria-label="Atelier Lune, accueil">
+    <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M22 4a13 13 0 1 0 6 20A11 11 0 0 1 22 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span>Atelier Lune</span>
+  </a>
+  <nav aria-label="Navigation">
+    <a href="#salon">Le salon</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#horaires">Horaires</a>
+    <a href="#acces">Accès</a>
+  </nav>
+  <a class="call call-small" href="tel:+33465714807">Appeler</a>
+</header>
+
+<main id="haut">
+<section class="hero" aria-labelledby="titre">
+  <svg class="etoiles" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <g fill="#f3ead8">
+      <circle class="e" style="--d:0s" cx="60" cy="80" r="1.6"/><circle class="e" style="--d:1.2s" cx="150" cy="260" r="1.2"/><circle class="e" style="--d:2.1s" cx="230" cy="60" r="1.8"/><circle class="e" style="--d:.6s" cx="310" cy="400" r="1.2"/><circle class="e" style="--d:1.8s" cx="400" cy="140" r="1.4"/><circle class="e" style="--d:2.6s" cx="470" cy="520" r="1.6"/><circle class="e" style="--d:.3s" cx="540" cy="40" r="1.2"/><circle class="e" style="--d:1.5s" cx="620" cy="300" r="1.4"/><circle class="e" style="--d:2.9s" cx="700" cy="90" r="1.8"/><circle class="e" style="--d:.9s" cx="780" cy="470" r="1.2"/><circle class="e" style="--d:2.3s" cx="860" cy="180" r="1.6"/><circle class="e" style="--d:1.1s" cx="940" cy="560" r="1.4"/><circle class="e" style="--d:3.2s" cx="980" cy="40" r="1.2"/><circle class="e" style="--d:.4s" cx="110" cy="500" r="1.4"/><circle class="e" style="--d:1.9s" cx="260" cy="560" r="1"/><circle class="e" style="--d:2.7s" cx="360" cy="30" r="1"/><circle class="e" style="--d:.8s" cx="580" cy="200" r="1"/><circle class="e" style="--d:1.4s" cx="900" cy="380" r="1"/><circle class="e" style="--d:2.4s" cx="30" cy="330" r="1"/><circle class="e" style="--d:3.4s" cx="820" cy="40" r="1"/>
+    </g>
+    <g stroke="#f3ead8" stroke-width="1.4" stroke-linecap="round" opacity=".8"><path class="e" style="--d:.5s" d="M200 160v14M193 167h14"/><path class="e" style="--d:1.7s" d="M880 280v14M873 287h14"/><path class="e" style="--d:2.8s" d="M500 330v10M495 335h10"/></g>
+  </svg>
+
+  <div class="hero-text">
+    <p class="eyebrow rise" style="--i:0">Salon de coiffure · Valmont</p>
+    <h1 id="titre" class="rise" style="--i:1">Atelier <em>Lune</em></h1>
+    <p class="lead rise" style="--i:2">Coupes, couleurs et soins, dans un salon calme où l'on prend le temps.</p>
+    <p class="rating rise" style="--i:3"><span class="stars" aria-hidden="true">★★★★★</span> <strong>4,9</strong> sur 5 · 187 avis</p>
+    <div class="actions rise" style="--i:4">
+      <a class="call" href="tel:+33465714807">Appeler le 04 65 71 48 07</a>
+      <a class="ghost" href="#tarifs">Voir les tarifs</a>
+    </div>
+  </div>
+
+  <svg class="lune" viewBox="0 0 800 760" role="img" aria-label="Une grande lune pleine, avec deux profils coiffés dessinés au trait">
+    <defs>
+      <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset=".55" stop-color="#f3ead8" stop-opacity=".22"/><stop offset="1" stop-color="#f3ead8" stop-opacity="0"/></radialGradient>
+      <radialGradient id="disque" cx="38%" cy="32%" r="80%"><stop offset="0" stop-color="#fbf5e6"/><stop offset=".7" stop-color="#f3ead8"/><stop offset="1" stop-color="#e2d6bb"/></radialGradient>
+      <clipPath id="decoupe"><circle cx="400" cy="380" r="300"/></clipPath>
+
+      <g id="visage" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path pathLength="1" d="M172 112C182 134 184 152 181 166C181 176 186 188 196 206C199 213 192 217 184 217C184 222 186 226 184 230C190 232 190 238 184 240C188 243 188 248 183 249C184 256 182 262 176 268C168 276 156 278 146 272L148 296C150 322 168 344 196 362L246 400"/>
+        <path pathLength="1" d="M100 250C96 290 94 330 80 400"/>
+        <path pathLength="1" d="M157 171q8-6 17 0M156 157q12-7 26-2"/>
+        <path pathLength="1" d="M126 192c-9 0-11 14-5 24c4 6 11 6 13 0"/>
+      </g>
+    </defs>
+
+    <circle cx="400" cy="380" r="400" fill="url(#halo)"/>
+    <circle cx="400" cy="380" r="300" fill="url(#disque)"/>
+    <g clip-path="url(#decoupe)" fill="#cfc2a3" opacity=".35">
+      <circle cx="560" cy="200" r="38"/><circle cx="610" cy="300" r="20"/><circle cx="250" cy="150" r="24"/><circle cx="520" cy="560" r="46"/><circle cx="640" cy="470" r="16"/><circle cx="210" cy="520" r="30"/>
+    </g>
+
+    <g clip-path="url(#decoupe)" class="traits" stroke="#0e1a45" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(168 236) scale(.82)">
+        <use href="#visage"/>
+        <g class="cheveux">
+          <path pathLength="1" d="M172 112C150 82 98 78 76 116C56 150 66 200 56 246C50 280 70 310 62 340C58 360 70 372 84 372"/>
+          <path pathLength="1" d="M152 96C112 100 92 140 98 190C102 230 84 262 92 300C96 322 88 336 76 344"/>
+          <path pathLength="1" d="M132 90C100 112 112 150 108 180C106 206 118 224 112 244"/>
+          <path pathLength="1" d="M172 112C160 100 144 98 130 104"/>
+        </g>
+      </g>
+      <g transform="translate(646 176) scale(-.86 .86)">
+        <use href="#visage"/>
+        <g class="cheveux">
+          <path pathLength="1" d="M172 112C156 84 112 76 88 100C66 124 72 176 98 214"/>
+          <path pathLength="1" d="M150 92C120 96 100 120 104 160"/>
+          <path pathLength="1" d="M172 112C150 100 128 108 112 128"/>
+          <path pathLength="1" d="M70 62C84 44 110 44 122 62C132 80 118 98 96 96C74 94 62 78 70 62z"/>
+          <path pathLength="1" d="M82 66C94 58 108 62 112 74M80 80C92 74 104 78 106 88"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+</section>
+
+<section class="sec" id="salon" aria-labelledby="t-salon">
+  <div class="wrap two">
+    <div class="reveal">
+      <p class="kicker">Le salon</p>
+      <h2 id="t-salon">Un salon qui prend <em>son temps.</em></h2>
+    </div>
+    <div class="reveal">
+      <p class="big">À l'Atelier Lune, chaque rendez-vous commence par une conversation, pas par un coup de ciseaux.</p>
+      <p>On regarde votre chevelure, votre quotidien, vos envies. Ensuite seulement, on coupe, on colore, on soigne, avec des gestes lents et des produits doux pour le cuir chevelu. Un salon à taille humaine, deux fauteuils, une ambiance calme.</p>
+    </div>
+  </div>
+  <ul class="wrap trio">
+    <li class="reveal">
+      <svg class="icone" viewBox="0 0 64 64" aria-hidden="true"><g class="trace" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M14 50L44 14M14 14l30 36"/><circle pathLength="1" cx="12" cy="54" r="6"/><circle pathLength="1" cx="12" cy="10" r="6"/></g></svg>
+      <h3>Coupe sur mesure</h3><p>Pensée pour votre visage, vos épis, votre façon de vous coiffer.</p>
+    </li>
+    <li class="reveal">
+      <svg class="icone" viewBox="0 0 64 64" aria-hidden="true"><g class="trace" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M10 22h44v10H10z"/><path pathLength="1" d="M14 32v14M20 32v14M26 32v14M32 32v14M38 32v14M44 32v14M50 32v14"/></g></svg>
+      <h3>Couleurs douces</h3><p>Des nuances lumineuses qui poussent bien, sans effet de racine.</p>
+    </li>
+    <li class="reveal">
+      <svg class="icone" viewBox="0 0 64 64" aria-hidden="true"><g class="trace" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M32 8C20 24 14 32 14 42a18 18 0 0 0 36 0C50 32 44 24 32 8z"/><path pathLength="1" d="M24 44a8 8 0 0 0 8 8"/></g></svg>
+      <h3>Soins profonds</h3><p>Un massage du cuir chevelu et un soin adapté à chaque besoin.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="sec creme" id="tarifs" aria-labelledby="t-tarifs">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker">Prestations et tarifs</p>
+      <h2 id="t-tarifs">Des prix affichés, <em>sans surprise.</em></h2>
+    </div>
+    <div class="cols">
+      <article class="liste reveal">
+        <h3>Coupes</h3>
+        <ul>
+          <li><span>Coupe femme, shampoing et coiffage</span><i></i><b>38 €</b></li>
+          <li><span>Coupe homme</span><i></i><b>26 €</b></li>
+          <li><span>Coupe enfant, moins de 12 ans</span><i></i><b>18 €</b></li>
+          <li><span>Brushing</span><i></i><b>22 €</b></li>
+          <li><span>Chignon, coiffure d'occasion</span><i></i><b>dès 45 €</b></li>
+        </ul>
+      </article>
+      <article class="liste reveal">
+        <h3>Couleurs</h3>
+        <ul>
+          <li><span>Couleur racines</span><i></i><b>48 €</b></li>
+          <li><span>Couleur complète</span><i></i><b>62 €</b></li>
+          <li><span>Mèches ou balayage</span><i></i><b>dès 89 €</b></li>
+          <li><span>Patine, reflets</span><i></i><b>25 €</b></li>
+        </ul>
+      </article>
+      <article class="liste reveal">
+        <h3>Soins</h3>
+        <ul>
+          <li><span>Soin profond</span><i></i><b>18 €</b></li>
+          <li><span>Massage du cuir chevelu, 15 min</span><i></i><b>15 €</b></li>
+          <li><span>Soin réparateur à la kératine</span><i></i><b>29 €</b></li>
+          <li class="lune-li"><span>Formule Pleine Lune : coupe, soin, brushing</span><i></i><b>69 €</b></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="horaires" aria-labelledby="t-hor">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker">Horaires</p>
+      <h2 id="t-hor">Du mardi au samedi, <em>la lune se remplit.</em></h2>
+    </div>
+    <ul class="jours">
+      <li class="reveal"><svg class="phase" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#f3ead8"/><circle cx="28" cy="20" r="18" fill="#16225a"/></svg><h3>Mardi</h3><p>9 h – 18 h 30</p></li>
+      <li class="reveal"><svg class="phase" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#f3ead8"/><circle cx="36" cy="20" r="18" fill="#16225a"/></svg><h3>Mercredi</h3><p>9 h – 18 h 30</p></li>
+      <li class="reveal"><svg class="phase" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#f3ead8"/><circle cx="44" cy="20" r="18" fill="#16225a"/></svg><h3>Jeudi</h3><p>9 h – 20 h</p></li>
+      <li class="reveal"><svg class="phase" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#f3ead8"/><circle cx="52" cy="20" r="18" fill="#16225a"/></svg><h3>Vendredi</h3><p>9 h – 19 h</p></li>
+      <li class="reveal"><svg class="phase" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#f3ead8"/></svg><h3>Samedi</h3><p>8 h 30 – 17 h</p></li>
+    </ul>
+    <p class="reveal note">Fermé le dimanche et le lundi. Rendez-vous conseillé, mais on garde toujours un créneau pour les urgences de dernière minute.</p>
+  </div>
+</section>
+
+<section class="sec creme" id="acces" aria-labelledby="t-acces">
+  <div class="wrap two">
+    <svg class="plan reveal" viewBox="0 0 520 380" role="img" aria-label="Plan au trait : le salon est rue des Lavandières, à deux pas de la place du Marché, à Valmont">
+      <rect x="1.5" y="1.5" width="517" height="377" rx="22" fill="#0b1330"/>
+      <g class="trace" fill="none" stroke="#f3ead8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+        <path pathLength="1" d="M-10 110C120 120 200 90 330 130S470 150 530 130"/>
+        <path pathLength="1" d="M-10 130C120 140 200 110 322 150S470 170 530 150"/>
+        <path pathLength="1" d="M150 -10C160 90 130 200 150 390"/>
+        <path pathLength="1" d="M170 -10C180 90 150 200 170 390"/>
+        <path pathLength="1" d="M360 -10C350 120 380 250 360 390"/>
+        <path pathLength="1" d="M380 -10C370 120 400 250 380 390"/>
+        <path pathLength="1" d="M-10 290C150 280 330 300 530 280"/>
+        <path pathLength="1" d="M-10 310C150 300 330 320 530 300"/>
+        <circle pathLength="1" cx="262" cy="214" r="38"/>
+        <circle pathLength="1" cx="262" cy="214" r="26" stroke-dasharray="2 6"/>
+      </g>
+      <text x="262" y="219" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#f3ead8">place du Marché</text>
+      <g class="pin"><path d="M320 66c-12 0-20 8-20 18 0 14 20 30 20 30s20-16 20-30c0-10-8-18-20-18z" fill="#f3ead8"/><path d="M324 76a10 10 0 1 0 4 14 8 8 0 0 1-4-14z" fill="#0b1330"/></g>
+      <text x="40" y="100" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#f3ead8" opacity=".9">rue des Lavandières</text>
+    </svg>
+    <div class="reveal">
+      <p class="kicker">Accès</p>
+      <h2 id="t-acces">À deux pas de <em>la place du Marché.</em></h2>
+      <address>
+        <strong>Atelier Lune</strong><br>
+        14 rue des Lavandières<br>
+        Valmont
+      </address>
+      <ul class="infos">
+        <li>Parking gratuit place du Marché, 2 minutes à pied.</li>
+        <li>Salon de plain-pied, accessible en fauteuil.</li>
+        <li>Arrêt de bus « Marché » à 100 m.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact" aria-labelledby="t-contact">
+  <div class="wrap center">
+    <div class="reveal">
+      <p class="kicker">Rendez-vous</p>
+      <h2 id="t-contact">Réservez votre <em>moment.</em></h2>
+      <p class="big">Par téléphone, du mardi au samedi pendant les heures d'ouverture. Nous notons votre créneau tout de suite.</p>
+      <a class="call call-xl" href="tel:+33465714807">04 65 71 48 07</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p><strong>Commerce fictif, site d'exemple réalisé par Enzo.</strong> Valmont est une ville imaginaire, le numéro appartient à une plage réservée à la fiction.</p>
+    <a href="/#projets">← Retour au portfolio d'Enzo</a>
+  </div>
+</footer>
+
+</body>
+</html>

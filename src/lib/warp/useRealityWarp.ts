@@ -1,7 +1,6 @@
 import { useCallback, useRef } from "react";
 import { useLocation } from "wouter";
 import { gsap } from "../gsapSetup";
-import { useAudio } from "../audio";
 import { useReducedMotion } from "../useReducedMotion";
 import { warpState } from "./warpState";
 import { warpDom } from "./warpDom";
@@ -16,11 +15,9 @@ let warpInFlight = false;
  *  reads every frame — see HeroScene/ToonBiplane/ShaderBackdrop), flashes
  *  a chromatic-aberration/shockwave overlay at the peak, swaps the route
  *  mid-flash, then settles the new page in with a quick punch-and-recover.
- *  Sound is synced to the same three beats: thump on click, an engine-rev
- *  sweep through the accelerate phase, a crisp pop at impact. */
+ */
 export function useRealityWarp() {
   const [, navigate] = useLocation();
-  const { warpThumpSfx, warpRevSfx, warpImpactSfx } = useAudio();
   const reducedMotion = useReducedMotion();
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -45,9 +42,6 @@ export function useRealityWarp() {
       const previousOverflow = document.documentElement.style.overflow;
       document.documentElement.style.overflow = "hidden";
 
-      warpThumpSfx();
-      warpRevSfx(ACCELERATE_DURATION);
-
       const tl = gsap.timeline({
         onComplete: () => {
           document.documentElement.style.overflow = previousOverflow;
@@ -68,7 +62,6 @@ export function useRealityWarp() {
 
       // --- 2. Impact: chromatic-aberration flash + shockwave burst, the
       // crisp pop, and the route swap itself — hidden under the flash.
-      tl.add(() => warpImpactSfx(), ACCELERATE_DURATION);
       tl.to(flashLayers, { opacity: 0.85, duration: 0.06, ease: "power1.out" }, ACCELERATE_DURATION);
       if (boom) {
         tl.fromTo(boom, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.4, duration: 0.16, ease: "power1.out" }, ACCELERATE_DURATION);
@@ -94,7 +87,7 @@ export function useRealityWarp() {
       );
       tl.to(warpState, { boost: 0, duration: SETTLE_DURATION, ease: "power2.out" }, ACCELERATE_DURATION + 0.05);
     },
-    [navigate, reducedMotion, warpThumpSfx, warpRevSfx, warpImpactSfx]
+    [navigate, reducedMotion]
   );
 
   return { triggerWarp };
