@@ -61,7 +61,7 @@ const pt: Dict = {
     title2: "adaptados ao seu projeto.",
     intro: "Escolha uma fórmula ou peça um orçamento: ajustamos em conjunto, de acordo com as suas necessidades reais.",
     from: "desde",
-    popular: "O MAIS PROCURADO",
+    popular: "RECOMENDADO",
     onQuote: "Sob orçamento",
     cta: "Pedir um orçamento",
     pay: "Reservar e pagar online",
@@ -82,7 +82,7 @@ const pt: Dict = {
       },
       {
         name: "Direção artística",
-        price: "",
+        price: "990 €",
         text: "Uma identidade visual única e animações cuidadas, para um site que realmente se parece consigo.",
         features: [
           "Direção artística completa",
@@ -172,6 +172,10 @@ const pt: Dict = {
         q: "Trabalha à distância?",
         a: "Sim, tudo se faz à distância (e-mail, videochamada). Posso trabalhar com clientes em toda a França e na Europa.",
       },
+      {
+        q: "O nome de domínio fica meu?",
+        a: "Sim. Com o plano Tranquilidade, o domínio é registado em seu nome: pertence-lhe legalmente. Eu trato apenas da parte técnica (alojamento, segurança, atualizações).",
+      },
     ],
   },
   about: {
@@ -191,6 +195,52 @@ const pt: Dict = {
     copied: "Endereço copiado!",
     subject: "Pedido de orçamento",
     subjectOffer: "Orçamento — oferta",
+  },
+  care: {
+    "kicker": "ALOJAMENTO E DOMÍNIO",
+    "name": "Plano Tranquilidade",
+    "price": "30 €",
+    "period": "/ mês",
+    "text": "Trato de toda a parte técnica para que o seu site continue online, rápido e seguro. Você concentra-se no seu negócio.",
+    "features": [
+      "Domínio em seu nome: pertence-lhe legalmente",
+      "Alojamento rápido e seguro (HTTPS)",
+      "Certificado SSL e atualizações de segurança",
+      "Cópia de segurança do site",
+      "Um único contacto em caso de problema"
+    ],
+    "cta": "Adicionar ao meu pedido"
+  },
+  form: {
+    "title": "Prepare o seu pedido em 1 minuto",
+    "intro": "Preencha estes campos: o seu e-mail é escrito automaticamente, só falta enviá-lo.",
+    "name": "O seu nome",
+    "namePh": "Ana Silva",
+    "business": "A sua atividade",
+    "businessPh": "Padaria, coach, artesão…",
+    "offer": "Plano que lhe interessa",
+    "offerUnsure": "Ainda não sei",
+    "care": "Adicionar alojamento + domínio (30 €/mês)",
+    "deadline": "Para quando?",
+    "deadlines": [
+      "O mais rápido possível",
+      "Este mês",
+      "Daqui a 2–3 meses",
+      "Sem pressa"
+    ],
+    "message": "O seu projeto em poucas palavras",
+    "messagePh": "Gostaria de um site para apresentar os meus serviços e receber pedidos de marcação…",
+    "send": "Abrir o meu e-mail pronto a enviar",
+    "webmail": "Usa webmail?",
+    "copy": "Copiar a mensagem",
+    "copied": "Mensagem copiada!",
+    "required": "Descreva o seu projeto em poucas palavras para continuar.",
+    "privacy": "Nada é guardado neste site: a mensagem abre-se simplesmente no seu e-mail.",
+    "hello": "Olá Enzo,",
+    "bye": "Obrigado, até breve,",
+    "yes": "Sim",
+    "no": "Não",
+    "careLabel": "Alojamento + domínio"
   },
   endCta: { text: "Convencido pelo que vê?", button: "Pedir um orçamento grátis" },
   footer: {

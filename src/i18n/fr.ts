@@ -59,7 +59,7 @@ const fr = {
     title2: "adaptés à votre projet.",
     intro: "Choisissez une formule ou demandez un devis : on ajuste ensemble selon vos besoins réels.",
     from: "à partir de",
-    popular: "LE PLUS DEMANDÉ",
+    popular: "RECOMMANDÉ",
     onQuote: "Sur devis",
     cta: "Demander un devis",
     pay: "Réserver et payer en ligne",
@@ -80,7 +80,7 @@ const fr = {
       },
       {
         name: "Direction artistique",
-        price: "",
+        price: "990 €",
         text: "Une identité visuelle unique et des animations soignées, pour un site qui vous ressemble vraiment.",
         features: [
           "Direction artistique complète",
@@ -170,6 +170,10 @@ const fr = {
         q: "Travaillez-vous à distance ?",
         a: "Oui, tout se fait à distance (e-mail, visio). Je peux travailler avec des clients partout en France et en Europe.",
       },
+      {
+        q: "Le nom de domaine m'appartient-il ?",
+        a: "Oui. Avec la formule Sérénité, le nom de domaine est enregistré à votre nom : il vous appartient légalement. Je m'occupe uniquement de la partie technique (hébergement, sécurité, mises à jour).",
+      },
     ],
   },
   about: {
@@ -189,6 +193,52 @@ const fr = {
     copied: "Adresse copiée !",
     subject: "Demande de devis",
     subjectOffer: "Devis — offre",
+  },
+  care: {
+    "kicker": "HÉBERGEMENT ET NOM DE DOMAINE",
+    "name": "Formule Sérénité",
+    "price": "30 €",
+    "period": "/ mois",
+    "text": "Je m'occupe de toute la partie technique pour que votre site reste en ligne, rapide et sécurisé. Vous, vous vous concentrez sur votre activité.",
+    "features": [
+      "Nom de domaine à votre nom : il vous appartient légalement",
+      "Hébergement rapide et sécurisé (HTTPS)",
+      "Certificat SSL et mises à jour de sécurité",
+      "Sauvegarde de votre site",
+      "Un interlocuteur unique en cas de souci"
+    ],
+    "cta": "Ajouter à ma demande"
+  },
+  form: {
+    "title": "Préparez votre demande en 1 minute",
+    "intro": "Remplissez ces quelques champs : votre e-mail est rédigé automatiquement, il ne reste qu'à l'envoyer.",
+    "name": "Votre nom",
+    "namePh": "Marie Dupont",
+    "business": "Votre activité",
+    "businessPh": "Boulangerie, coach, artisan…",
+    "offer": "Formule qui vous intéresse",
+    "offerUnsure": "Je ne sais pas encore",
+    "care": "Ajouter l'hébergement + nom de domaine (30 €/mois)",
+    "deadline": "Pour quand ?",
+    "deadlines": [
+      "Dès que possible",
+      "Dans le mois",
+      "Dans 2 à 3 mois",
+      "Pas pressé"
+    ],
+    "message": "Votre projet en quelques mots",
+    "messagePh": "J'aimerais un site pour présenter mes services et recevoir des demandes de rendez-vous…",
+    "send": "Ouvrir mon e-mail prêt à envoyer",
+    "webmail": "Vous utilisez un webmail ?",
+    "copy": "Copier le message",
+    "copied": "Message copié !",
+    "required": "Décrivez votre projet en quelques mots pour continuer.",
+    "privacy": "Rien n'est enregistré sur ce site : le message s'ouvre simplement dans votre messagerie.",
+    "hello": "Bonjour Enzo,",
+    "bye": "Merci et à bientôt,",
+    "yes": "Oui",
+    "no": "Non",
+    "careLabel": "Hébergement + domaine"
   },
   endCta: { text: "Convaincu par ce que vous voyez ?", button: "Demander un devis gratuit" },
   footer: {

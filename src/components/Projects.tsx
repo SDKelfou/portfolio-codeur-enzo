@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRightUp } from "@getpapillon/papicons";
 import { GsapReveal as Reveal } from "../lib/GsapReveal";
 import { TiltCard } from "../lib/TiltCard";
 import { useI18n } from "../i18n";
@@ -6,6 +6,7 @@ import { useI18n } from "../i18n";
 const PROJECTS = [
   {
     name: "NEXUS",
+    image: "/projets/nexus.webp",
     type: "Logiciel",
     text: "Logiciel conçu et développé par moi pour optimiser un PC Windows : nettoyage, monitoring, pilotes, confidentialité et IA locale.",
     href: "https://nexus-multitools.nexus-multitools.workers.dev/",
@@ -13,6 +14,7 @@ const PROJECTS = [
   },
   {
     name: "Café Mistral",
+    image: "/projets/cafe-mistral.webp",
     type: "Site vitrine · exemple",
     text: "Un café-bar de village imaginaire : carte, horaires et bouton d'appel visibles dès l'ouverture. À visiter comme le ferait un client.",
     href: "/exemples/cafe-mistral/",
@@ -20,6 +22,7 @@ const PROJECTS = [
   },
   {
     name: "Atelier Lune",
+    image: "/projets/atelier-lune.webp",
     type: "Site vitrine · exemple",
     text: "Un salon de coiffure imaginaire, à l'ambiance douce et élégante : tarifs clairs, accès simple, prise de rendez-vous par téléphone.",
     href: "/exemples/atelier-lune/",
@@ -52,14 +55,26 @@ export default function Projects() {
             <TiltCard
               as="a"
               href={p.href}
-              {...(p.external ? { target: "_blank", rel: "noreferrer" } : {})}
+              {...(p.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               maxTilt={9}
               className="group flex h-full rounded-2xl"
             >
-              <div className="glass-light-solid flex h-full flex-col rounded-2xl p-8 transition-transform duration-300 group-hover:-translate-y-1">
+              <div className="glass-light-solid flex h-full flex-col overflow-hidden rounded-2xl transition-transform duration-300 group-hover:-translate-y-1">
+                <div className="aspect-[16/10] overflow-hidden border-b" style={{ borderColor: "var(--home-border)" }}>
+                  <img
+                    src={p.image}
+                    alt={`${p.name} — aperçu`}
+                    width={800}
+                    height={500}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-7">
                 <div className="flex items-start justify-between">
                   <h3 className="font-display text-xl font-bold">{p.name}</h3>
-                  <ArrowUpRight
+                  <ArrowRightUp
                     size={18}
                     className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     style={{ color: "var(--accent-ink)" }}
@@ -72,6 +87,7 @@ export default function Projects() {
                 <p className="mt-4 flex-1 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
                   {t.projects.items[i].text}
                 </p>
+                </div>
               </div>
             </TiltCard>
           </Reveal>

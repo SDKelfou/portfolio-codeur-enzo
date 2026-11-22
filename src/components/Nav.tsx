@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Eye, Menu, Moon, Sun, X } from "lucide-react";
+import { Code, Menu, Moon, Sun, Cross } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import LangSwitcher from "./LangSwitcher";
 import { useTheme } from "../lib/theme";
@@ -74,9 +74,8 @@ export default function Nav() {
             else navigate("/");
           }}
         >
-          <Eye
+          <Code
             size={20}
-            strokeWidth={2.2}
             style={{ color: "var(--accent-ink)", filter: "drop-shadow(0 0 6px rgba(var(--accent-rgb),0.6))" }}
             aria-hidden="true"
           />
@@ -131,7 +130,7 @@ export default function Nav() {
             className="flex h-11 w-11 items-center justify-center rounded-full border md:hidden"
             style={{ borderColor: "var(--home-border)" }}
           >
-            {menuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+            {menuOpen ? <Cross size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
         </div>
       </nav>
@@ -166,7 +165,7 @@ export default function Nav() {
       {egg && (
         <div className="pointer-events-none fixed inset-0 z-[300] flex items-start justify-center px-6 pt-24" aria-live="polite">
           <div className="egg-pop glass-light-solid flex items-center gap-3 rounded-full px-6 py-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)]">
-            <Eye size={16} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
+            <Code size={16} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
             <span className="text-sm font-semibold">{egg}</span>
           </div>
           <EggBurst />

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Globe } from "lucide-react";
+import { Globe } from "@getpapillon/papicons";
 import { LANGS, useI18n } from "../i18n";
 
 /** Compact language picker: globe + current code, opens a list of the

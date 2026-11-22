@@ -1,12 +1,12 @@
-import { Lightbulb, Code2, Rocket } from "lucide-react";
+import { TextBubble, Code, ArrowRightUp } from "@getpapillon/papicons";
 import { GsapReveal as Reveal } from "../lib/GsapReveal";
 import { TiltCard } from "../lib/TiltCard";
 import { useI18n } from "../i18n";
 
 const STEPS = [
-  { icon: Lightbulb, dir: "left" as const },
-  { icon: Code2, dir: "up" as const },
-  { icon: Rocket, dir: "right" as const },
+  { icon: TextBubble, dir: "left" as const },
+  { icon: Code, dir: "up" as const },
+  { icon: ArrowRightUp, dir: "right" as const },
 ];
 
 export default function Method() {
@@ -37,7 +37,7 @@ export default function Method() {
           <Reveal key={i} dir={step.dir} delay={i * 90} className="min-w-0">
             <TiltCard maxTilt={7} className="h-full rounded-2xl">
               <div className="glass-light-solid h-full rounded-2xl p-8 transition-shadow duration-300 hover:shadow-[0_20px_50px_-24px_rgba(var(--accent-rgb),0.45)]">
-                <step.icon size={26} strokeWidth={1.8} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
+                <step.icon size={26} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
                 <h3 className="font-display mt-5 text-xl font-bold">
                   {String(i + 1).padStart(2, "0")} · {t.method.steps[i].title}
                 </h3>

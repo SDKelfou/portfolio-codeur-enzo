@@ -1,8 +1,9 @@
-import { Check, Info, Lock } from "lucide-react";
+import { Check, Info, Lock, Globe } from "@getpapillon/papicons";
 import { GsapReveal as Reveal } from "../lib/GsapReveal";
 import { TiltCard } from "../lib/TiltCard";
 import { useI18n } from "../i18n";
-import { STRIPE_LINKS, mailto } from "../lib/site";
+import { STRIPE_LINKS } from "../lib/site";
+import { presetQuote } from "../lib/quoteEvents";
 
 /** Index 1 (Direction artistique) is the highlighted card; index 0 is the
  *  only fixed-price offer and can carry a Stripe payment link. */
@@ -66,15 +67,16 @@ export default function Offers() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={mailto(`${t.contact.subjectOffer} ${offer.name}`)}
+                  <button
+                    type="button"
+                    onClick={() => presetQuote({ offer: i })}
                     className={`mt-8 rounded-full px-6 py-3 text-center text-sm font-semibold transition-transform hover:scale-[1.03] ${
                       highlighted ? "btn-accent" : "border"
                     }`}
                     style={highlighted ? undefined : { borderColor: "var(--home-border)" }}
                   >
                     {o.cta}
-                  </a>
+                  </button>
                   {stripe && (
                     <a
                       href={stripe}
@@ -92,6 +94,50 @@ export default function Offers() {
           );
         })}
       </div>
+
+      <Reveal>
+        <div
+          className="mx-auto mt-6 flex max-w-5xl flex-col gap-6 rounded-2xl border p-8 md:flex-row md:items-center md:justify-between"
+          style={{ borderColor: "var(--home-border)", background: "var(--home-surface)" }}
+        >
+          <div className="md:max-w-md">
+            <span className="text-[10px] font-bold tracking-[0.2em]" style={{ color: "var(--accent-ink)" }}>
+              {t.care.kicker}
+            </span>
+            <h3 className="font-display mt-2 flex items-center gap-2 text-lg font-bold">
+              <Globe size={20} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
+              {t.care.name}
+            </h3>
+            <div className="mt-2 flex items-baseline gap-1.5">
+              <span className="font-display text-3xl font-bold">{t.care.price}</span>
+              <span className="text-sm" style={{ color: "var(--home-text-muted)" }}>
+                {t.care.period}
+              </span>
+            </div>
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
+              {t.care.text}
+            </p>
+          </div>
+          <div className="flex flex-col gap-5 md:items-end">
+            <ul className="space-y-2.5">
+              {t.care.features.map((feat) => (
+                <li key={feat} className="flex items-start gap-2.5 text-sm">
+                  <Check size={16} className="mt-0.5 shrink-0" style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
+                  <span style={{ color: "var(--home-text-muted)" }}>{feat}</span>
+                </li>
+              ))}
+            </ul>
+            <button
+              type="button"
+              onClick={() => presetQuote({ care: true })}
+              className="w-full rounded-full border px-6 py-3 text-sm font-semibold transition-transform hover:scale-[1.03] md:w-auto"
+              style={{ borderColor: "var(--accent-strong)" }}
+            >
+              {t.care.cta}
+            </button>
+          </div>
+        </div>
+      </Reveal>
 
       <Reveal>
         <p

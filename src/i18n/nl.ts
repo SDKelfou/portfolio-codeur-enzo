@@ -61,7 +61,7 @@ const nl: Dict = {
     title2: "afgestemd op uw project.",
     intro: "Kies een pakket of vraag een offerte aan: we stemmen het samen af op wat u echt nodig hebt.",
     from: "vanaf",
-    popular: "MEEST GEKOZEN",
+    popular: "AANBEVOLEN",
     onQuote: "Op offerte",
     cta: "Offerte aanvragen",
     pay: "Reserveren en online betalen",
@@ -82,7 +82,7 @@ const nl: Dict = {
       },
       {
         name: "Art direction",
-        price: "",
+        price: "990 €",
         text: "Een unieke visuele identiteit en verzorgde animaties, voor een website die echt bij u past.",
         features: [
           "Volledige art direction",
@@ -172,6 +172,10 @@ const nl: Dict = {
         q: "Werkt u op afstand?",
         a: "Ja, alles gebeurt op afstand (e-mail, videobellen). Ik kan met klanten overal in Frankrijk en Europa werken.",
       },
+      {
+        q: "Is de domeinnaam van mij?",
+        a: "Ja. Met het Zorgeloos-pakket wordt de domeinnaam op uw naam geregistreerd: hij is juridisch van u. Ik regel alleen de technische kant (hosting, beveiliging, updates).",
+      },
     ],
   },
   about: {
@@ -191,6 +195,52 @@ const nl: Dict = {
     copied: "Adres gekopieerd!",
     subject: "Offerteaanvraag",
     subjectOffer: "Offerte — pakket",
+  },
+  care: {
+    "kicker": "HOSTING EN DOMEINNAAM",
+    "name": "Zorgeloos-pakket",
+    "price": "30 €",
+    "period": "/ maand",
+    "text": "Ik regel de hele technische kant, zodat uw website online, snel en veilig blijft. U richt zich op uw bedrijf.",
+    "features": [
+      "Domeinnaam op uw naam: juridisch van u",
+      "Snelle, veilige hosting (HTTPS)",
+      "SSL-certificaat en beveiligingsupdates",
+      "Back-up van uw website",
+      "Eén vast aanspreekpunt bij problemen"
+    ],
+    "cta": "Toevoegen aan mijn aanvraag"
+  },
+  form: {
+    "title": "Bereid uw aanvraag voor in 1 minuut",
+    "intro": "Vul deze velden in: uw e-mail wordt automatisch opgesteld, u hoeft hem alleen nog te versturen.",
+    "name": "Uw naam",
+    "namePh": "Sanne de Vries",
+    "business": "Uw bedrijf",
+    "businessPh": "Bakkerij, coach, vakman…",
+    "offer": "Pakket dat u interesseert",
+    "offerUnsure": "Weet ik nog niet",
+    "care": "Hosting + domeinnaam toevoegen (€ 30/maand)",
+    "deadline": "Wanneer?",
+    "deadlines": [
+      "Zo snel mogelijk",
+      "Binnen een maand",
+      "Over 2–3 maanden",
+      "Geen haast"
+    ],
+    "message": "Uw project in een paar woorden",
+    "messagePh": "Ik wil graag een website om mijn diensten te tonen en afspraakverzoeken te ontvangen…",
+    "send": "Mijn kant-en-klare e-mail openen",
+    "webmail": "Gebruikt u webmail?",
+    "copy": "Bericht kopiëren",
+    "copied": "Bericht gekopieerd!",
+    "required": "Beschrijf uw project in een paar woorden om verder te gaan.",
+    "privacy": "Er wordt niets opgeslagen op deze site: het bericht opent gewoon in uw e-mailprogramma.",
+    "hello": "Hallo Enzo,",
+    "bye": "Bedankt en tot snel,",
+    "yes": "Ja",
+    "no": "Nee",
+    "careLabel": "Hosting + domein"
   },
   endCta: { text: "Overtuigd door wat u ziet?", button: "Vraag een gratis offerte aan" },
   footer: {

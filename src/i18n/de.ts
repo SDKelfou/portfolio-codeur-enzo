@@ -61,7 +61,7 @@ const de: Dict = {
     title2: "passend zu Ihrem Projekt.",
     intro: "Wählen Sie ein Paket oder fragen Sie ein Angebot an: Wir passen es gemeinsam an Ihren tatsächlichen Bedarf an.",
     from: "ab",
-    popular: "AM BELIEBTESTEN",
+    popular: "EMPFOHLEN",
     onQuote: "Auf Anfrage",
     cta: "Angebot anfragen",
     pay: "Online buchen und bezahlen",
@@ -82,7 +82,7 @@ const de: Dict = {
       },
       {
         name: "Art Direction",
-        price: "",
+        price: "990 €",
         text: "Eine einzigartige visuelle Identität und liebevoll gestaltete Animationen, für eine Website, die wirklich zu Ihnen passt.",
         features: [
           "Komplette Art Direction",
@@ -172,6 +172,10 @@ const de: Dict = {
         q: "Arbeiten Sie aus der Ferne?",
         a: "Ja, alles läuft remote ab (E-Mail, Videocall). Ich kann mit Kunden in ganz Frankreich und Europa arbeiten.",
       },
+      {
+        q: "Gehört mir der Domainname?",
+        a: "Ja. Mit dem Sorglos-Paket wird die Domain auf Ihren Namen registriert: Sie gehört Ihnen rechtlich. Ich kümmere mich nur um die Technik (Hosting, Sicherheit, Updates).",
+      },
     ],
   },
   about: {
@@ -191,6 +195,52 @@ const de: Dict = {
     copied: "Adresse kopiert!",
     subject: "Angebotsanfrage",
     subjectOffer: "Angebot — Paket",
+  },
+  care: {
+    "kicker": "HOSTING UND DOMAIN",
+    "name": "Sorglos-Paket",
+    "price": "30 €",
+    "period": "/ Monat",
+    "text": "Ich kümmere mich um die gesamte Technik, damit Ihre Website online, schnell und sicher bleibt. Sie konzentrieren sich auf Ihr Geschäft.",
+    "features": [
+      "Domain auf Ihren Namen: Sie gehört Ihnen rechtlich",
+      "Schnelles, sicheres Hosting (HTTPS)",
+      "SSL-Zertifikat und Sicherheitsupdates",
+      "Sicherung Ihrer Website",
+      "Ein fester Ansprechpartner bei Problemen"
+    ],
+    "cta": "Zu meiner Anfrage hinzufügen"
+  },
+  form: {
+    "title": "Ihre Anfrage in 1 Minute vorbereiten",
+    "intro": "Füllen Sie diese Felder aus: Ihre E-Mail wird automatisch verfasst, Sie müssen sie nur noch senden.",
+    "name": "Ihr Name",
+    "namePh": "Anna Schmidt",
+    "business": "Ihre Branche",
+    "businessPh": "Bäckerei, Coach, Handwerk…",
+    "offer": "Gewünschtes Paket",
+    "offerUnsure": "Weiß ich noch nicht",
+    "care": "Hosting + Domain hinzufügen (30 €/Monat)",
+    "deadline": "Bis wann?",
+    "deadlines": [
+      "So schnell wie möglich",
+      "Innerhalb eines Monats",
+      "In 2–3 Monaten",
+      "Keine Eile"
+    ],
+    "message": "Ihr Projekt in wenigen Worten",
+    "messagePh": "Ich hätte gern eine Website, um meine Leistungen zu zeigen und Terminanfragen zu erhalten…",
+    "send": "Fertige E-Mail öffnen",
+    "webmail": "Sie nutzen Webmail?",
+    "copy": "Nachricht kopieren",
+    "copied": "Nachricht kopiert!",
+    "required": "Bitte beschreiben Sie Ihr Projekt kurz, um fortzufahren.",
+    "privacy": "Auf dieser Website wird nichts gespeichert: Die Nachricht öffnet sich einfach in Ihrem E-Mail-Programm.",
+    "hello": "Hallo Enzo,",
+    "bye": "Danke und bis bald,",
+    "yes": "Ja",
+    "no": "Nein",
+    "careLabel": "Hosting + Domain"
   },
   endCta: { text: "Überzeugt von dem, was Sie sehen?", button: "Kostenloses Angebot anfragen" },
   footer: {

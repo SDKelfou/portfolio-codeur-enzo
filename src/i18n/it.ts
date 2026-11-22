@@ -61,7 +61,7 @@ const it: Dict = {
     title2: "adatti al suo progetto.",
     intro: "Scelga una formula o richieda un preventivo: la adattiamo insieme alle sue reali esigenze.",
     from: "da",
-    popular: "IL PIÙ RICHIESTO",
+    popular: "CONSIGLIATO",
     onQuote: "Su preventivo",
     cta: "Richiedi un preventivo",
     pay: "Prenota e paga online",
@@ -82,7 +82,7 @@ const it: Dict = {
       },
       {
         name: "Direzione artistica",
-        price: "",
+        price: "990 €",
         text: "Un'identità visiva unica e animazioni curate, per un sito che le assomigli davvero.",
         features: [
           "Direzione artistica completa",
@@ -172,6 +172,10 @@ const it: Dict = {
         q: "Lavora a distanza?",
         a: "Sì, tutto si svolge a distanza (e-mail, videochiamata). Posso lavorare con clienti in tutta la Francia e in Europa.",
       },
+      {
+        q: "Il nome di dominio sarà mio?",
+        a: "Sì. Con il pacchetto Serenità il dominio è registrato a suo nome: le appartiene legalmente. Io mi occupo solo della parte tecnica (hosting, sicurezza, aggiornamenti).",
+      },
     ],
   },
   about: {
@@ -191,6 +195,52 @@ const it: Dict = {
     copied: "Indirizzo copiato!",
     subject: "Richiesta di preventivo",
     subjectOffer: "Preventivo — offerta",
+  },
+  care: {
+    "kicker": "HOSTING E NOME DI DOMINIO",
+    "name": "Pacchetto Serenità",
+    "price": "30 €",
+    "period": "/ mese",
+    "text": "Mi occupo di tutta la parte tecnica perché il suo sito resti online, veloce e sicuro. Lei si concentra sulla sua attività.",
+    "features": [
+      "Dominio a suo nome: le appartiene legalmente",
+      "Hosting veloce e sicuro (HTTPS)",
+      "Certificato SSL e aggiornamenti di sicurezza",
+      "Backup del sito",
+      "Un unico referente in caso di problemi"
+    ],
+    "cta": "Aggiungi alla mia richiesta"
+  },
+  form: {
+    "title": "Prepari la sua richiesta in 1 minuto",
+    "intro": "Compili questi campi: l'e-mail viene scritta automaticamente, deve solo inviarla.",
+    "name": "Il suo nome",
+    "namePh": "Giulia Rossi",
+    "business": "La sua attività",
+    "businessPh": "Panetteria, coach, artigiano…",
+    "offer": "Pacchetto che le interessa",
+    "offerUnsure": "Non lo so ancora",
+    "care": "Aggiungi hosting + dominio (30 €/mese)",
+    "deadline": "Per quando?",
+    "deadlines": [
+      "Il prima possibile",
+      "Entro un mese",
+      "Tra 2–3 mesi",
+      "Nessuna fretta"
+    ],
+    "message": "Il suo progetto in poche parole",
+    "messagePh": "Vorrei un sito per presentare i miei servizi e ricevere richieste di appuntamento…",
+    "send": "Apri la mia e-mail pronta",
+    "webmail": "Usa una webmail?",
+    "copy": "Copia il messaggio",
+    "copied": "Messaggio copiato!",
+    "required": "Descriva il suo progetto in poche parole per continuare.",
+    "privacy": "Nulla viene salvato su questo sito: il messaggio si apre semplicemente nella sua posta.",
+    "hello": "Ciao Enzo,",
+    "bye": "Grazie, a presto,",
+    "yes": "Sì",
+    "no": "No",
+    "careLabel": "Hosting + dominio"
   },
   endCta: { text: "Convinto da ciò che vede?", button: "Richieda un preventivo gratuito" },
   footer: {

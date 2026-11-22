@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "wouter";
-import { Check } from "lucide-react";
+import { Check } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import { useMagnetic } from "../lib/useMagnetic";
 import { useReducedMotion } from "../lib/useReducedMotion";

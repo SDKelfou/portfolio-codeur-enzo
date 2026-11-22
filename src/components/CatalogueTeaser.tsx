@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import type { PointerEvent } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@getpapillon/papicons";
 import { Link } from "wouter";
 import { GsapReveal } from "../lib/GsapReveal";
 import { useI18n } from "../i18n";

@@ -61,7 +61,7 @@ const en: Dict = {
     title2: "tailored to your project.",
     intro: "Pick a plan or ask for a quote: we'll adjust it together to fit your real needs.",
     from: "from",
-    popular: "MOST POPULAR",
+    popular: "RECOMMENDED",
     onQuote: "On quote",
     cta: "Request a quote",
     pay: "Book and pay online",
@@ -82,7 +82,7 @@ const en: Dict = {
       },
       {
         name: "Art direction",
-        price: "",
+        price: "990 €",
         text: "A unique visual identity and polished animations, for a site that truly looks like you.",
         features: [
           "Full art direction",
@@ -172,6 +172,10 @@ const en: Dict = {
         q: "Do you work remotely?",
         a: "Yes, everything is done remotely (email, video calls). I can work with clients anywhere in France and Europe.",
       },
+      {
+        q: "Will I own my domain name?",
+        a: "Yes. With the Peace of Mind plan, the domain is registered in your name: it legally belongs to you. I only handle the technical side (hosting, security, updates).",
+      },
     ],
   },
   about: {
@@ -191,6 +195,52 @@ const en: Dict = {
     copied: "Address copied!",
     subject: "Quote request",
     subjectOffer: "Quote — plan",
+  },
+  care: {
+    "kicker": "HOSTING AND DOMAIN NAME",
+    "name": "Peace of Mind plan",
+    "price": "30 €",
+    "period": "/ month",
+    "text": "I take care of all the technical side so your website stays online, fast and secure. You focus on your business.",
+    "features": [
+      "Domain name in your name: it legally belongs to you",
+      "Fast, secure hosting (HTTPS)",
+      "SSL certificate and security updates",
+      "Website backups",
+      "One single contact if anything goes wrong"
+    ],
+    "cta": "Add to my request"
+  },
+  form: {
+    "title": "Prepare your request in 1 minute",
+    "intro": "Fill in these few fields: your email is written for you, all that's left is to send it.",
+    "name": "Your name",
+    "namePh": "Jane Smith",
+    "business": "Your business",
+    "businessPh": "Bakery, coach, craftsperson…",
+    "offer": "Plan you're interested in",
+    "offerUnsure": "Not sure yet",
+    "care": "Add hosting + domain name (€30/month)",
+    "deadline": "When do you need it?",
+    "deadlines": [
+      "As soon as possible",
+      "Within a month",
+      "In 2–3 months",
+      "No rush"
+    ],
+    "message": "Your project in a few words",
+    "messagePh": "I'd like a website to present my services and receive booking requests…",
+    "send": "Open my ready-to-send email",
+    "webmail": "Using webmail?",
+    "copy": "Copy the message",
+    "copied": "Message copied!",
+    "required": "Please describe your project in a few words to continue.",
+    "privacy": "Nothing is stored on this site: the message simply opens in your email app.",
+    "hello": "Hi Enzo,",
+    "bye": "Thanks, talk soon,",
+    "yes": "Yes",
+    "no": "No",
+    "careLabel": "Hosting + domain"
   },
   endCta: { text: "Convinced by what you see?", button: "Request a free quote" },
   footer: {

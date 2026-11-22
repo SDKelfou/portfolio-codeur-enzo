@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { Plus } from "@getpapillon/papicons";
 import { GsapReveal as Reveal } from "../lib/GsapReveal";
 import { useI18n } from "../i18n";
 

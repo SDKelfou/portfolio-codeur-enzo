@@ -101,7 +101,7 @@ const fr: Record<LegalPageKey, LegalDoc> = {
       {
         h: "3. Prix",
         p: [
-          "Les prix sont exprimés en euros. L'offre Essentiel démarre à 799 € ; les autres prestations sont sur devis, dont le montant peut être inférieur ou supérieur selon le projet. Le régime de TVA applicable est précisé sur le devis.",
+          "Les prix sont exprimés en euros. L'offre Essentiel démarre à 799 € et l'offre Direction artistique à 990 € ; la Création totale est sur devis. Tout devis, dont le montant peut être inférieur ou supérieur selon le projet. Le régime de TVA applicable est précisé sur le devis.",
         ],
       },
       {
@@ -109,6 +109,13 @@ const fr: Record<LegalPageKey, LegalDoc> = {
         p: [
           "Un acompte, dont le montant est indiqué sur le devis, est demandé au lancement du projet ; le solde est dû à la livraison. Le paiement s'effectue par carte bancaire via Stripe (paiement sécurisé) ou par virement.",
           "Pour les clients professionnels, tout retard de paiement entraîne des pénalités au taux légal en vigueur et une indemnité forfaitaire de 40 € pour frais de recouvrement.",
+        ],
+      },
+      {
+        h: "4 bis. Formule Sérénité (hébergement et nom de domaine)",
+        p: [
+          "En option, pour 30 € par mois, le Prestataire prend en charge l'hébergement sécurisé du site (HTTPS), le renouvellement du nom de domaine, les mises à jour de sécurité et la sauvegarde du site.",
+          "Le nom de domaine est enregistré au nom du Client, qui en est le titulaire légal. Le Prestataire en assure uniquement la gestion technique. Les modalités de durée et de résiliation sont précisées sur le devis.",
         ],
       },
       {
@@ -225,13 +232,20 @@ const en: Record<LegalPageKey, LegalDoc> = {
       },
       {
         h: "3. Prices",
-        p: ["Prices are in euros. The Essential offer starts at €799; other services are quoted individually and may cost less or more depending on the project. Applicable VAT is stated on the quote."],
+        p: ["Prices are in euros. The Essential offer starts at €799 and the Art Direction offer at €990; Full Creation is quoted individually. Any quote may cost less or more depending on the project. Applicable VAT is stated on the quote."],
       },
       {
         h: "4. Payment",
         p: [
           "A deposit, stated on the quote, is due when the project starts; the balance is due on delivery. Payment by card via Stripe (secure) or by bank transfer.",
           "For business clients, late payment incurs penalties at the statutory rate plus a €40 fixed recovery fee.",
+        ],
+      },
+      {
+        h: "4a. Peace of Mind plan (hosting and domain name)",
+        p: [
+          "As an option, for €30 per month, the Provider handles secure hosting (HTTPS), domain name renewal, security updates and website backups.",
+          "The domain name is registered in the Client's name; the Client is its legal holder. The Provider only manages it technically. Duration and cancellation terms are set out in the quote.",
         ],
       },
       {
