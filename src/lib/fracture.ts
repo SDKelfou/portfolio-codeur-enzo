@@ -5,22 +5,24 @@ import type { Theme } from "./theme";
 /**
  * REALITY FRACTURE — the theme switch.
  *
- * No drawn crack lines. The screen is split into thousands of invisible
- * shards (a jittered triangle mesh that tiles perfectly), and each shard
- * flips to the new theme on its own beat, spreading from the button along
- * irregular fronts. You never see a line, you just watch the surface turn
- * shard by shard and understand that it cracked.
+ * No drawn lines. The screen shatters into a fresh, random Voronoi mosaic
+ * on every click (fine shards near the impact, larger ones further out),
+ * and the new theme spreads through it the way a crack runs through
+ * glass: a shortest-path walk over the shard graph with random, uneven
+ * "resistance" on every edge, so the front forks, races down some paths,
+ * stalls on others. You see the surface turn shard by shard; you never
+ * see a line.
  *
- * How: the View Transitions API keeps a frozen snapshot of the old theme
- * and renders the new one live underneath. The new view gets a mask: one
- * SVG image whose shards are grouped into time buckets, each bucket with
- * its own CSS animation delay. The browser runs it as a single image, so
- * the main thread does nothing per frame. Nothing in the DOM is duplicated.
+ * Rendering: the View Transitions API freezes the old theme and renders
+ * the new one live beneath it; the new view is masked by one SVG image
+ * whose shards are grouped into time buckets with CSS animation delays.
+ * The mask is decoded before the transition starts, so there is never a
+ * frame where the whole new theme flashes through.
  */
 
-const SPREAD = 760; // ms for the front to cross the screen
-const FLIP = 130; // ms for one shard to turn
-const BUCKET = 14; // ms granularity of the shard timeline
+const SPREAD = 820; // ms for the fracture to cross the screen
+const FLIP = 120; // ms for one shard to turn
+const BUCKET = 12; // ms granularity of the shard timeline
 const STYLE_ID = "fracture-mask";
 
 type ViewTransition = {
@@ -30,63 +32,115 @@ type ViewTransition = {
 };
 
 let active: ViewTransition | null = null;
+let token = 0;
 
 const rand = (a: number, b: number) => a + Math.random() * (b - a);
+function gauss() {
+  // Box–Muller
+  return Math.sqrt(-2 * Math.log(Math.random() || 1e-9)) * Math.cos(2 * Math.PI * Math.random());
+}
 
-function buildMask(W: number, H: number, ox: number, oy: number) {
-  // shard size scales with the screen so the count stays bounded
-  const cell = Math.max(16, Math.min(30, Math.sqrt((W * H) / 2200)));
-  const cols = Math.ceil(W / cell) + 1;
-  const rows = Math.ceil(H / cell) + 1;
-  const jitter = cell * 0.42;
-
-  const px: number[] = [];
-  const py: number[] = [];
-  for (let r = 0; r <= rows; r++) {
-    for (let c = 0; c <= cols; c++) {
-      const edgeX = c === 0 || c === cols;
-      const edgeY = r === 0 || r === rows;
-      px.push(c * cell + (edgeX ? 0 : rand(-jitter, jitter)));
-      py.push(r * cell + (edgeY ? 0 : rand(-jitter, jitter)));
+/** tiny binary min-heap for Dijkstra */
+class Heap {
+  private a: [number, number][] = [];
+  push(v: [number, number]) {
+    const a = this.a;
+    a.push(v);
+    let i = a.length - 1;
+    while (i > 0) {
+      const p = (i - 1) >> 1;
+      if (a[p][0] <= a[i][0]) break;
+      [a[p], a[i]] = [a[i], a[p]];
+      i = p;
     }
   }
-  const idx = (r: number, c: number) => r * (cols + 1) + c;
-
-  const maxD = Math.hypot(Math.max(ox, W - ox), Math.max(oy, H - oy));
-  const f1 = rand(0, Math.PI * 2);
-  const f2 = rand(0, Math.PI * 2);
-  const k1 = Math.round(rand(3, 5));
-  const k2 = Math.round(rand(7, 11));
-  const buckets = new Map<number, string[]>();
-
-  const push = (a: number, b: number, c: number) => {
-    const cx = (px[a] + px[b] + px[c]) / 3;
-    const cy = (py[a] + py[b] + py[c]) / 3;
-    const ang = Math.atan2(cy - oy, cx - ox);
-    // irregular fronts: the fracture runs further along a few directions
-    const ridge = 1 + 0.26 * Math.sin(k1 * ang + f1) + 0.12 * Math.sin(k2 * ang + f2);
-    const u = Math.min(1.05, (Math.hypot(cx - ox, cy - oy) / maxD) * ridge + rand(-0.05, 0.05));
-    const delay = Math.max(0, Math.round((u * SPREAD) / BUCKET) * BUCKET);
-    const d = `M${px[a] | 0} ${py[a] | 0}L${px[b] | 0} ${py[b] | 0}L${px[c] | 0} ${py[c] | 0}Z`;
-    const list = buckets.get(delay);
-    if (list) list.push(d);
-    else buckets.set(delay, [d]);
-  };
-
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const a = idx(r, c);
-      const b = idx(r, c + 1);
-      const d = idx(r + 1, c);
-      const e = idx(r + 1, c + 1);
-      if (Math.random() < 0.5) {
-        push(a, b, e);
-        push(a, e, d);
-      } else {
-        push(a, b, d);
-        push(b, e, d);
+  pop() {
+    const a = this.a;
+    const top = a[0];
+    const last = a.pop()!;
+    if (a.length) {
+      a[0] = last;
+      let i = 0;
+      for (;;) {
+        const l = i * 2 + 1;
+        const r = l + 1;
+        let m = i;
+        if (l < a.length && a[l][0] < a[m][0]) m = l;
+        if (r < a.length && a[r][0] < a[m][0]) m = r;
+        if (m === i) break;
+        [a[m], a[i]] = [a[i], a[m]];
+        i = m;
       }
     }
+    return top;
+  }
+  get size() {
+    return this.a.length;
+  }
+}
+
+async function buildMask(W: number, H: number, ox: number, oy: number) {
+  const { Delaunay } = await import("d3-delaunay");
+  const maxD = Math.hypot(Math.max(ox, W - ox), Math.max(oy, H - oy));
+  const n = Math.round(Math.min(2600, Math.max(700, (W * H) / 850)));
+
+  // denser near the impact point, like real shatter patterns
+  const pts = new Float64Array(n * 2);
+  for (let i = 0; i < n; i++) {
+    let x: number;
+    let y: number;
+    if (Math.random() < 0.38) {
+      const a = Math.random() * Math.PI * 2;
+      const r = maxD * Math.pow(Math.random(), 2.1);
+      x = ox + Math.cos(a) * r;
+      y = oy + Math.sin(a) * r;
+    } else {
+      x = Math.random() * W;
+      y = Math.random() * H;
+    }
+    pts[i * 2] = Math.min(W, Math.max(0, x));
+    pts[i * 2 + 1] = Math.min(H, Math.max(0, y));
+  }
+
+  const delaunay = new Delaunay(pts);
+  const voronoi = delaunay.voronoi([0, 0, W, H]);
+  const start = delaunay.find(ox, oy);
+
+  // crack propagation: shortest paths with random, heavy-tailed resistance
+  const time = new Float64Array(n).fill(Infinity);
+  time[start] = 0;
+  const heap = new Heap();
+  heap.push([0, start]);
+  while (heap.size) {
+    const [t, i] = heap.pop();
+    if (t > time[i]) continue;
+    for (const j of delaunay.neighbors(i)) {
+      const dx = pts[j * 2] - pts[i * 2];
+      const dy = pts[j * 2 + 1] - pts[i * 2 + 1];
+      const resist = Math.exp(gauss() * 0.85); // log-normal: some paths race, some stall
+      const nt = t + Math.hypot(dx, dy) * resist;
+      if (nt < time[j]) {
+        time[j] = nt;
+        heap.push([nt, j]);
+      }
+    }
+  }
+  let tMax = 0;
+  for (let i = 0; i < n; i++) if (Number.isFinite(time[i])) tMax = Math.max(tMax, time[i]);
+
+  const buckets = new Map<number, string[]>();
+  for (let i = 0; i < n; i++) {
+    const poly = voronoi.cellPolygon(i);
+    if (!poly) continue;
+    const u = Number.isFinite(time[i]) ? time[i] / (tMax || 1) : 1;
+    const delay = Math.round((Math.pow(u, 0.9) * SPREAD + rand(-14, 14)) / BUCKET) * BUCKET;
+    let d = "";
+    for (let k = 0; k < poly.length - 1; k++) d += `${k ? "L" : "M"}${poly[k][0].toFixed(1)} ${poly[k][1].toFixed(1)}`;
+    d += "Z";
+    const key = Math.max(0, delay);
+    const list = buckets.get(key);
+    if (list) list.push(d);
+    else buckets.set(key, [d]);
   }
 
   let paths = "";
@@ -95,19 +149,18 @@ function buildMask(W: number, H: number, ox: number, oy: number) {
     paths += `<path style="animation-delay:${delay}ms" d="${list.join("")}"/>`;
     last = Math.max(last, delay);
   }
-  // a thin same-colour stroke makes neighbouring shards overlap, so no
-  // antialiasing seam ever shows as a line
+  // a thin same-colour stroke overlaps neighbouring shards: no seam lines
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
-    `<style>path{fill:#fff;stroke:#fff;stroke-width:1.6;stroke-linejoin:round;opacity:0;animation:f ${FLIP}ms linear forwards}@keyframes f{to{opacity:1}}</style>` +
+    `<style>path{fill:#fff;stroke:#fff;stroke-width:1.4;stroke-linejoin:round;opacity:0;animation:f ${FLIP}ms ease-out forwards}@keyframes f{to{opacity:1}}</style>` +
     paths +
     `</svg>`;
-  return { url: `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}")`, total: last + FLIP };
+  return { src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`, total: last + FLIP };
 }
 
-function setMaskStyle(css: string | null) {
+function setMaskStyle(src: string | null) {
   let el = document.getElementById(STYLE_ID) as HTMLStyleElement | null;
-  if (!css) {
+  if (!src) {
     el?.remove();
     return;
   }
@@ -116,71 +169,66 @@ function setMaskStyle(css: string | null) {
     el.id = STYLE_ID;
     document.head.appendChild(el);
   }
-  el.textContent = css;
+  const url = `url("${src}")`;
+  el.textContent = `::view-transition-new(root){-webkit-mask-image:${url};mask-image:${url};-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}`;
 }
 
-export function fractureTheme(next: Theme, button: HTMLElement, onApplied?: () => void) {
+/** warm the Voronoi chunk once the page is idle, so the first click is instant */
+export function preloadFracture() {
+  import("d3-delaunay").catch(() => {});
+}
+
+export async function fractureTheme(next: Theme, button: HTMLElement) {
   const doc = document as Document & { startViewTransition?: (cb: () => void) => ViewTransition };
   const root = document.documentElement;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const my = ++token;
 
-  const apply = () => {
-    applyTheme(next);
-    onApplied?.();
-  };
-
-  // rapid repeat clicks: finish the running fracture instantly, start anew
   if (active) {
     active.skipTransition();
     active = null;
-    setMaskStyle(null);
   }
+  setMaskStyle(null);
 
   if (!doc.startViewTransition) {
     root.classList.add("theme-fade");
-    apply();
+    applyTheme(next);
     window.setTimeout(() => root.classList.remove("theme-fade"), 360);
     return;
   }
 
   if (reduced) {
-    const vt = doc.startViewTransition(() => flushSync(apply));
+    const vt = doc.startViewTransition(() => flushSync(() => applyTheme(next)));
     vt.ready
       .then(() => root.animate({ opacity: [0, 1] }, { duration: 160, pseudoElement: "::view-transition-new(root)" }))
       .catch(() => {});
     return;
   }
 
-  const r = button.getBoundingClientRect();
-  const ox = r.left + r.width / 2;
-  const oy = r.top + r.height / 2;
-  const W = window.innerWidth;
-  const H = window.innerHeight;
-  const { url, total } = buildMask(W, H, ox, oy);
-
   button.classList.add("is-cracking");
-  const sculpture = document.querySelector(".sculpture");
+  const r = button.getBoundingClientRect();
+  let mask: { src: string; total: number };
+  try {
+    mask = await buildMask(window.innerWidth, window.innerHeight, r.left + r.width / 2, r.top + r.height / 2);
+    // decode first: the transition must never show an unmasked frame
+    const img = new Image();
+    img.src = mask.src;
+    await img.decode().catch(() => {});
+  } catch {
+    button.classList.remove("is-cracking");
+    applyTheme(next);
+    return;
+  }
+  if (my !== token) return; // a newer click took over while we prepared
 
-  setMaskStyle(
-    `::view-transition-new(root){-webkit-mask-image:${url};mask-image:${url};-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}`
-  );
-
-  const vt = doc.startViewTransition(() => flushSync(apply));
+  setMaskStyle(mask.src);
+  const vt = doc.startViewTransition(() => flushSync(() => applyTheme(next)));
   active = vt;
 
   vt.ready
     .then(() => {
-      sculpture?.classList.add("is-split");
-      // keeps the transition alive while the shards turn (the mask image
-      // animates by itself; this only holds the pseudo-element in place)
-      root.animate({ opacity: [1, 1] }, { duration: total + 40, pseudoElement: "::view-transition-new(root)" });
-      // the old surface sinks a touch as it breaks up
-      root.animate([{ transform: "none" }, { transform: "scale(.994)" }], {
-        duration: total,
-        easing: "ease-out",
-        fill: "both",
-        pseudoElement: "::view-transition-old(root)",
-      });
+      // holds the transition open while the mask image animates itself
+      root.animate({ opacity: [1, 1] }, { duration: mask.total + 40, pseudoElement: "::view-transition-new(root)" });
     })
     .catch(() => {});
 
@@ -188,7 +236,6 @@ export function fractureTheme(next: Theme, button: HTMLElement, onApplied?: () =
     .catch(() => {})
     .finally(() => {
       button.classList.remove("is-cracking");
-      window.setTimeout(() => sculpture?.classList.remove("is-split"), 140);
       if (active === vt) {
         active = null;
         setMaskStyle(null);

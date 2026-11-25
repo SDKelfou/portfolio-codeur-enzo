@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n";
 import { currentTheme } from "../lib/theme";
 import type { Theme } from "../lib/theme";
-import { fractureTheme } from "../lib/fracture";
+import { fractureTheme, preloadFracture } from "../lib/fracture";
 
 /** The fracture origin. The half-yellow core rotates to show the side
  *  you are on; clicking cracks the screen open from this exact button. */
@@ -13,6 +13,9 @@ export default function ThemeSwitch({ className = "" }: { className?: string }) 
 
   useEffect(() => {
     setTheme(currentTheme());
+    const ric = (window as Window & { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
+    if (ric) ric(preloadFracture);
+    else window.setTimeout(preloadFracture, 2000);
     const sync = (e: Event) => setTheme((e as CustomEvent<Theme>).detail);
     window.addEventListener("enzo:theme", sync);
     return () => window.removeEventListener("enzo:theme", sync);

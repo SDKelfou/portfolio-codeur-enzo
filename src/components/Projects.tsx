@@ -34,8 +34,8 @@ export default function Projects({ headingLevel = 2 }: { headingLevel?: 1 | 2 })
                   aria-label={`${p.name} — ${p.example ? w.visitExample : w.visit}`}
                   tabIndex={-1}
                 >
-                  <div className="project-media" data-reveal="mask">
-                    <img src={p.image} alt="" width={800} height={500} loading="lazy" decoding="async" />
+                  <div className="project-media">
+                    <img src={p.image} alt={`${p.name} — aperçu`} width={800} height={500} decoding="async" />
                   </div>
                 </a>
 
