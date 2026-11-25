@@ -4,7 +4,7 @@ import type { Theme } from "./theme";
 
 const SPREAD = 700;
 const FLIP = 120;
-const LEADIN = 220;
+const LEADIN = 60;
 const BUCKET = 12;
 const STYLE_ID = "fracture-mask";
 
@@ -62,7 +62,7 @@ class Heap {
 async function buildMasks(W: number, H: number, ox: number, oy: number, lineColor: string) {
   const { Delaunay } = await import("d3-delaunay");
   const maxD = Math.hypot(Math.max(ox, W - ox), Math.max(oy, H - oy));
-  const n = Math.round(Math.min(2200, Math.max(650, (W * H) / 950)));
+  const n = Math.round(Math.min(1500, Math.max(600, (W * H) / 1200)));
   const pts = new Float64Array(n * 2);
   for (let i = 0; i < n; i++) {
     let x: number;

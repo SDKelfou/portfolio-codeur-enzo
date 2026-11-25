@@ -38,9 +38,9 @@ const fr = {
     name: "Enzo",
     role: "Développeur web",
     title: "Je crée des sites web qui vous amènent des clients.",
-    sub: "Pour les commerces, artisans, formateurs et indépendants : un site rapide, beau et trouvé sur Google, pensé pour qu'on vous appelle, qu'on réserve ou qu'on achète. Je m'occupe de tout.",
+    sub: "Je conçois des sites pour les commerçants, artisans, formateurs et indépendants qui veulent être trouvés, inspirer confiance et recevoir plus de demandes. Je m'occupe de tout, vous gardez votre temps pour votre métier.",
     lead: "Je conçois et code des sites rapides, sur mesure et bien référencés pour les commerces, artisans et indépendants. De l'idée à la mise en ligne, je m'occupe de tout.",
-    price: "Dès 799 € · en ligne en 1 à 3 semaines",
+    price: "À partir de 799 € · prêt en 1 à 3 semaines",
     cta: "Demander un devis gratuit",
     ctaWork: "Voir mes réalisations",
     by: "Par Enzo, développeur web indépendant",
@@ -87,24 +87,32 @@ const fr = {
     ],
   },
   why: {
-    title: "Votre site, c'est votre meilleur vendeur.",
-    intro: "Avant d'appeler, de réserver ou d'acheter, vos clients regardent en ligne. Un site clair et rapide les rassure en quelques secondes, souvent sans même qu'ils s'en rendent compte.",
-    noSite: {
-      title: "Vous n'avez pas encore de site ?",
-      text: "C'est le meilleur moment pour commencer. Un site professionnel vous rend trouvable, inspire confiance et répond aux questions à votre place : horaires, tarifs, accès, réservation.",
-      points: ["Trouvé sur Google et Google Maps", "Plus de confiance dès le premier regard", "Des appels, réservations et ventes, même le dimanche"],
-      cta: "Créer mon site",
+    "title": "Un site, c'est un vendeur qui ne dort jamais.",
+    "intro": "Avant de pousser votre porte ou de vous appeler, vos clients vous cherchent en ligne. Ce qu'ils y trouvent, ou n'y trouvent pas, décide souvent pour eux.",
+    "noSite": {
+      "title": "Pas encore de site ?",
+      "text": "C'est le bon moment pour partir sur de bonnes bases. Vos clients vous trouvent, consultent vos horaires et vos tarifs, puis vous contactent.",
+      "points": [
+        "Visible sur Google et Google Maps",
+        "Une image professionnelle dès le premier regard",
+        "Des appels, réservations et ventes, même le dimanche"
+      ],
+      "cta": "Créer mon site"
     },
-    hasSite: {
-      title: "Vous avez déjà un site ?",
-      text: "Je l'améliore pour qu'il convertisse mieux : plus rapide, plus clair, mieux référencé, et sécurisé.",
-      points: ["Audit complet : vitesse, référencement, conversion", "Revue de sécurité complète (HTTPS, mises à jour, failles courantes)", "Refonte complète ou améliorations ciblées"],
-      cta: "Faire auditer mon site",
-    },
+    "hasSite": {
+      "title": "Vous avez déjà un site ?",
+      "text": "J'analyse ce qui freine vos ventes : lenteur, textes peu clairs, sécurité, référencement. Puis je corrige, ou je propose une refonte si elle est plus pertinente.",
+      "points": [
+        "Audit complet : vitesse, référencement, conversion",
+        "Revue de sécurité : HTTPS, mises à jour, failles courantes",
+        "Corrections ciblées ou refonte complète"
+      ],
+      "cta": "Demander un audit"
+    }
   },
   caps: {
     title: "Je peux construire tout ça. Essayez.",
-    intro: "Pas des promesses : des démonstrations qui fonctionnent, ici, sur cette page. Touchez, glissez, cliquez.",
+    intro: "Plutôt qu'une liste de promesses, des démonstrations à essayer. Tout ce qui suit fonctionne réellement, sur cette page.",
     demo: "démo",
     d3: { title: "3D et interactions", text: "Des expériences qui marquent. Glissez pour faire tourner l'objet." },
     book: {
@@ -133,11 +141,7 @@ const fr = {
       resultDesc: "Pain cuit chaque matin, viennoiseries maison. Commandez en ligne et retirez en boutique.",
     },
     speed: { title: "Ultra rapide", text: "Cette page, mesurée en direct sur votre appareil." },
-    security: {
-      title: "Sécurité vérifiée",
-      text: "Chaque site livré passe une revue de sécurité.",
-      items: ["Connexion chiffrée (HTTPS)", "En-têtes de sécurité", "Dépendances à jour", "Formulaires protégés"],
-    },
+    security: {"title": "Sécurité vérifiée", "text": "Chaque site livré passe une revue de sécurité. Pendant sa création, il reste privé : personne ne peut le consulter ni le copier.", "items": ["Connexion chiffrée (HTTPS)", "En-têtes de sécurité", "Dépendances à jour", "Site privé pendant la création"]},
     lang: { title: "Multilingue", text: "Ce site existe en 7 langues. Le vôtre aussi, si besoin." },
     soft: { title: "Logiciels et outils", text: "Au-delà du site : logiciels, automatisations, outils sur mesure. Comme NEXUS." },
     ai: {"title": "IA et API", "text": "Assistants IA, automatisations, connexions à YouTube, Google ou à vos outils via leurs API : je crée aussi les outils qui travaillent pour vous.", "bot": "Assistant IA", "q": "Vous êtes ouverts dimanche ?", "a": "Oui ! Le dimanche de 8 h à 13 h. Voulez-vous que je vous réserve une table ?"},
@@ -148,7 +152,7 @@ const fr = {
     inProgress: "Projet en cours",
     leos: { type: "Site vitrine · formation export", text: "Site pour un formateur et consultant export France–Allemagne : formations sur mesure, méthode, avis, prise de rendez-vous pour un échange gratuit. Disponible en six langues." },
     title: "Réalisations",
-    intro: "Des projets pour de vrais commerces, un logiciel conçu de A à Z et des sites d'exemple. Visitez-les comme le ferait un client.",
+    intro: "Des sites réalisés pour de vrais commerces, un logiciel développé de A à Z et quelques exemples. N'hésitez pas à les parcourir comme le ferait un client.",
     visit: "Visiter le site",
     visitExample: "Visiter l'exemple",
     example: "Exemple fictif",
@@ -171,7 +175,7 @@ const fr = {
   },
   method: {
     title: "Comment on travaille ensemble",
-    intro: "Trois étapes, un seul interlocuteur, aucun jargon.",
+    intro: "Trois étapes, et un seul interlocuteur du début à la fin.",
     steps: [
       {
         when: "Jour 1",
@@ -192,13 +196,13 @@ const fr = {
   },
   offers: {
     title: "Tarifs",
-    intro: "Des prix de départ clairs. Chaque projet est différent : on ajuste ensemble selon vos besoins réels.",
+    intro: "Des prix de départ clairs. Chaque projet est différent : le devis s'ajuste à vos besoins réels.",
     from: "à partir de",
     popular: "Recommandé",
     onQuote: "Sur devis",
     cta: "Choisir cette formule",
     pay: "Réserver et payer en ligne",
-    note: "Sur devis, le prix dépend uniquement de votre projet : il peut être inférieur à l'offre Essentiel pour un besoin simple, ou plus élevé pour un projet ambitieux. Aucun problème, on en parle simplement.",
+    note: "Pour un besoin simple, le prix peut être inférieur à 799 €. Pour un projet plus ambitieux, nous construisons le devis ensemble. Dans tous les cas, sans surprise.",
     items: [
       {
         name: "Essentiel",
@@ -254,8 +258,8 @@ const fr = {
   },
   about: {
     title: "Un développeur, pas une agence.",
-    quote: "Pas de brief générique, pas de template recyclé : chaque projet a sa propre direction artistique, ses propres animations, sa propre personnalité.",
-    text: "Je m'appelle Enzo. Je conçois et code des sites sur mesure, en échangeant directement avec vous. Vous voulez un site qui ressemble vraiment à ce que vous faites ? Parlons-en.",
+    quote: "Pas de modèle recyclé : chaque site part de votre métier, de vos clients et de ce qui vous distingue.",
+    text: "Je m'appelle Enzo. Je développe des sites et des outils sur mesure, je réponds personnellement à chaque message et je reste disponible après la mise en ligne. Vous avez un projet, même encore flou ? Parlons-en.",
     howTitle: "Ma façon de travailler",
     how: [
       "Vous parlez directement à la personne qui code votre site.",
@@ -274,6 +278,10 @@ const fr = {
   faq: {
     title: "Questions fréquentes",
     items: [
+      {
+        q: "Quelqu'un peut-il copier mon site pendant sa création ?",
+        a: "Non. Tant qu'il n'est pas publié, votre site reste privé et protégé par un mot de passe : seuls vous et moi y avons accès.",
+      },
       {
         q: "C'est quoi, le « vibe coding » ?",
         a: "C'est une façon de développer avec l'aide d'outils d'intelligence artificielle : je décris précisément ce que je veux, l'IA m'aide à écrire le code plus vite, et je relis, teste et corrige chaque ligne moi-même. Résultat : un site sur mesure, livré plus rapidement, à un prix plus accessible, sans sacrifier la qualité.",
@@ -310,7 +318,7 @@ const fr = {
   },
   contact: {
     title: "Parlons de votre projet.",
-    text: "Décrivez votre projet en quelques lignes : je vous réponds personnellement sous 48 h avec un devis gratuit et sans engagement.",
+    text: "Décrivez votre projet en quelques lignes. Je vous réponds personnellement sous 48 h, avec un devis gratuit.",
     copy: "Copier l'adresse",
     copied: "Adresse copiée !",
     subject: "Demande de devis",

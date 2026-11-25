@@ -40,9 +40,9 @@ const en: Dict = {
     name: "Enzo",
     role: "Web developer",
     title: "I build websites that bring you customers.",
-    sub: "For shops, tradespeople, trainers and freelancers: a fast, good-looking website that ranks on Google, designed so people call you, book or buy. I take care of everything.",
+    sub: "I design websites for shopkeepers, craftspeople, trainers and freelancers who want to be found, inspire trust and receive more enquiries. I take care of everything; you keep your time for your profession.",
     lead: "I design and code fast, custom, search-friendly websites for shops, craftspeople and the self-employed. From the first idea to going live, I take care of everything.",
-    price: "From 799 € · live in 1 to 3 weeks",
+    price: "From 799 € · ready in 1 to 3 weeks",
     cta: "Request a free quote",
     ctaWork: "See my work",
     by: "By Enzo, independent web developer",
@@ -89,24 +89,24 @@ const en: Dict = {
     ],
   },
   why: {
-    title: "Your website is your best salesperson.",
-    intro: "Before they call, book or buy, your customers look online. A clear, fast website reassures them within seconds, often without them even realising it.",
+    title: "A website is a salesperson that never sleeps.",
+    intro: "Before they walk through your door or call you, your customers look for you online. What they find there, or fail to find, often decides for them.",
     noSite: {
       title: "Don't have a website yet?",
-      text: "There's no better time to start. A professional website makes you easy to find, builds trust and answers questions for you: opening hours, prices, directions, booking.",
-      points: ["Found on Google and Google Maps", "More trust from the very first glance", "Calls, bookings and sales, even on Sundays"],
+      text: "This is the right moment to start on solid foundations. Your customers find you, check your opening hours and prices, then get in touch.",
+      points: ["Visible on Google and Google Maps", "A professional image from the first glance", "Calls, bookings and sales, even on Sundays"],
       cta: "Create my website",
     },
     hasSite: {
       title: "Already have a website?",
-      text: "I improve it so it converts better: faster, clearer, better ranked, and secure.",
-      points: ["Full audit: speed, SEO, conversion", "Complete security review (HTTPS, updates, common vulnerabilities)", "Full redesign or targeted improvements"],
-      cta: "Get my website audited",
+      text: "I analyse what is holding back your sales: slowness, unclear copy, security, search ranking. Then I fix it, or propose a redesign if that is more relevant.",
+      points: ["Full audit: speed, search ranking, conversion", "Security review: HTTPS, updates, common vulnerabilities", "Targeted fixes or complete redesign"],
+      cta: "Request an audit",
     },
   },
   caps: {
     title: "I can build all of this. Try it.",
-    intro: "Not promises: working demos, right here on this page. Touch, drag, click.",
+    intro: "Rather than a list of promises, demonstrations you can try. Everything below genuinely works, on this page.",
     demo: "demo",
     d3: { title: "3D and interactions", text: "Experiences that stand out. Drag to rotate the object." },
     book: {
@@ -137,8 +137,8 @@ const en: Dict = {
     speed: { title: "Ultra fast", text: "This page, measured live on your device." },
     security: {
       title: "Verified security",
-      text: "Every delivered website goes through a security review.",
-      items: ["Encrypted connection (HTTPS)", "Security headers", "Up-to-date dependencies", "Protected forms"],
+      text: "Every delivered website goes through a security review. While it is being created, it stays private: nobody can view or copy it.",
+      items: ["Encrypted connection (HTTPS)", "Security headers", "Up-to-date dependencies", "Private site during creation"],
     },
     lang: { title: "Multilingual", text: "This website exists in 7 languages. Yours can too, if needed." },
     soft: { title: "Software and tools", text: "Beyond the website: software, automations, custom tools. Like NEXUS." },
@@ -150,7 +150,7 @@ const en: Dict = {
     inProgress: "Work in progress",
     leos: { type: "Business website · export training", text: "Website for a France–Germany export trainer and consultant: tailored training, method, reviews and booking for a free first call. Available in six languages." },
     title: "Work",
-    intro: "Projects for real businesses, a piece of software built from scratch and example sites. Browse them as a customer would.",
+    intro: "Websites made for real businesses, software developed from A to Z and a few examples. Feel free to browse them as a customer would.",
     visit: "Visit the website",
     visitExample: "Visit the example",
     example: "Fictional example",
@@ -173,7 +173,7 @@ const en: Dict = {
   },
   method: {
     title: "How we work together",
-    intro: "Three steps, one point of contact, no jargon.",
+    intro: "Three steps, and a single point of contact from start to finish.",
     steps: [
       {
         when: "Day 1",
@@ -194,13 +194,13 @@ const en: Dict = {
   },
   offers: {
     title: "Pricing",
-    intro: "Clear starting prices. Every project is different: we adjust together based on your real needs.",
+    intro: "Clear starting prices. Every project is different: the quote is adjusted to your real needs.",
     from: "from",
     popular: "Recommended",
     onQuote: "On quote",
     cta: "Choose this plan",
     pay: "Book and pay online",
-    note: "On quote, the price depends only on your project: it can be lower than the Essential offer for a simple need, or higher for an ambitious project. No problem, we simply talk it through.",
+    note: "For a simple need, the price can be below 799 €. For a more ambitious project, we build the quote together. In every case, no surprises.",
     items: [
       {
         name: "Essential",
@@ -256,8 +256,8 @@ const en: Dict = {
   },
   about: {
     title: "One developer, not an agency.",
-    quote: "No generic brief, no recycled template: every project has its own art direction, its own animations, its own personality.",
-    text: "My name is Enzo. I design and code custom websites, working directly with you. Want a website that truly reflects what you do? Let's talk.",
+    quote: "No recycled templates: every website starts from your trade, your customers and what sets you apart.",
+    text: "My name is Enzo. I develop custom websites and tools, I reply personally to every message and I remain available after launch. Do you have a project, even a vague one? Let's talk.",
     howTitle: "How I work",
     how: [
       "You talk directly to the person who codes your website.",
@@ -276,6 +276,10 @@ const en: Dict = {
   faq: {
     title: "Frequently asked questions",
     items: [
+      {
+        q: "Can someone copy my website while it is being created?",
+        a: "No. Until it is published, your website stays private and password-protected: only you and I have access.",
+      },
       {
         q: "What is “vibe coding”?",
         a: "It's a way of building software with the help of AI tools: I describe precisely what I want, the AI helps me write the code faster, and I review, test and fix every line myself. The result: a custom website, delivered faster and at a more affordable price, without cutting corners on quality.",
@@ -312,7 +316,7 @@ const en: Dict = {
   },
   contact: {
     title: "Let's talk about your project.",
-    text: "Describe your project in a few lines: I will reply to you personally within 48 h with a free, no-obligation quote.",
+    text: "Describe your project in a few lines. I will reply to you personally within 48 h, with a free quote.",
     copy: "Copy the address",
     copied: "Address copied!",
     subject: "Quote request",

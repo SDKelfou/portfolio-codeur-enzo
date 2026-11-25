@@ -40,9 +40,9 @@ const de: Dict = {
     name: "Enzo",
     role: "Webentwickler",
     title: "Ich baue Websites, die Ihnen Kunden bringen.",
-    sub: "Für Geschäfte, Handwerker, Trainer und Selbstständige: eine schnelle, schöne und bei Google gefundene Website, gemacht, damit man Sie anruft, bucht oder kauft. Ich kümmere mich um alles.",
+    sub: "Ich entwickle Websites für Geschäftsinhaber, Handwerker, Trainer und Selbstständige, die gefunden werden, Vertrauen schaffen und mehr Anfragen erhalten möchten. Ich kümmere mich um alles; Sie behalten Ihre Zeit für Ihren Beruf.",
     lead: "Ich entwerfe und programmiere schnelle, maßgeschneiderte und gut auffindbare Websites für Geschäfte, Handwerker und Selbstständige. Von der Idee bis zum Livegang kümmere ich mich um alles.",
-    price: "Ab 799 € · online in 1 bis 3 Wochen",
+    price: "Ab 799 € · fertig in 1 bis 3 Wochen",
     cta: "Kostenloses Angebot anfragen",
     ctaWork: "Referenzen ansehen",
     by: "Von Enzo, freiberuflicher Webentwickler",
@@ -89,24 +89,24 @@ const de: Dict = {
     ],
   },
   why: {
-    title: "Ihre Website ist Ihr bester Verkäufer.",
-    intro: "Bevor Ihre Kunden anrufen, buchen oder kaufen, schauen sie online nach. Eine klare, schnelle Website schafft in wenigen Sekunden Vertrauen, oft ohne dass sie es merken.",
+    title: "Eine Website ist ein Verkäufer, der nie schläft.",
+    intro: "Bevor Ihre Kunden zu Ihnen kommen oder Sie anrufen, suchen sie Sie online. Was sie dort finden, oder nicht finden, entscheidet oft für sie.",
     noSite: {
-      title: "Sie haben noch keine Website?",
-      text: "Jetzt ist der beste Zeitpunkt, anzufangen. Eine professionelle Website macht Sie auffindbar, schafft Vertrauen und beantwortet Fragen für Sie: Öffnungszeiten, Preise, Anfahrt, Buchung.",
-      points: ["Gefunden bei Google und Google Maps", "Mehr Vertrauen auf den ersten Blick", "Anrufe, Buchungen und Verkäufe, auch sonntags"],
+      title: "Noch keine Website?",
+      text: "Jetzt ist der richtige Moment, auf soliden Grundlagen zu beginnen. Ihre Kunden finden Sie, sehen Öffnungszeiten und Preise und nehmen Kontakt auf.",
+      points: ["Sichtbar bei Google und Google Maps", "Ein professioneller Eindruck auf den ersten Blick", "Anrufe, Buchungen und Verkäufe, auch sonntags"],
       cta: "Meine Website erstellen",
     },
     hasSite: {
       title: "Sie haben schon eine Website?",
-      text: "Ich verbessere sie, damit sie besser konvertiert: schneller, klarer, besser gefunden und sicher.",
-      points: ["Komplettes Audit: Geschwindigkeit, Suchmaschinen-Ranking, Conversion", "Vollständige Sicherheitsprüfung (HTTPS, Updates, häufige Schwachstellen)", "Komplette Neugestaltung oder gezielte Verbesserungen"],
-      cta: "Meine Website prüfen lassen",
+      text: "Ich analysiere, was Ihre Verkäufe bremst: Langsamkeit, unklare Texte, Sicherheit, Auffindbarkeit. Dann behebe ich es oder schlage eine Neugestaltung vor, wenn sie sinnvoller ist.",
+      points: ["Komplettes Audit: Geschwindigkeit, Auffindbarkeit, Conversion", "Sicherheitsprüfung: HTTPS, Updates, häufige Schwachstellen", "Gezielte Korrekturen oder komplette Neugestaltung"],
+      cta: "Audit anfragen",
     },
   },
   caps: {
     title: "Ich kann das alles bauen. Probieren Sie es aus.",
-    intro: "Keine Versprechen, sondern Demos, die funktionieren, hier auf dieser Seite. Berühren, ziehen, klicken Sie.",
+    intro: "Statt einer Liste von Versprechen: Demos zum Ausprobieren. Alles Folgende funktioniert tatsächlich, auf dieser Seite.",
     demo: "Demo",
     d3: { title: "3D und Interaktionen", text: "Erlebnisse, die im Gedächtnis bleiben. Ziehen Sie, um das Objekt zu drehen." },
     book: {
@@ -137,8 +137,8 @@ const de: Dict = {
     speed: { title: "Ultraschnell", text: "Diese Seite, live auf Ihrem Gerät gemessen." },
     security: {
       title: "Geprüfte Sicherheit",
-      text: "Jede ausgelieferte Website durchläuft eine Sicherheitsprüfung.",
-      items: ["Verschlüsselte Verbindung (HTTPS)", "Sicherheits-Header", "Aktuelle Abhängigkeiten", "Geschützte Formulare"],
+      text: "Jede gelieferte Website durchläuft eine Sicherheitsprüfung. Während der Erstellung bleibt sie privat: Niemand kann sie einsehen oder kopieren.",
+      items: ["Verschlüsselte Verbindung (HTTPS)", "Sicherheits-Header", "Aktuelle Abhängigkeiten", "Private Website während der Erstellung"],
     },
     lang: { title: "Mehrsprachig", text: "Diese Website gibt es in 7 Sprachen. Ihre auch, wenn nötig." },
     soft: { title: "Software und Tools", text: "Über die Website hinaus: Software, Automatisierungen, individuelle Tools. Wie NEXUS." },
@@ -150,7 +150,7 @@ const de: Dict = {
     inProgress: "Projekt in Arbeit",
     leos: { type: "Unternehmenswebsite · Exporttraining", text: "Website für einen Export-Trainer und -Berater Frankreich–Deutschland: maßgeschneiderte Schulungen, Methode, Bewertungen und Buchung eines kostenlosen Erstgesprächs. In sechs Sprachen verfügbar." },
     title: "Referenzen",
-    intro: "Projekte für echte Geschäfte, eine von Grund auf entwickelte Software und Beispiel-Websites. Schauen Sie sie sich an wie ein Kunde.",
+    intro: "Websites für echte Geschäfte, eine von A bis Z entwickelte Software und einige Beispiele. Sehen Sie sie sich gerne so an, wie es ein Kunde täte.",
     visit: "Website besuchen",
     visitExample: "Beispiel besuchen",
     example: "Fiktives Beispiel",
@@ -173,7 +173,7 @@ const de: Dict = {
   },
   method: {
     title: "So arbeiten wir zusammen",
-    intro: "Drei Schritte, ein Ansprechpartner, kein Fachchinesisch.",
+    intro: "Drei Schritte und ein einziger Ansprechpartner von Anfang bis Ende.",
     steps: [
       {
         when: "Tag 1",
@@ -194,13 +194,13 @@ const de: Dict = {
   },
   offers: {
     title: "Preise",
-    intro: "Klare Einstiegspreise. Jedes Projekt ist anders: Wir passen gemeinsam an Ihren tatsächlichen Bedarf an.",
+    intro: "Klare Einstiegspreise. Jedes Projekt ist anders: Das Angebot richtet sich nach Ihrem tatsächlichen Bedarf.",
     from: "ab",
     popular: "Empfohlen",
     onQuote: "Auf Anfrage",
     cta: "Dieses Paket wählen",
     pay: "Online buchen und bezahlen",
-    note: "Auf Anfrage hängt der Preis allein von Ihrem Projekt ab: Er kann bei einfachem Bedarf unter dem Essential-Angebot liegen oder bei einem anspruchsvollen Projekt darüber. Kein Problem, wir sprechen einfach darüber.",
+    note: "Bei einfachem Bedarf kann der Preis unter 799 € liegen. Bei einem anspruchsvolleren Projekt erstellen wir das Angebot gemeinsam. In jedem Fall ohne Überraschungen.",
     items: [
       {
         name: "Essential",
@@ -256,8 +256,8 @@ const de: Dict = {
   },
   about: {
     title: "Ein Entwickler, keine Agentur.",
-    quote: "Kein generisches Briefing, keine recycelte Vorlage: Jedes Projekt hat seine eigene Art Direction, seine eigenen Animationen, seine eigene Persönlichkeit.",
-    text: "Ich heiße Enzo. Ich entwerfe und programmiere Websites nach Maß, im direkten Austausch mit Ihnen. Sie wünschen sich eine Website, die wirklich zu dem passt, was Sie tun? Sprechen wir darüber.",
+    quote: "Keine recycelten Vorlagen: Jede Website geht von Ihrem Beruf, Ihren Kunden und dem aus, was Sie auszeichnet.",
+    text: "Ich heiße Enzo. Ich entwickle Websites und Tools nach Maß, beantworte jede Nachricht persönlich und bleibe auch nach dem Livegang erreichbar. Sie haben ein Projekt, auch wenn es noch vage ist? Sprechen wir darüber.",
     howTitle: "Meine Arbeitsweise",
     how: [
       "Sie sprechen direkt mit der Person, die Ihre Website programmiert.",
@@ -276,6 +276,10 @@ const de: Dict = {
   faq: {
     title: "Häufige Fragen",
     items: [
+      {
+        q: "Kann jemand meine Website kopieren, während sie entsteht?",
+        a: "Nein. Solange sie nicht veröffentlicht ist, bleibt Ihre Website privat und passwortgeschützt: Nur Sie und ich haben Zugriff.",
+      },
       {
         q: "Was ist „Vibe Coding“?",
         a: "Eine Art zu entwickeln, bei der mich KI-Werkzeuge unterstützen: Ich beschreibe genau, was ich will, die KI hilft mir, den Code schneller zu schreiben, und ich prüfe, teste und korrigiere jede Zeile selbst. Das Ergebnis: eine maßgeschneiderte Website, schneller geliefert und günstiger, ohne Abstriche bei der Qualität.",
@@ -312,7 +316,7 @@ const de: Dict = {
   },
   contact: {
     title: "Sprechen wir über Ihr Projekt.",
-    text: "Beschreiben Sie Ihr Projekt in wenigen Zeilen: Ich antworte Ihnen persönlich innerhalb von 48 Std. mit einem kostenlosen, unverbindlichen Angebot.",
+    text: "Beschreiben Sie Ihr Projekt in wenigen Zeilen. Ich antworte Ihnen persönlich innerhalb von 48 Std., mit einem kostenlosen Angebot.",
     copy: "Adresse kopieren",
     copied: "Adresse kopiert!",
     subject: "Angebotsanfrage",

@@ -40,9 +40,9 @@ const it: Dict = {
     name: "Enzo",
     role: "Sviluppatore web",
     title: "Creo siti web che le portano clienti.",
-    sub: "Per negozi, artigiani, formatori e professionisti: un sito veloce, bello e trovato su Google, pensato perché la chiamino, prenotino o acquistino. Mi occupo io di tutto.",
+    sub: "Progetto siti per commercianti, artigiani, formatori e professionisti che vogliono essere trovati, ispirare fiducia e ricevere più richieste. Mi occupo di tutto; lei conserva il suo tempo per la sua professione.",
     lead: "Progetto e programmo siti veloci, su misura e ben posizionati per negozi, artigiani e professionisti. Dall'idea alla messa online, mi occupo di tutto.",
-    price: "Da 799 € · online in 1-3 settimane",
+    price: "Da 799 € · pronto in 1-3 settimane",
     cta: "Richieda un preventivo gratuito",
     ctaWork: "Vedi i progetti",
     by: "Di Enzo, sviluppatore web indipendente",
@@ -89,24 +89,24 @@ const it: Dict = {
     ],
   },
   why: {
-    title: "Il suo sito è il suo miglior venditore.",
-    intro: "Prima di chiamare, prenotare o acquistare, i suoi clienti guardano online. Un sito chiaro e veloce li rassicura in pochi secondi, spesso senza che se ne accorgano.",
+    title: "Un sito è un venditore che non dorme mai.",
+    intro: "Prima di varcare la sua porta o di chiamarla, i suoi clienti la cercano online. Ciò che trovano, o non trovano, spesso decide per loro.",
     noSite: {
       title: "Non ha ancora un sito?",
-      text: "È il momento migliore per iniziare. Un sito professionale la rende trovabile, ispira fiducia e risponde alle domande al suo posto: orari, prezzi, come arrivare, prenotazione.",
-      points: ["Trovato su Google e Google Maps", "Più fiducia fin dal primo sguardo", "Chiamate, prenotazioni e vendite, anche la domenica"],
+      text: "È il momento giusto per partire su basi solide. I suoi clienti la trovano, consultano orari e prezzi, poi la contattano.",
+      points: ["Visibile su Google e Google Maps", "Un'immagine professionale fin dal primo sguardo", "Chiamate, prenotazioni e vendite, anche la domenica"],
       cta: "Crea il mio sito",
     },
     hasSite: {
       title: "Ha già un sito?",
-      text: "Lo miglioro perché converta meglio: più veloce, più chiaro, meglio posizionato e sicuro.",
-      points: ["Audit completo: velocità, posizionamento, conversione", "Revisione di sicurezza completa (HTTPS, aggiornamenti, vulnerabilità comuni)", "Rifacimento completo o miglioramenti mirati"],
-      cta: "Fai analizzare il mio sito",
+      text: "Analizzo ciò che frena le sue vendite: lentezza, testi poco chiari, sicurezza, posizionamento. Poi correggo, oppure propongo un rifacimento se più opportuno.",
+      points: ["Audit completo: velocità, posizionamento, conversione", "Revisione di sicurezza: HTTPS, aggiornamenti, vulnerabilità comuni", "Correzioni mirate o rifacimento completo"],
+      cta: "Richiedi un audit",
     },
   },
   caps: {
     title: "Posso costruire tutto questo. Provi.",
-    intro: "Non promesse: dimostrazioni che funzionano, qui, in questa pagina. Tocchi, trascini, clicchi.",
+    intro: "Più che un elenco di promesse, dimostrazioni da provare. Tutto ciò che segue funziona davvero, in questa pagina.",
     demo: "demo",
     d3: { title: "3D e interazioni", text: "Esperienze che lasciano il segno. Trascini per far ruotare l'oggetto." },
     book: {
@@ -137,8 +137,8 @@ const it: Dict = {
     speed: { title: "Ultra veloce", text: "Questa pagina, misurata in diretta sul suo dispositivo." },
     security: {
       title: "Sicurezza verificata",
-      text: "Ogni sito consegnato supera una revisione di sicurezza.",
-      items: ["Connessione cifrata (HTTPS)", "Intestazioni di sicurezza", "Dipendenze aggiornate", "Moduli protetti"],
+      text: "Ogni sito consegnato supera una revisione di sicurezza. Durante la creazione resta privato: nessuno può consultarlo né copiarlo.",
+      items: ["Connessione cifrata (HTTPS)", "Intestazioni di sicurezza", "Dipendenze aggiornate", "Sito privato durante la creazione"],
     },
     lang: { title: "Multilingue", text: "Questo sito esiste in 7 lingue. Anche il suo, se serve." },
     soft: { title: "Software e strumenti", text: "Oltre al sito: software, automazioni, strumenti su misura. Come NEXUS." },
@@ -150,7 +150,7 @@ const it: Dict = {
     inProgress: "Progetto in corso",
     leos: { type: "Sito vetrina · formazione export", text: "Sito per un formatore e consulente export Francia–Germania: formazioni su misura, metodo, recensioni e prenotazione di un primo colloquio gratuito. Disponibile in sei lingue." },
     title: "Progetti",
-    intro: "Progetti per attività reali, un software creato da zero e siti di esempio. Li visiti come farebbe un cliente.",
+    intro: "Siti realizzati per attività reali, un software sviluppato da zero e alcuni esempi. Li percorra pure come farebbe un cliente.",
     visit: "Visita il sito",
     visitExample: "Visita l'esempio",
     example: "Esempio fittizio",
@@ -173,7 +173,7 @@ const it: Dict = {
   },
   method: {
     title: "Come lavoriamo insieme",
-    intro: "Tre fasi, un unico interlocutore, nessun gergo.",
+    intro: "Tre fasi e un unico interlocutore dall'inizio alla fine.",
     steps: [
       {
         when: "Giorno 1",
@@ -194,13 +194,13 @@ const it: Dict = {
   },
   offers: {
     title: "Tariffe",
-    intro: "Prezzi di partenza chiari. Ogni progetto è diverso: regoliamo insieme in base alle sue reali esigenze.",
+    intro: "Prezzi di partenza chiari. Ogni progetto è diverso: il preventivo si adatta alle sue reali esigenze.",
     from: "da",
     popular: "Consigliato",
     onQuote: "Su preventivo",
     cta: "Scegli questo pacchetto",
     pay: "Prenota e paga online",
-    note: "Su preventivo, il prezzo dipende solo dal suo progetto: può essere inferiore all'offerta Essenziale per un'esigenza semplice, o più alto per un progetto ambizioso. Nessun problema, ne parliamo con semplicità.",
+    note: "Per un'esigenza semplice, il prezzo può essere inferiore a 799 €. Per un progetto più ambizioso, costruiamo il preventivo insieme. In ogni caso, senza sorprese.",
     items: [
       {
         name: "Essenziale",
@@ -256,8 +256,8 @@ const it: Dict = {
   },
   about: {
     title: "Uno sviluppatore, non un'agenzia.",
-    quote: "Nessun brief generico, nessun template riciclato: ogni progetto ha la sua direzione artistica, le sue animazioni, la sua personalità.",
-    text: "Mi chiamo Enzo. Progetto e programmo siti su misura, parlando direttamente con lei. Vuole un sito che rispecchi davvero ciò che fa? Ne parliamo.",
+    quote: "Nessun template riciclato: ogni sito parte dalla sua professione, dai suoi clienti e da ciò che la distingue.",
+    text: "Mi chiamo Enzo. Sviluppo siti e strumenti su misura, rispondo personalmente a ogni messaggio e resto disponibile dopo la messa online. Ha un progetto, anche ancora vago? Ne parliamo.",
     howTitle: "Il mio modo di lavorare",
     how: [
       "Parla direttamente con la persona che programma il suo sito.",
@@ -276,6 +276,10 @@ const it: Dict = {
   faq: {
     title: "Domande frequenti",
     items: [
+      {
+        q: "Qualcuno può copiare il mio sito mentre viene creato?",
+        a: "No. Finché non è pubblicato, il suo sito resta privato e protetto da password: solo lei e io abbiamo accesso.",
+      },
       {
         q: "Che cos'è il «vibe coding»?",
         a: "È un modo di sviluppare con l'aiuto di strumenti di intelligenza artificiale: descrivo con precisione ciò che voglio, l'IA mi aiuta a scrivere il codice più velocemente, e io rileggo, testo e correggo ogni riga. Il risultato: un sito su misura, consegnato più in fretta e a un prezzo più accessibile, senza rinunciare alla qualità.",
@@ -312,7 +316,7 @@ const it: Dict = {
   },
   contact: {
     title: "Parliamo del suo progetto.",
-    text: "Descriva il suo progetto in poche righe: le rispondo personalmente entro 48 ore con un preventivo gratuito e senza impegno.",
+    text: "Descriva il suo progetto in poche righe. Le rispondo personalmente entro 48 ore, con un preventivo gratuito.",
     copy: "Copia l'indirizzo",
     copied: "Indirizzo copiato!",
     subject: "Richiesta di preventivo",

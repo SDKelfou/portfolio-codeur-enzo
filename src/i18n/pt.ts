@@ -40,9 +40,9 @@ const pt: Dict = {
     name: "Enzo",
     role: "Programador web",
     title: "Crio sites que lhe trazem clientes.",
-    sub: "Para comércios, artesãos, formadores e independentes: um site rápido, bonito e encontrado no Google, pensado para que lhe liguem, reservem ou comprem. Trato de tudo.",
+    sub: "Crio sites para comerciantes, artesãos, formadores e independentes que querem ser encontrados, inspirar confiança e receber mais pedidos de contacto. Trato de tudo; você mantém o seu tempo para a sua profissão.",
     lead: "Crio e programo sites rápidos, à medida e bem posicionados para comércios, artesãos e independentes. Da ideia à publicação, trato de tudo.",
-    price: "Desde 799 € · online em 1 a 3 semanas",
+    price: "Desde 799 € · pronto em 1 a 3 semanas",
     cta: "Pedir um orçamento gratuito",
     ctaWork: "Ver os trabalhos",
     by: "Por Enzo, programador web independente",
@@ -89,24 +89,24 @@ const pt: Dict = {
     ],
   },
   why: {
-    title: "O seu site é o seu melhor vendedor.",
-    intro: "Antes de ligar, reservar ou comprar, os seus clientes veem online. Um site claro e rápido tranquiliza-os em poucos segundos, muitas vezes sem que se apercebam.",
+    title: "Um site é um vendedor que nunca dorme.",
+    intro: "Antes de entrar no seu estabelecimento ou de lhe ligar, os seus clientes procuram-no online. O que lá encontram, ou não encontram, muitas vezes decide por eles.",
     noSite: {
       title: "Ainda não tem um site?",
-      text: "É o melhor momento para começar. Um site profissional torna-o encontrável, inspira confiança e responde às perguntas por si: horários, preços, como chegar, reservas.",
-      points: ["Encontrado no Google e no Google Maps", "Mais confiança logo à primeira vista", "Chamadas, reservas e vendas, mesmo ao domingo"],
+      text: "É o momento certo para começar em bases sólidas. Os seus clientes encontram-no, consultam os seus horários e preços, e depois contactam-no.",
+      points: ["Visível no Google e no Google Maps", "Uma imagem profissional logo à primeira vista", "Chamadas, reservas e vendas, mesmo ao domingo"],
       cta: "Criar o meu site",
     },
     hasSite: {
       title: "Já tem um site?",
-      text: "Melhoro-o para que converta melhor: mais rápido, mais claro, melhor posicionado e seguro.",
-      points: ["Auditoria completa: velocidade, posicionamento, conversão", "Revisão de segurança completa (HTTPS, atualizações, falhas comuns)", "Redesenho completo ou melhorias pontuais"],
-      cta: "Auditar o meu site",
+      text: "Analiso o que trava as suas vendas: lentidão, textos pouco claros, segurança, posicionamento. Depois corrijo, ou proponho um redesenho se for mais pertinente.",
+      points: ["Auditoria completa: velocidade, posicionamento, conversão", "Revisão de segurança: HTTPS, atualizações, falhas comuns", "Correções pontuais ou redesenho completo"],
+      cta: "Pedir uma auditoria",
     },
   },
   caps: {
     title: "Consigo construir tudo isto. Experimente.",
-    intro: "Não são promessas: demonstrações que funcionam, aqui, nesta página. Toque, arraste, clique.",
+    intro: "Em vez de uma lista de promessas, demonstrações que pode experimentar. Tudo o que se segue funciona realmente, nesta página.",
     demo: "demo",
     d3: { title: "3D e interações", text: "Experiências que marcam. Arraste para rodar o objeto." },
     book: {
@@ -137,8 +137,8 @@ const pt: Dict = {
     speed: { title: "Ultrarrápido", text: "Esta página, medida em direto no seu dispositivo." },
     security: {
       title: "Segurança verificada",
-      text: "Cada site entregue passa por uma revisão de segurança.",
-      items: ["Ligação encriptada (HTTPS)", "Cabeçalhos de segurança", "Dependências atualizadas", "Formulários protegidos"],
+      text: "Cada site entregue passa por uma revisão de segurança. Durante a sua criação, permanece privado: ninguém o pode consultar nem copiar.",
+      items: ["Ligação encriptada (HTTPS)", "Cabeçalhos de segurança", "Dependências atualizadas", "Site privado durante a criação"],
     },
     lang: { title: "Multilingue", text: "Este site existe em 7 línguas. O seu também, se precisar." },
     soft: { title: "Software e ferramentas", text: "Para além do site: software, automatizações, ferramentas à medida. Como o NEXUS." },
@@ -150,7 +150,7 @@ const pt: Dict = {
     inProgress: "Projeto em curso",
     leos: { type: "Site institucional · formação em exportação", text: "Site para um formador e consultor de exportação França–Alemanha: formações à medida, método, avaliações e marcação de uma primeira conversa gratuita. Disponível em seis línguas." },
     title: "Trabalhos",
-    intro: "Projetos para negócios reais, um software criado de raiz e sites de exemplo. Visite-os como faria um cliente.",
+    intro: "Sites feitos para negócios reais, um software desenvolvido de A a Z e alguns exemplos. Fique à vontade para os percorrer como faria um cliente.",
     visit: "Visitar o site",
     visitExample: "Visitar o exemplo",
     example: "Exemplo fictício",
@@ -173,7 +173,7 @@ const pt: Dict = {
   },
   method: {
     title: "Como trabalhamos juntos",
-    intro: "Três etapas, um único interlocutor, sem jargão.",
+    intro: "Três etapas e um único interlocutor do início ao fim.",
     steps: [
       {
         when: "Dia 1",
@@ -194,13 +194,13 @@ const pt: Dict = {
   },
   offers: {
     title: "Preços",
-    intro: "Preços de partida claros. Cada projeto é diferente: ajustamos em conjunto conforme as suas necessidades reais.",
+    intro: "Preços de partida claros. Cada projeto é diferente: o orçamento ajusta-se às suas necessidades reais.",
     from: "desde",
     popular: "Recomendado",
     onQuote: "Sob orçamento",
     cta: "Escolher este plano",
     pay: "Reservar e pagar online",
-    note: "Sob orçamento, o preço depende apenas do seu projeto: pode ser inferior à oferta Essencial para uma necessidade simples, ou superior para um projeto ambicioso. Sem problema, falamos com simplicidade.",
+    note: "Para uma necessidade simples, o preço pode ser inferior a 799 €. Para um projeto mais ambicioso, construímos o orçamento em conjunto. Em todos os casos, sem surpresas.",
     items: [
       {
         name: "Essencial",
@@ -256,8 +256,8 @@ const pt: Dict = {
   },
   about: {
     title: "Um programador, não uma agência.",
-    quote: "Sem briefing genérico, sem modelo reciclado: cada projeto tem a sua própria direção artística, as suas próprias animações, a sua própria personalidade.",
-    text: "Chamo-me Enzo. Crio e programo sites à medida, falando diretamente consigo. Quer um site que reflita realmente o que faz? Vamos conversar.",
+    quote: "Sem modelos reciclados: cada site parte da sua profissão, dos seus clientes e do que o distingue.",
+    text: "Chamo-me Enzo. Desenvolvo sites e ferramentas à medida, respondo pessoalmente a cada mensagem e continuo disponível após a publicação. Tem um projeto, mesmo que ainda vago? Vamos conversar.",
     howTitle: "A minha forma de trabalhar",
     how: [
       "Você fala diretamente com a pessoa que programa o seu site.",
@@ -276,6 +276,10 @@ const pt: Dict = {
   faq: {
     title: "Perguntas frequentes",
     items: [
+      {
+        q: "Alguém pode copiar o meu site enquanto está a ser criado?",
+        a: "Não. Enquanto não estiver publicado, o seu site permanece privado e protegido por palavra-passe: só você e eu temos acesso.",
+      },
       {
         q: "O que é o «vibe coding»?",
         a: "É uma forma de desenvolver com a ajuda de ferramentas de inteligência artificial: descrevo com precisão o que quero, a IA ajuda-me a escrever o código mais depressa, e eu revejo, testo e corrijo cada linha. O resultado: um site à medida, entregue mais rapidamente e a um preço mais acessível, sem sacrificar a qualidade.",
@@ -312,7 +316,7 @@ const pt: Dict = {
   },
   contact: {
     title: "Vamos falar do seu projeto.",
-    text: "Descreva o seu projeto em poucas linhas: respondo-lhe pessoalmente em 48 h com um orçamento gratuito e sem compromisso.",
+    text: "Descreva o seu projeto em algumas linhas. Respondo-lhe pessoalmente em 48 h, com um orçamento gratuito.",
     copy: "Copiar o endereço",
     copied: "Endereço copiado!",
     subject: "Pedido de orçamento",

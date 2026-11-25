@@ -40,9 +40,9 @@ const nl: Dict = {
     name: "Enzo",
     role: "Webontwikkelaar",
     title: "Ik bouw websites die u klanten opleveren.",
-    sub: "Voor winkels, ambachtslieden, trainers en zzp'ers: een snelle, mooie website die goed gevonden wordt op Google, gemaakt zodat men u belt, boekt of koopt. Ik regel alles.",
+    sub: "Ik ontwerp websites voor winkeliers, ambachtslieden, trainers en zelfstandigen die gevonden willen worden, vertrouwen willen wekken en meer aanvragen willen ontvangen. Ik regel alles; u houdt uw tijd over voor uw vak.",
     lead: "Ik ontwerp en programmeer snelle, maatwerk en goed vindbare websites voor winkels, ambachtslieden en zelfstandigen. Van idee tot livegang regel ik alles.",
-    price: "Vanaf 799 € · online in 1 tot 3 weken",
+    price: "Vanaf 799 € · klaar in 1 tot 3 weken",
     cta: "Vraag een gratis offerte aan",
     ctaWork: "Bekijk de projecten",
     by: "Door Enzo, zelfstandig webontwikkelaar",
@@ -89,24 +89,24 @@ const nl: Dict = {
     ],
   },
   why: {
-    title: "Uw website is uw beste verkoper.",
-    intro: "Voordat klanten bellen, boeken of kopen, kijken ze online. Een duidelijke, snelle website stelt hen in enkele seconden gerust, vaak zonder dat ze het doorhebben.",
+    title: "Een website is een verkoper die nooit slaapt.",
+    intro: "Voordat uw klanten bij u binnenstappen of u bellen, zoeken ze u online op. Wat ze daar vinden, of niet vinden, bepaalt vaak hun keuze.",
     noSite: {
       title: "Nog geen website?",
-      text: "Nu is het beste moment om te beginnen. Een professionele website maakt u vindbaar, wekt vertrouwen en beantwoordt vragen in uw plaats: openingstijden, tarieven, route, reserveren.",
-      points: ["Gevonden op Google en Google Maps", "Meer vertrouwen vanaf de eerste blik", "Telefoontjes, boekingen en verkopen, ook op zondag"],
+      text: "Nu is het juiste moment om op een stevige basis te beginnen. Uw klanten vinden u, bekijken uw openingstijden en tarieven en nemen daarna contact op.",
+      points: ["Zichtbaar op Google en Google Maps", "Een professionele uitstraling vanaf de eerste blik", "Telefoontjes, boekingen en verkopen, ook op zondag"],
       cta: "Mijn website maken",
     },
     hasSite: {
       title: "Heeft u al een website?",
-      text: "Ik verbeter hem zodat hij beter converteert: sneller, duidelijker, beter vindbaar en veilig.",
-      points: ["Volledige audit: snelheid, vindbaarheid, conversie", "Volledige beveiligingscontrole (HTTPS, updates, veelvoorkomende kwetsbaarheden)", "Complete vernieuwing of gerichte verbeteringen"],
-      cta: "Mijn website laten controleren",
+      text: "Ik analyseer wat uw verkoop afremt: traagheid, onduidelijke teksten, beveiliging, vindbaarheid. Daarna los ik het op, of ik stel een vernieuwing voor als die zinvoller is.",
+      points: ["Volledige audit: snelheid, vindbaarheid, conversie", "Beveiligingscontrole: HTTPS, updates, veelvoorkomende kwetsbaarheden", "Gerichte verbeteringen of complete vernieuwing"],
+      cta: "Een audit aanvragen",
     },
   },
   caps: {
     title: "Dit alles kan ik bouwen. Probeert u het uit.",
-    intro: "Geen beloftes, maar demo's die werken, hier op deze pagina. Raak aan, sleep, klik.",
+    intro: "In plaats van een lijst met beloftes: demo's om uit te proberen. Alles hieronder werkt echt, op deze pagina.",
     demo: "demo",
     d3: { title: "3D en interactie", text: "Ervaringen die indruk maken. Sleep om het object te draaien." },
     book: {
@@ -137,8 +137,8 @@ const nl: Dict = {
     speed: { title: "Supersnel", text: "Deze pagina, live gemeten op uw apparaat." },
     security: {
       title: "Gecontroleerde beveiliging",
-      text: "Elke opgeleverde website krijgt een beveiligingscontrole.",
-      items: ["Versleutelde verbinding (HTTPS)", "Beveiligingsheaders", "Actuele afhankelijkheden", "Beschermde formulieren"],
+      text: "Elke opgeleverde website krijgt een beveiligingscontrole. Tijdens het maken blijft hij privé: niemand kan hem inzien of kopiëren.",
+      items: ["Versleutelde verbinding (HTTPS)", "Beveiligingsheaders", "Actuele afhankelijkheden", "Privé website tijdens het maken"],
     },
     lang: { title: "Meertalig", text: "Deze website bestaat in 7 talen. Die van u ook, indien nodig." },
     soft: { title: "Software en tools", text: "Verder dan de website: software, automatiseringen, tools op maat. Zoals NEXUS." },
@@ -150,7 +150,7 @@ const nl: Dict = {
     inProgress: "Project in uitvoering",
     leos: { type: "Bedrijfswebsite · exporttraining", text: "Website voor een exporttrainer en -adviseur Frankrijk–Duitsland: trainingen op maat, werkwijze, reviews en het boeken van een gratis kennismakingsgesprek. Beschikbaar in zes talen." },
     title: "Projecten",
-    intro: "Projecten voor echte zaken, software die ik van A tot Z heb gebouwd en voorbeeldsites. Bekijk ze zoals een klant dat zou doen.",
+    intro: "Websites gemaakt voor echte bedrijven, software die van A tot Z is ontwikkeld en enkele voorbeelden. Bekijk ze gerust zoals een klant dat zou doen.",
     visit: "Website bezoeken",
     visitExample: "Voorbeeld bezoeken",
     example: "Fictief voorbeeld",
@@ -173,7 +173,7 @@ const nl: Dict = {
   },
   method: {
     title: "Zo werken we samen",
-    intro: "Drie stappen, één aanspreekpunt, geen jargon.",
+    intro: "Drie stappen en één aanspreekpunt van begin tot eind.",
     steps: [
       {
         when: "Dag 1",
@@ -194,13 +194,13 @@ const nl: Dict = {
   },
   offers: {
     title: "Tarieven",
-    intro: "Duidelijke instapprijzen. Elk project is anders: we stemmen samen af op wat u echt nodig hebt.",
+    intro: "Duidelijke instapprijzen. Elk project is anders: de offerte wordt afgestemd op wat u echt nodig hebt.",
     from: "vanaf",
     popular: "Aanbevolen",
     onQuote: "Op offerte",
     cta: "Dit pakket kiezen",
     pay: "Reserveren en online betalen",
-    note: "Op offerte hangt de prijs alleen af van uw project: die kan lager zijn dan het Essentieel-aanbod bij een eenvoudige vraag, of hoger bij een ambitieus project. Geen probleem, we bespreken het gewoon.",
+    note: "Bij een eenvoudige vraag kan de prijs lager zijn dan 799 €. Bij een ambitieuzer project stellen we de offerte samen op. In elk geval zonder verrassingen.",
     items: [
       {
         name: "Essentieel",
@@ -256,8 +256,8 @@ const nl: Dict = {
   },
   about: {
     title: "Eén ontwikkelaar, geen bureau.",
-    quote: "Geen generieke briefing, geen hergebruikte template: elk project heeft zijn eigen art direction, zijn eigen animaties, zijn eigen persoonlijkheid.",
-    text: "Ik heet Enzo. Ik ontwerp en programmeer websites op maat, in direct contact met u. Wilt u een website die echt laat zien wat u doet? Laten we praten.",
+    quote: "Geen hergebruikte templates: elke website vertrekt vanuit uw vak, uw klanten en wat u onderscheidt.",
+    text: "Ik heet Enzo. Ik ontwikkel websites en tools op maat, beantwoord elk bericht persoonlijk en blijf ook na de livegang beschikbaar. Heeft u een project, ook al is het nog vaag? Laten we praten.",
     howTitle: "Mijn manier van werken",
     how: [
       "U spreekt rechtstreeks met de persoon die uw website programmeert.",
@@ -276,6 +276,10 @@ const nl: Dict = {
   faq: {
     title: "Veelgestelde vragen",
     items: [
+      {
+        q: "Kan iemand mijn website kopiëren terwijl hij wordt gemaakt?",
+        a: "Nee. Zolang hij niet is gepubliceerd, blijft uw website privé en met een wachtwoord beveiligd: alleen u en ik hebben toegang.",
+      },
       {
         q: "Wat is „vibe coding”?",
         a: "Een manier van ontwikkelen met hulp van AI-tools: ik beschrijf precies wat ik wil, de AI helpt me de code sneller te schrijven, en ik controleer, test en verbeter zelf elke regel. Het resultaat: een website op maat, sneller opgeleverd en voordeliger, zonder in te leveren op kwaliteit.",
@@ -312,7 +316,7 @@ const nl: Dict = {
   },
   contact: {
     title: "Laten we het over uw project hebben.",
-    text: "Beschrijf uw project in een paar regels: ik antwoord u persoonlijk binnen 48 uur met een gratis en vrijblijvende offerte.",
+    text: "Beschrijf uw project in een paar regels. Ik antwoord u persoonlijk binnen 48 uur, met een gratis offerte.",
     copy: "Adres kopiëren",
     copied: "Adres gekopieerd!",
     subject: "Offerteaanvraag",

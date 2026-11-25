@@ -40,9 +40,9 @@ const es: Dict = {
     name: "Enzo",
     role: "Desarrollador web",
     title: "Creo webs que le traen clientes.",
-    sub: "Para comercios, artesanos, formadores y autónomos: una web rápida, bonita y bien posicionada en Google, pensada para que le llamen, reserven o compren. Me ocupo de todo.",
+    sub: "Diseño webs para comerciantes, artesanos, formadores y autónomos que quieren ser encontrados, inspirar confianza y recibir más consultas. Me ocupo de todo; usted conserva su tiempo para su profesión.",
     lead: "Diseño y programo webs rápidas, a medida y bien posicionadas para comercios, artesanos y autónomos. Desde la idea hasta la publicación, me ocupo de todo.",
-    price: "Desde 799 € · en línea en 1 a 3 semanas",
+    price: "Desde 799 € · lista en 1 a 3 semanas",
     cta: "Pedir presupuesto gratis",
     ctaWork: "Ver proyectos",
     by: "Por Enzo, desarrollador web independiente",
@@ -89,24 +89,24 @@ const es: Dict = {
     ],
   },
   why: {
-    title: "Su web es su mejor vendedor.",
-    intro: "Antes de llamar, reservar o comprar, sus clientes miran en internet. Una web clara y rápida los tranquiliza en pocos segundos, a menudo sin que se den cuenta.",
+    title: "Una web es un vendedor que nunca duerme.",
+    intro: "Antes de acudir a su negocio o de llamarle, sus clientes le buscan en internet. Lo que encuentran allí, o no encuentran, suele decidir por ellos.",
     noSite: {
       title: "¿Todavía no tiene web?",
-      text: "Es el mejor momento para empezar. Una web profesional hace que le encuentren, inspira confianza y responde a las preguntas por usted: horarios, tarifas, cómo llegar, reservas.",
-      points: ["Presente en Google y Google Maps", "Más confianza desde el primer vistazo", "Llamadas, reservas y ventas, incluso los domingos"],
+      text: "Es el momento adecuado para empezar sobre bases sólidas. Sus clientes le encuentran, consultan sus horarios y sus tarifas, y después le contactan.",
+      points: ["Visible en Google y Google Maps", "Una imagen profesional desde el primer vistazo", "Llamadas, reservas y ventas, incluso los domingos"],
       cta: "Crear mi web",
     },
     hasSite: {
       title: "¿Ya tiene una web?",
-      text: "La mejoro para que convierta más: más rápida, más clara, mejor posicionada y segura.",
-      points: ["Auditoría completa: velocidad, posicionamiento, conversión", "Revisión de seguridad completa (HTTPS, actualizaciones, fallos habituales)", "Rediseño completo o mejoras concretas"],
-      cta: "Auditar mi web",
+      text: "Analizo lo que frena sus ventas: lentitud, textos poco claros, seguridad, posicionamiento. Después lo corrijo, o propongo un rediseño si resulta más pertinente.",
+      points: ["Auditoría completa: velocidad, posicionamiento, conversión", "Revisión de seguridad: HTTPS, actualizaciones, fallos habituales", "Correcciones concretas o rediseño completo"],
+      cta: "Solicitar una auditoría",
     },
   },
   caps: {
     title: "Puedo construir todo esto. Pruébelo.",
-    intro: "No son promesas: demostraciones que funcionan, aquí, en esta página. Toque, arrastre, haga clic.",
+    intro: "En lugar de una lista de promesas, demostraciones que puede probar. Todo lo que sigue funciona de verdad, en esta página.",
     demo: "demo",
     d3: { title: "3D e interacciones", text: "Experiencias que marcan. Arrastre para girar el objeto." },
     book: {
@@ -137,8 +137,8 @@ const es: Dict = {
     speed: { title: "Ultrarrápida", text: "Esta página, medida en directo en su dispositivo." },
     security: {
       title: "Seguridad verificada",
-      text: "Cada web entregada pasa una revisión de seguridad.",
-      items: ["Conexión cifrada (HTTPS)", "Cabeceras de seguridad", "Dependencias actualizadas", "Formularios protegidos"],
+      text: "Cada web entregada pasa por una revisión de seguridad. Durante su creación permanece privada: nadie puede consultarla ni copiarla.",
+      items: ["Conexión cifrada (HTTPS)", "Cabeceras de seguridad", "Dependencias actualizadas", "Web privada durante la creación"],
     },
     lang: { title: "Multilingüe", text: "Esta web existe en 7 idiomas. La suya también, si lo necesita." },
     soft: { title: "Software y herramientas", text: "Más allá de la web: software, automatizaciones, herramientas a medida. Como NEXUS." },
@@ -150,7 +150,7 @@ const es: Dict = {
     inProgress: "Proyecto en curso",
     leos: { type: "Web corporativa · formación en exportación", text: "Web para un formador y consultor de exportación Francia–Alemania: formaciones a medida, método, opiniones y reserva de una primera llamada gratuita. Disponible en seis idiomas." },
     title: "Proyectos",
-    intro: "Proyectos para negocios reales, un software creado de principio a fin y webs de ejemplo. Visítelas como lo haría un cliente.",
+    intro: "Webs realizadas para negocios reales, un programa desarrollado de principio a fin y algunos ejemplos. Le invito a recorrerlos como lo haría un cliente.",
     visit: "Visitar la web",
     visitExample: "Visitar el ejemplo",
     example: "Ejemplo ficticio",
@@ -173,7 +173,7 @@ const es: Dict = {
   },
   method: {
     title: "Cómo trabajamos juntos",
-    intro: "Tres pasos, un único interlocutor, sin jerga.",
+    intro: "Tres pasos, y un único interlocutor de principio a fin.",
     steps: [
       {
         when: "Día 1",
@@ -194,13 +194,13 @@ const es: Dict = {
   },
   offers: {
     title: "Tarifas",
-    intro: "Precios de partida claros. Cada proyecto es distinto: ajustamos juntos según sus necesidades reales.",
+    intro: "Precios de partida claros. Cada proyecto es distinto: el presupuesto se ajusta a sus necesidades reales.",
     from: "desde",
     popular: "Recomendado",
     onQuote: "Con presupuesto",
     cta: "Elegir este plan",
     pay: "Reservar y pagar en línea",
-    note: "Con presupuesto, el precio depende solo de su proyecto: puede ser inferior al plan Esencial para una necesidad sencilla, o superior para un proyecto ambicioso. No hay problema, lo hablamos con calma.",
+    note: "Para una necesidad sencilla, el precio puede ser inferior a 799 €. Para un proyecto más ambicioso, elaboramos el presupuesto juntos. En todos los casos, sin sorpresas.",
     items: [
       {
         name: "Esencial",
@@ -256,8 +256,8 @@ const es: Dict = {
   },
   about: {
     title: "Un desarrollador, no una agencia.",
-    quote: "Sin briefing genérico, sin plantillas recicladas: cada proyecto tiene su propia dirección artística, sus propias animaciones, su propia personalidad.",
-    text: "Me llamo Enzo. Diseño y programo webs a medida, hablando directamente con usted. ¿Quiere una web que refleje de verdad lo que hace? Hablemos.",
+    quote: "Sin plantillas recicladas: cada web parte de su profesión, de sus clientes y de lo que le distingue.",
+    text: "Me llamo Enzo. Desarrollo webs y herramientas a medida, respondo personalmente a cada mensaje y sigo disponible después de la publicación. ¿Tiene un proyecto, aunque aún sea vago? Hablemos.",
     howTitle: "Mi forma de trabajar",
     how: [
       "Habla directamente con la persona que programa su web.",
@@ -276,6 +276,10 @@ const es: Dict = {
   faq: {
     title: "Preguntas frecuentes",
     items: [
+      {
+        q: "¿Puede alguien copiar mi web mientras se crea?",
+        a: "No. Mientras no esté publicada, su web permanece privada y protegida con contraseña: solo usted y yo tenemos acceso.",
+      },
       {
         q: "¿Qué es el «vibe coding»?",
         a: "Es una forma de desarrollar con la ayuda de herramientas de inteligencia artificial: describo con precisión lo que quiero, la IA me ayuda a escribir el código más rápido, y yo reviso, pruebo y corrijo cada línea. El resultado: una web a medida, entregada más rápido y a un precio más accesible, sin sacrificar la calidad.",
@@ -312,7 +316,7 @@ const es: Dict = {
   },
   contact: {
     title: "Hablemos de su proyecto.",
-    text: "Describa su proyecto en unas líneas: le respondo personalmente en 48 h con un presupuesto gratuito y sin compromiso.",
+    text: "Describa su proyecto en unas líneas. Le respondo personalmente en 48 h, con un presupuesto gratuito.",
     copy: "Copiar la dirección",
     copied: "¡Dirección copiada!",
     subject: "Solicitud de presupuesto",

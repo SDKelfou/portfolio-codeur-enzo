@@ -1,4 +1,4 @@
-import { Check, Lock, Globe, ArrowRight } from "@getpapillon/papicons";
+import { Lock, ArrowRight } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import { STRIPE_LINKS } from "../lib/site";
 import { presetQuote } from "../lib/quoteEvents";
@@ -11,7 +11,7 @@ export default function Offers() {
   const c = t.care;
 
   return (
-    <section id="tarifs" className="cv scroll-mt-24 py-24 sm:py-32" aria-labelledby="pricing-heading">
+    <section id="tarifs" className="scroll-mt-24 pt-24 sm:pt-32" aria-labelledby="pricing-heading">
       <div className="wrap">
         <div className="grid gap-6 lg:grid-cols-12">
           <h2 id="pricing-heading" className="h2 lg:col-span-6" data-reveal="rise">
@@ -22,83 +22,67 @@ export default function Offers() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        <ol className="mt-14 border-t" style={{ borderColor: "var(--ink)" }}>
           {o.items.map((offer, i) => {
             const featured = i === FEATURED;
             const stripe = i === 0 ? STRIPE_LINKS.essentiel : "";
             return (
-              <article key={offer.name} className="price-card" data-featured={featured} data-reveal="rise" style={{ ["--i" as string]: i }}>
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-lg font-extrabold">{offer.name}</h3>
-                  {featured && (
-                    <span className="rounded-full px-3 py-1 text-xs font-bold" style={{ background: "var(--light)", color: "var(--light-ink)" }}>
-                      {o.popular}
-                    </span>
+              <li key={offer.name} className="price-row" data-featured={featured} data-reveal="rise" style={{ ["--i" as string]: i }}>
+                <div className="pr-name">
+                  <h3 className="text-[1.35rem] font-extrabold">{offer.name}</h3>
+                  {featured && <span className="pr-flag">{o.popular}</span>}
+                  <p className="muted mt-2 max-w-sm text-[0.98rem]">{offer.text}</p>
+                </div>
+                <p className="pr-price">
+                  {offer.price && <span className="meta block">{o.from}</span>}
+                  <span className="font-display tnum">{offer.price || o.onQuote}</span>
+                </p>
+                <p className="pr-feats">{offer.features.join(" · ")}</p>
+                <div className="pr-cta">
+                  <button type="button" onClick={() => presetQuote({ offer: i })} className={`btn ${featured ? "btn-light" : "btn-line"}`}>
+                    {o.cta}
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </button>
+                  {stripe && (
+                    <a href={stripe} target="_blank" rel="noopener noreferrer" className="link mt-3 inline-flex items-center gap-1.5 text-sm font-semibold">
+                      <Lock size={13} aria-hidden="true" />
+                      {o.pay}
+                    </a>
                   )}
                 </div>
-                <p className="mt-6 flex items-baseline gap-2">
-                  {offer.price && <span className="meta">{o.from}</span>}
-                  <span className="font-display tnum text-[3.4rem] leading-none tracking-[-0.02em]">{offer.price || o.onQuote}</span>
-                </p>
-                <p className="muted mt-4 text-[0.98rem]">{offer.text}</p>
-                <ul className="mt-6 flex-1 space-y-3 border-t pt-6" style={{ borderColor: "var(--line)" }}>
-                  {offer.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-[0.95rem]">
-                      <Check size={16} className="mt-1 shrink-0" style={{ color: "var(--iris-ink)" }} aria-hidden="true" />
-                      <span style={{ color: "var(--ink-2)" }}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button type="button" onClick={() => presetQuote({ offer: i })} className={`btn mt-8 w-full ${featured ? "btn-light" : "btn-line"}`}>
-                  {o.cta}
-                  <ArrowRight size={16} aria-hidden="true" />
-                </button>
-                {stripe && (
-                  <a href={stripe} target="_blank" rel="noopener noreferrer" className="btn btn-line mt-3 w-full">
-                    <Lock size={15} aria-hidden="true" />
-                    {o.pay}
-                  </a>
-                )}
-              </article>
+              </li>
             );
           })}
-        </div>
+        </ol>
 
-        <article
-          className="mt-5 grid gap-8 rounded-[var(--r-xl)] border p-7 sm:p-10 lg:grid-cols-12 lg:items-center"
-          style={{ borderColor: "var(--line)", background: "var(--bg-2)" }}
-          data-reveal="rise"
-        >
+        <p className="muted mt-8 max-w-3xl text-[0.98rem]" data-reveal="rise">
+          {o.note}
+        </p>
+      </div>
+
+      <div className="care-band mt-20" data-reveal="rise">
+        <div className="wrap grid gap-8 py-14 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
-            <p className="meta font-bold uppercase tracking-[0.08em]">{c.label}</p>
-            <h3 className="mt-2 flex items-center gap-2.5 text-xl font-extrabold">
-              <Globe size={20} style={{ color: "var(--iris-ink)" }} aria-hidden="true" />
-              {c.name}
-            </h3>
-            <p className="mt-4 flex items-baseline gap-1.5">
-              <span className="font-display tnum text-[3rem] leading-none">{c.price}</span>
-              <span className="muted">{c.period}</span>
+            <p className="text-sm font-bold uppercase tracking-[0.1em]" style={{ color: "#fff010" }}>
+              {c.label}
             </p>
-            <p className="muted mt-4">{c.text}</p>
+            <h3 className="mt-3 font-display text-[clamp(2.4rem,4.4vw,3.6rem)] leading-none">
+              {c.name}, <span className="tnum">{c.price}</span>
+              <span className="text-[0.5em]"> {c.period}</span>
+            </h3>
+            <p className="mt-4 max-w-md" style={{ color: "#cfc9e2" }}>
+              {c.text}
+            </p>
           </div>
-          <ul className="space-y-3 lg:col-span-4">
-            {c.features.map((f) => (
-              <li key={f} className="flex items-start gap-3 text-[0.95rem]">
-                <Check size={16} className="mt-1 shrink-0" style={{ color: "var(--iris-ink)" }} aria-hidden="true" />
-                <span style={{ color: "var(--ink-2)" }}>{f}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="text-[1.02rem] leading-relaxed lg:col-span-4" style={{ color: "#eeeaf8" }}>
+            {c.features.join(" · ")}
+          </p>
           <div className="lg:col-span-3 lg:text-right">
-            <button type="button" onClick={() => presetQuote({ care: true })} className="btn btn-line w-full lg:w-auto">
+            <button type="button" onClick={() => presetQuote({ care: true })} className="btn btn-light">
               {c.cta}
             </button>
           </div>
-        </article>
-
-        <p className="muted mt-8 max-w-3xl text-[0.95rem]" data-reveal="rise">
-          {o.note}
-        </p>
+        </div>
       </div>
     </section>
   );

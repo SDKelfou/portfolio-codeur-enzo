@@ -41,9 +41,9 @@ export default function About() {
           </div>
           <div className="lg:col-span-3" data-reveal="rise" style={{ ["--i" as string]: 2 }}>
             <h3 className="text-sm font-extrabold uppercase tracking-[0.08em]">{a.skillsTitle}</h3>
-            <ul className="mt-4 flex flex-wrap gap-2 lg:flex-col lg:items-start">
+            <ul className="mt-4 space-y-2">
               {a.skills.map((s) => (
-                <li key={s} className="rounded-full border px-3.5 py-1.5 text-[0.9rem] font-semibold" style={{ borderColor: "var(--line-strong)" }}>
+                <li key={s} className="font-display text-[1.6rem] leading-tight">
                   {s}
                 </li>
               ))}
