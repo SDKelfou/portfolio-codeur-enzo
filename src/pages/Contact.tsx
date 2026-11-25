@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import Offers from "../components/Offers";
 import ContactCTA from "../components/ContactCTA";
 import Faq from "../components/Faq";
+import Prep from "../components/Prep";
 import { useI18n } from "../i18n";
 import { usePageMeta } from "../lib/head";
 
@@ -17,6 +18,7 @@ export default function Contact() {
         </div>
       </section>
       <Offers />
+      <Prep />
       <ContactCTA />
       <Faq />
     </Layout>

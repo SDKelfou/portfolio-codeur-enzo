@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from "react";
 import type { FormEvent } from "react";
-import { Mail, Paper, Check } from "@getpapillon/papicons";
+import { Mail, Paper, Check, ArrowRight } from "@getpapillon/papicons";
+import TLink from "./TLink";
 import { useI18n } from "../i18n";
 import { CONTACT_EMAIL } from "../lib/site";
 import { onQuotePreset } from "../lib/quoteEvents";
@@ -104,6 +105,10 @@ export default function ContactCTA() {
               <span aria-live="polite">{copied === "email" ? c.copied : c.copy}</span>
             </button>
           </div>
+          <TLink href="/contact#preparer" className="link mt-6 inline-flex items-center gap-2 font-bold" style={{ color: "var(--ink)" }}>
+            {t.prep.link}
+            <ArrowRight size={16} aria-hidden="true" />
+          </TLink>
         </div>
 
         <form onSubmit={submit} noValidate className="surface p-6 sm:p-10 lg:col-span-7" style={{ boxShadow: "var(--shadow)" }}>

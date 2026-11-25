@@ -202,12 +202,12 @@ const fr = {
     onQuote: "Sur devis",
     cta: "Choisir cette formule",
     pay: "Réserver et payer en ligne",
-    note: "Pour un besoin simple, le prix peut être inférieur à 799 €. Pour un projet plus ambitieux, nous construisons le devis ensemble. Dans tous les cas, sans surprise.",
+    note: "« Sur devis » ne veut pas dire plus cher : selon votre besoin, le prix peut être inférieur ou supérieur. Et pour un site vitrine d'une seule page, l'offre Essentiel peut descendre sous 799 €.",
     items: [
       {
         name: "Essentiel",
         price: "799 €",
-        text: "Un site vitrine professionnel, clair et rapide, pour être trouvé et contacté facilement.",
+        text: "Un site vitrine professionnel, clair et rapide, pour être trouvé et contacté facilement. Une seule page ? Le prix peut être inférieur.",
         features: [
           "Site one-page ou jusqu'à 5 sections",
           "Adapté mobile, tablette et ordinateur",
@@ -315,6 +315,59 @@ const fr = {
         a: "Oui. Avec la formule Sérénité, le nom de domaine est enregistré à votre nom : il vous appartient légalement. Je m'occupe uniquement de la partie technique (hébergement, sécurité, mises à jour).",
       },
     ],
+  },
+  prep: {
+    "title": "Ce qu'il me faut pour créer votre site",
+    "intro": "Pour qu'un site soit en ligne en toute légalité, certaines informations sont obligatoires. Préparez-les avant notre échange : vous gagnerez du temps, et votre site sera conforme dès le premier jour.",
+    "link": "Ce qu'il me faut pour démarrer",
+    "groups": [
+      {
+        "title": "Votre entreprise",
+        "items": [
+          "Nom ou raison sociale, et forme juridique (micro-entreprise, SARL, SAS…)",
+          "Numéro SIREN ou SIRET",
+          "Adresse du siège ou de l'établissement",
+          "Numéro RCS ou RM, si vous êtes immatriculé",
+          "Capital social, pour une société",
+          "Numéro de TVA intracommunautaire, si vous y êtes assujetti"
+        ]
+      },
+      {
+        "title": "Vos coordonnées et responsabilités",
+        "items": [
+          "E-mail et téléphone de contact",
+          "Nom du directeur de la publication (souvent vous)",
+          "Profession réglementée : ordre, numéro d'inscription, assurance professionnelle",
+          "Vente aux particuliers : un médiateur de la consommation"
+        ]
+      },
+      {
+        "title": "Si vous vendez ou prenez des réservations",
+        "items": [
+          "Vos conditions générales de vente (CGV)",
+          "Vos modalités de paiement, de livraison et de rétractation",
+          "Vos tarifs à jour"
+        ]
+      },
+      {
+        "title": "Le contenu de votre site",
+        "items": [
+          "Votre logo, si vous en avez un",
+          "Vos photos (sinon, j'utilise des visuels libres de droits)",
+          "Vos horaires, tarifs, adresse et accès",
+          "Vos réseaux sociaux et avis clients",
+          "Votre nom de domaine, si vous en avez déjà un"
+        ]
+      }
+    ],
+    "setup": "À partir de ces informations, je mets en place les pages légales (mentions légales, confidentialité, cookies) et le bandeau de consentement.",
+    "riskTitle": "Pourquoi c'est important",
+    "risks": [
+      "Mentions légales absentes ou incomplètes : jusqu'à 75 000 € d'amende et un an d'emprisonnement pour une personne physique, jusqu'à 375 000 € d'amende pour une société (loi pour la confiance dans l'économie numérique).",
+      "Informations obligatoires manquantes pour la vente aux particuliers (CGV, médiateur…) : jusqu'à 3 000 € d'amende administrative pour une personne physique et 15 000 € pour une société (Code de la consommation).",
+      "Données personnelles ou cookies mal gérés : sanctions de la CNIL, jusqu'à 20 millions d'euros ou 4 % du chiffre d'affaires mondial (RGPD)."
+    ],
+    "disclaimer": "Les informations légales publiées sur votre site sont fournies par vous et relèvent de votre responsabilité en tant qu'éditeur du site. Je vous signale ici les éléments obligatoires et les risques encourus ; si des informations transmises sont manquantes ou inexactes, ma responsabilité ne pourra pas être engagée."
   },
   contact: {
     title: "Parlons de votre projet.",

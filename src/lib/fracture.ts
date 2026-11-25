@@ -101,10 +101,17 @@ async function buildMasks(W: number, H: number, ox: number, oy: number, lineColo
   const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => time[a] - time[b]);
 
   const buckets = new Map<number, string[]>();
+  const cells: { poly: Float64Array; delay: number }[] = [];
   order.forEach((cell, k) => {
     const p = voronoi.cellPolygon(cell);
     if (!p) return;
     const delay = LEADIN + Math.round((Math.pow(k / Math.max(1, n - 1), 0.85) * SPREAD) / BUCKET) * BUCKET;
+    const poly = new Float64Array((p.length - 1) * 2);
+    for (let q = 0; q < p.length - 1; q++) {
+      poly[q * 2] = p[q][0];
+      poly[q * 2 + 1] = p[q][1];
+    }
+    cells.push({ poly, delay });
     let d = "";
     for (let q = 0; q < p.length - 1; q++) d += `${q ? "L" : "M"}${p[q][0].toFixed(1)} ${p[q][1].toFixed(1)}`;
     d += "Z";
@@ -114,27 +121,17 @@ async function buildMasks(W: number, H: number, ox: number, oy: number, lineColo
   });
 
   let fills = "";
-  let lines = "";
   let last = 0;
   for (const [delay, list] of buckets) {
-    const d = list.join("");
-    fills += `<path style="animation-delay:${delay}ms" d="${d}"/>`;
-    lines += `<path style="animation-delay:${delay - 90}ms" d="${d}"/>`;
+    fills += `<path style="animation-delay:${delay}ms" d="${list.join("")}"/>`;
     last = Math.max(last, delay);
   }
-  const head = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
   const mask =
-    head +
-    `<style>path{fill:#fff;stroke:#fff;stroke-width:1.4;stroke-linejoin:round;opacity:0;animation:f ${FLIP}ms ease-out forwards}@keyframes f{to{opacity:1}}</style>` +
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${Math.ceil(W / 2)}" height="${Math.ceil(H / 2)}" viewBox="0 0 ${W} ${H}">` +
+    `<style>path{fill:#fff;stroke:#fff;stroke-width:2.4;stroke-linejoin:round;opacity:0;animation:f ${FLIP}ms ease-out forwards}@keyframes f{to{opacity:1}}</style>` +
     fills +
     `</svg>`;
-  const crack =
-    head +
-    `<style>path{fill:none;stroke:${lineColor};stroke-width:1.2;stroke-linejoin:round;opacity:0;animation:c 420ms ease-out forwards}@keyframes c{20%{opacity:1}to{opacity:0}}</style>` +
-    lines +
-    `</svg>`;
-  const enc = (s: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(s)}`;
-  return { mask: enc(mask), crack: enc(crack), total: last + FLIP };
+  return { mask: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(mask)}`, cells, lineColor, total: last + FLIP };
 }
 
 function setMaskStyle(src: string | null) {
@@ -178,14 +175,14 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
 
   button.classList.add("is-cracking");
   const r = button.getBoundingClientRect();
-  let masks: { mask: string; crack: string; total: number };
+  let masks: Awaited<ReturnType<typeof buildMasks>>;
   try {
     masks = await buildMasks(
       window.innerWidth,
       window.innerHeight,
       r.left + r.width / 2,
       r.top + r.height / 2,
-      next === "dark" ? "#101016" : "#f8f6f0"
+      next === "dark" ? "rgba(16,16,22,.95)" : "rgba(248,246,240,.9)"
     );
   } catch {
     button.classList.remove("is-cracking");
@@ -194,20 +191,51 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
   }
   if (my !== token) return;
 
-  const lines = document.createElement("img");
-  lines.className = "fracture-lines";
-  lines.alt = "";
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  const canvas = document.createElement("canvas");
+  canvas.className = "fracture-lines";
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  const ctx = canvas.getContext("2d")!;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 1.15;
+  ctx.strokeStyle = masks.lineColor;
   let startedAt = 0;
+  let raf = 0;
+  const LIFE = 380;
+  const AHEAD = 90;
+
+  const draw = () => {
+    const t = performance.now() - startedAt;
+    ctx.clearRect(0, 0, W, H);
+    const cells = masks.cells;
+    for (let i = 0; i < cells.length; i++) {
+      const age = t - (cells[i].delay - AHEAD);
+      if (age < 0) break;
+      if (age > LIFE) continue;
+      ctx.globalAlpha = age < LIFE * 0.2 ? age / (LIFE * 0.2) : 1 - (age - LIFE * 0.2) / (LIFE * 0.8);
+      const poly = cells[i].poly;
+      ctx.beginPath();
+      ctx.moveTo(poly[0], poly[1]);
+      for (let k = 2; k < poly.length; k += 2) ctx.lineTo(poly[k], poly[k + 1]);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    if (t < masks.total + LIFE) raf = requestAnimationFrame(draw);
+  };
 
   const vt = doc.startViewTransition(async () => {
     flushSync(() => applyTheme(next));
     setMaskStyle(masks.mask);
-    lines.src = masks.crack;
-    document.body.appendChild(lines);
+    document.body.appendChild(canvas);
     const probe = new Image();
     probe.src = masks.mask;
-    await Promise.all([probe.decode().catch(() => {}), lines.decode().catch(() => {})]);
+    await probe.decode().catch(() => {});
     startedAt = performance.now();
+    raf = requestAnimationFrame(draw);
   });
   active = vt;
 
@@ -222,7 +250,8 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
     .catch(() => {})
     .finally(() => {
       button.classList.remove("is-cracking");
-      lines.remove();
+      cancelAnimationFrame(raf);
+      canvas.remove();
       if (active === vt) {
         active = null;
         setMaskStyle(null);

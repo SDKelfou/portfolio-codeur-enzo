@@ -44,10 +44,10 @@
   --r-md: 14px;
   --r-sm: 10px;
   --fs-name: clamp(7.25rem, 31vw, 19rem);
-  --fs-h2: clamp(2.75rem, 7.4vw, 6.25rem);
+  --fs-h2: clamp(2.9rem, 7.8vw, 8.4rem);
   --fs-h3: clamp(1.6rem, 2.8vw, 2.35rem);
   --fs-lead: clamp(1.125rem, 1.6vw, 1.35rem);
-  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --gutter: clamp(1.25rem, 4.6vw, 6rem);
 
   color-scheme: light;
 }
@@ -159,7 +159,7 @@ h3 {
 
 .wrap {
   width: 100%;
-  max-width: 88rem;
+  max-width: 120rem;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -1652,4 +1652,35 @@ h3 {
   .btn {
     white-space: nowrap;
   }
+}
+
+.prep-grid {
+  display: grid;
+  gap: 40px 48px;
+}
+
+@media (min-width: 720px) {
+  .prep-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1180px) {
+  .prep-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.prep-col {
+  border-top: 2px solid var(--ink);
+  padding-top: 18px;
+}
+
+.risk-band {
+  background: #24222d;
+  color: #f8f6f0;
+}
+
+:root[data-theme="dark"] .risk-band {
+  background: #2a2640;
 }

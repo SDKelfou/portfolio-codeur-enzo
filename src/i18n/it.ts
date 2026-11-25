@@ -200,12 +200,12 @@ const it: Dict = {
     onQuote: "Su preventivo",
     cta: "Scegli questo pacchetto",
     pay: "Prenota e paga online",
-    note: "Per un'esigenza semplice, il prezzo può essere inferiore a 799 €. Per un progetto più ambizioso, costruiamo il preventivo insieme. In ogni caso, senza sorprese.",
+    note: "«Su preventivo» non significa più caro: in base alle sue esigenze, il prezzo può essere inferiore o superiore. E per un sito vetrina di una sola pagina, l'offerta Essenziale può scendere sotto i 799 €.",
     items: [
       {
         name: "Essenziale",
         price: "799 €",
-        text: "Un sito vetrina professionale, chiaro e veloce, per essere trovati e contattati facilmente.",
+        text: "Un sito vetrina professionale, chiaro e veloce, per essere trovati e contattati facilmente. Una sola pagina? Il prezzo può essere inferiore.",
         features: [
           "Sito di una pagina o fino a 5 sezioni",
           "Adatto a cellulare, tablet e computer",
@@ -313,6 +313,59 @@ const it: Dict = {
         a: "Sì. Con il Pacchetto Serenità, il nome a dominio è registrato a suo nome: le appartiene legalmente. Mi occupo soltanto della parte tecnica (hosting, sicurezza, aggiornamenti).",
       },
     ],
+  },
+  prep: {
+    title: "Cosa mi serve per creare il suo sito",
+    intro: "Perché un sito sia online in piena legalità, alcune informazioni sono obbligatorie. Le prepari prima del nostro colloquio: risparmierà tempo e il suo sito sarà conforme fin dal primo giorno.",
+    link: "Cosa mi serve per iniziare",
+    groups: [
+      {
+        title: "La sua attività",
+        items: [
+          "Nome o ragione sociale e forma giuridica (ditta individuale, SRL, SPA, ecc.)",
+          "Numero SIREN o SIRET (identificativi delle imprese francesi)",
+          "Indirizzo della sede o dello stabilimento",
+          "Numero RCS o RM, se è iscritto",
+          "Capitale sociale, per una società",
+          "Partita IVA intracomunitaria, se è soggetto a IVA",
+        ],
+      },
+      {
+        title: "I suoi recapiti e le sue responsabilità",
+        items: [
+          "E-mail e telefono di contatto",
+          "Nome del direttore responsabile della pubblicazione (spesso lei stesso)",
+          "Professione regolamentata: albo, numero di iscrizione, assicurazione professionale",
+          "Vendita ai consumatori: un mediatore del consumo",
+        ],
+      },
+      {
+        title: "Se vende o accetta prenotazioni",
+        items: [
+          "Le sue condizioni generali di vendita",
+          "Le sue modalità di pagamento, consegna e recesso",
+          "I suoi prezzi aggiornati",
+        ],
+      },
+      {
+        title: "I contenuti del suo sito",
+        items: [
+          "Il suo logo, se ne ha uno",
+          "Le sue foto (altrimenti utilizzo immagini libere da diritti)",
+          "I suoi orari, prezzi, indirizzo e indicazioni stradali",
+          "I suoi social network e le recensioni dei clienti",
+          "Il suo nome a dominio, se ne ha già uno",
+        ],
+      },
+    ],
+    setup: "In base a queste informazioni, predispongo le pagine legali (note legali, privacy, cookie) e il banner di consenso.",
+    riskTitle: "Perché è importante",
+    risks: [
+      "Note legali assenti o incomplete: fino a 75 000 € di ammenda e un anno di reclusione per una persona fisica, fino a 375 000 € di ammenda per una società (legge francese per la fiducia nell'economia digitale, LCEN).",
+      "Informazioni obbligatorie mancanti per la vendita ai consumatori (condizioni di vendita, mediatore, ecc.): fino a 3 000 € di sanzione amministrativa per una persona fisica e 15 000 € per una società (Codice del consumo francese).",
+      "Dati personali o cookie gestiti in modo scorretto: sanzioni della CNIL (l'autorità francese per la protezione dei dati), fino a 20 milioni di euro o al 4 % del fatturato mondiale (RGPD).",
+    ],
+    disclaimer: "Le informazioni legali pubblicate sul suo sito sono fornite da lei e rientrano nella sua responsabilità di editore del sito. Le segnalo qui gli elementi obbligatori e i rischi connessi; se le informazioni trasmesse sono mancanti o inesatte, non potrò essere ritenuto responsabile.",
   },
   contact: {
     title: "Parliamo del suo progetto.",

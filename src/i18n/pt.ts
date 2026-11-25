@@ -200,12 +200,12 @@ const pt: Dict = {
     onQuote: "Sob orçamento",
     cta: "Escolher este plano",
     pay: "Reservar e pagar online",
-    note: "Para uma necessidade simples, o preço pode ser inferior a 799 €. Para um projeto mais ambicioso, construímos o orçamento em conjunto. Em todos os casos, sem surpresas.",
+    note: "«Sob orçamento» não significa mais caro: consoante a sua necessidade, o preço pode ser inferior ou superior. E para um site de apresentação de uma só página, a oferta Essencial pode ficar abaixo dos 799 €.",
     items: [
       {
         name: "Essencial",
         price: "799 €",
-        text: "Um site de apresentação profissional, claro e rápido, para ser encontrado e contactado com facilidade.",
+        text: "Um site de apresentação profissional, claro e rápido, para ser encontrado e contactado facilmente. Apenas uma página? O preço pode ser inferior.",
         features: [
           "Site de uma página ou até 5 secções",
           "Adaptado a telemóvel, tablet e computador",
@@ -313,6 +313,59 @@ const pt: Dict = {
         a: "Sim. Com o Plano Tranquilidade, o domínio é registado em seu nome: pertence-lhe legalmente. Trato apenas da parte técnica (alojamento, segurança, atualizações).",
       },
     ],
+  },
+  prep: {
+    title: "O que preciso para criar o seu site",
+    intro: "Para que um site esteja online de forma legal, algumas informações são obrigatórias. Prepare-as antes da nossa conversa: poupará tempo e o seu site ficará conforme desde o primeiro dia.",
+    link: "O que preciso para começar",
+    groups: [
+      {
+        title: "A sua empresa",
+        items: [
+          "Nome ou denominação social e forma jurídica (empresário em nome individual, Lda., SA, etc.)",
+          "Número SIREN ou SIRET (identificadores de empresas em França)",
+          "Morada da sede ou do estabelecimento",
+          "Número RCS ou RM, se estiver registado",
+          "Capital social, no caso de uma sociedade",
+          "Número de IVA intracomunitário, se estiver sujeito a IVA",
+        ],
+      },
+      {
+        title: "Os seus contactos e responsabilidades",
+        items: [
+          "E-mail e telefone de contacto",
+          "Nome do diretor da publicação (muitas vezes, o próprio)",
+          "Profissão regulamentada: ordem, número de inscrição, seguro profissional",
+          "Venda a consumidores: um mediador de consumo",
+        ],
+      },
+      {
+        title: "Se vende ou aceita reservas",
+        items: [
+          "As suas condições gerais de venda",
+          "As suas modalidades de pagamento, entrega e livre resolução",
+          "Os seus preços atualizados",
+        ],
+      },
+      {
+        title: "O conteúdo do seu site",
+        items: [
+          "O seu logótipo, se tiver um",
+          "As suas fotografias (caso contrário, utilizo imagens livres de direitos)",
+          "Os seus horários, preços, morada e acessos",
+          "As suas redes sociais e avaliações de clientes",
+          "O seu nome de domínio, se já tiver um",
+        ],
+      },
+    ],
+    setup: "Com base nestas informações, preparo as páginas legais (menções legais, privacidade, cookies) e o banner de consentimento.",
+    riskTitle: "Porque é importante",
+    risks: [
+      "Menções legais ausentes ou incompletas: até 75 000 € de coima e um ano de prisão para uma pessoa singular, até 375 000 € de coima para uma sociedade (lei francesa para a confiança na economia digital, LCEN).",
+      "Informações obrigatórias em falta na venda a consumidores (condições de venda, mediador, etc.): até 3 000 € de coima administrativa para uma pessoa singular e 15 000 € para uma sociedade (Código do Consumo francês).",
+      "Dados pessoais ou cookies mal geridos: sanções da CNIL (a autoridade francesa de proteção de dados), até 20 milhões de euros ou 4 % do volume de negócios mundial (RGPD).",
+    ],
+    disclaimer: "As informações legais publicadas no seu site são fornecidas por si e são da sua responsabilidade enquanto editor do site. Assinalo aqui os elementos obrigatórios e os riscos em que incorre; se as informações transmitidas estiverem em falta ou forem inexatas, a minha responsabilidade não poderá ser invocada.",
   },
   contact: {
     title: "Vamos falar do seu projeto.",

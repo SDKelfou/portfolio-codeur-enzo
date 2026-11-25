@@ -200,12 +200,12 @@ const nl: Dict = {
     onQuote: "Op offerte",
     cta: "Dit pakket kiezen",
     pay: "Reserveren en online betalen",
-    note: "Bij een eenvoudige vraag kan de prijs lager zijn dan 799 €. Bij een ambitieuzer project stellen we de offerte samen op. In elk geval zonder verrassingen.",
+    note: "“Op offerte” betekent niet duurder: afhankelijk van uw behoefte kan de prijs lager of hoger uitvallen. En voor een eenpagina-website kan het pakket Essentieel onder de 799 € uitkomen.",
     items: [
       {
         name: "Essentieel",
         price: "799 €",
-        text: "Een professionele showcasewebsite, duidelijk en snel, zodat u gemakkelijk gevonden en gecontacteerd wordt.",
+        text: "Een professionele visitekaartjeswebsite, duidelijk en snel, zodat u gemakkelijk gevonden en gecontacteerd wordt. Maar één pagina? Dan kan de prijs lager zijn.",
         features: [
           "Eenpagina-site of tot 5 secties",
           "Geschikt voor mobiel, tablet en computer",
@@ -313,6 +313,59 @@ const nl: Dict = {
         a: "Ja. Met het Zorgeloos-pakket wordt de domeinnaam op uw naam geregistreerd: die is juridisch van u. Ik regel alleen de technische kant (hosting, beveiliging, updates).",
       },
     ],
+  },
+  prep: {
+    title: "Wat ik nodig heb om uw website te maken",
+    intro: "Om een website legaal online te zetten, zijn bepaalde gegevens verplicht. Houd ze klaar vóór ons gesprek: u wint tijd en uw website voldoet vanaf de eerste dag aan de regels.",
+    link: "Wat ik nodig heb om te starten",
+    groups: [
+      {
+        title: "Uw bedrijf",
+        items: [
+          "Naam of handelsnaam en rechtsvorm (eenmanszaak, BV, NV, enz.)",
+          "SIREN- of SIRET-nummer (Franse bedrijfsidentificatienummers)",
+          "Adres van de zetel of de vestiging",
+          "RCS- of RM-nummer, als u ingeschreven bent",
+          "Maatschappelijk kapitaal, voor een vennootschap",
+          "Intracommunautair btw-nummer, als u btw-plichtig bent",
+        ],
+      },
+      {
+        title: "Uw contactgegevens en verantwoordelijkheden",
+        items: [
+          "E-mailadres en telefoonnummer",
+          "Naam van de verantwoordelijke uitgever (vaak uzelf)",
+          "Gereglementeerd beroep: beroepsorde, inschrijvingsnummer, beroepsaansprakelijkheidsverzekering",
+          "Verkoop aan consumenten: een consumentenbemiddelaar",
+        ],
+      },
+      {
+        title: "Als u verkoopt of reserveringen aanneemt",
+        items: [
+          "Uw algemene verkoopvoorwaarden",
+          "Uw betalings-, leverings- en herroepingsvoorwaarden",
+          "Uw actuele prijzen",
+        ],
+      },
+      {
+        title: "De inhoud van uw website",
+        items: [
+          "Uw logo, als u er een heeft",
+          "Uw foto's (anders gebruik ik rechtenvrije beelden)",
+          "Uw openingstijden, prijzen, adres en routebeschrijving",
+          "Uw sociale netwerken en klantbeoordelingen",
+          "Uw domeinnaam, als u er al een heeft",
+        ],
+      },
+    ],
+    setup: "Op basis van deze gegevens zet ik de juridische pagina's (juridische vermeldingen, privacy, cookies) en de toestemmingsbanner op.",
+    riskTitle: "Waarom dit belangrijk is",
+    risks: [
+      "Ontbrekende of onvolledige juridische vermeldingen: tot 75 000 € boete en een jaar gevangenisstraf voor een natuurlijk persoon, tot 375 000 € boete voor een vennootschap (Franse wet op het vertrouwen in de digitale economie, LCEN).",
+      "Ontbrekende verplichte informatie bij verkoop aan consumenten (verkoopvoorwaarden, bemiddelaar, enz.): tot 3 000 € administratieve boete voor een natuurlijk persoon en 15 000 € voor een vennootschap (Frans consumentenwetboek).",
+      "Verkeerd beheer van persoonsgegevens of cookies: sancties van de CNIL (de Franse gegevensbeschermingsautoriteit), tot 20 miljoen euro of 4 % van de wereldwijde omzet (AVG).",
+    ],
+    disclaimer: "De juridische informatie op uw website wordt door u aangeleverd en valt onder uw verantwoordelijkheid als uitgever van de website. Ik wijs u hier op de verplichte onderdelen en de risico's; als aangeleverde informatie ontbreekt of onjuist is, kan ik niet aansprakelijk worden gesteld.",
   },
   contact: {
     title: "Laten we het over uw project hebben.",

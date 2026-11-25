@@ -200,12 +200,12 @@ const en: Dict = {
     onQuote: "On quote",
     cta: "Choose this plan",
     pay: "Book and pay online",
-    note: "For a simple need, the price can be below 799 €. For a more ambitious project, we build the quote together. In every case, no surprises.",
+    note: "“On quote” does not mean more expensive: depending on your needs, the price can be lower or higher. And for a one-page showcase website, the Essential plan can go below 799 €.",
     items: [
       {
         name: "Essential",
         price: "799 €",
-        text: "A professional showcase website, clear and fast, so you can be found and contacted easily.",
+        text: "A professional showcase website, clear and fast, so you can be found and contacted easily. Only one page? The price can be lower.",
         features: [
           "One-page site or up to 5 sections",
           "Works on mobile, tablet and desktop",
@@ -313,6 +313,59 @@ const en: Dict = {
         a: "Yes. With the Peace of Mind plan, the domain name is registered in your name: it legally belongs to you. I only take care of the technical side (hosting, security, updates).",
       },
     ],
+  },
+  prep: {
+    title: "What I need to build your website",
+    intro: "For a website to go online legally, some information is mandatory. Please prepare it before we talk: you will save time, and your website will be compliant from day one.",
+    link: "What I need to get started",
+    groups: [
+      {
+        title: "Your business",
+        items: [
+          "Name or company name, and legal form (sole trader, limited company, etc.)",
+          "SIREN or SIRET number (French business identifiers)",
+          "Address of your registered office or premises",
+          "RCS or RM registration number, if you are registered",
+          "Share capital, for a company",
+          "Intra-EU VAT number, if you are subject to VAT",
+        ],
+      },
+      {
+        title: "Your contact details and responsibilities",
+        items: [
+          "Contact email and phone number",
+          "Name of the publication director (often yourself)",
+          "Regulated profession: professional body, registration number, professional insurance",
+          "Sales to consumers: a consumer mediator",
+        ],
+      },
+      {
+        title: "If you sell or take bookings",
+        items: [
+          "Your general terms and conditions of sale",
+          "Your payment, delivery and withdrawal terms",
+          "Your up-to-date prices",
+        ],
+      },
+      {
+        title: "Your website content",
+        items: [
+          "Your logo, if you have one",
+          "Your photos (otherwise, I use royalty-free images)",
+          "Your opening hours, prices, address and directions",
+          "Your social networks and customer reviews",
+          "Your domain name, if you already have one",
+        ],
+      },
+    ],
+    setup: "Based on this information, I set up the legal pages (legal notice, privacy policy, cookies) and the consent banner.",
+    riskTitle: "Why it matters",
+    risks: [
+      "Missing or incomplete legal notices: up to 75,000 € in fines and one year of imprisonment for an individual, up to 375,000 € in fines for a company (French Digital Economy Act, LCEN).",
+      "Missing mandatory information for sales to consumers (terms and conditions, mediator, etc.): up to 3,000 € in administrative fines for an individual and 15,000 € for a company (French Consumer Code).",
+      "Poorly managed personal data or cookies: penalties from the CNIL (the French data protection authority), up to 20 million euros or 4% of worldwide turnover (GDPR).",
+    ],
+    disclaimer: "The legal information published on your website is provided by you and is your responsibility as the website publisher. I point out here the mandatory items and the risks involved; if the information provided is missing or inaccurate, I cannot be held liable.",
   },
   contact: {
     title: "Let's talk about your project.",

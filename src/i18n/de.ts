@@ -200,12 +200,12 @@ const de: Dict = {
     onQuote: "Auf Anfrage",
     cta: "Dieses Paket wählen",
     pay: "Online buchen und bezahlen",
-    note: "Bei einfachem Bedarf kann der Preis unter 799 € liegen. Bei einem anspruchsvolleren Projekt erstellen wir das Angebot gemeinsam. In jedem Fall ohne Überraschungen.",
+    note: "„Auf Anfrage“ heißt nicht teurer: je nach Bedarf kann der Preis niedriger oder höher ausfallen. Und für eine einseitige Visitenkarten-Website kann das Angebot Essential unter 799 € liegen.",
     items: [
       {
         name: "Essential",
         price: "799 €",
-        text: "Eine professionelle Präsentationsseite, klar und schnell, damit man Sie leicht findet und kontaktieren kann.",
+        text: "Eine professionelle Visitenkarten-Website, klar und schnell, damit man Sie leicht findet und kontaktiert. Nur eine Seite? Der Preis kann niedriger sein.",
         features: [
           "One-Page-Website oder bis zu 5 Abschnitte",
           "Für Smartphone, Tablet und Computer optimiert",
@@ -313,6 +313,59 @@ const de: Dict = {
         a: "Ja. Mit dem Sorglos-Paket wird die Domain auf Ihren Namen registriert: Sie gehört Ihnen rechtlich. Ich kümmere mich nur um die Technik (Hosting, Sicherheit, Updates).",
       },
     ],
+  },
+  prep: {
+    title: "Was ich für die Erstellung Ihrer Website brauche",
+    intro: "Damit eine Website rechtmäßig online gehen kann, sind bestimmte Angaben verpflichtend. Bitte halten Sie diese vor unserem Gespräch bereit: So sparen Sie Zeit, und Ihre Website ist vom ersten Tag an konform.",
+    link: "Was ich zum Start brauche",
+    groups: [
+      {
+        title: "Ihr Unternehmen",
+        items: [
+          "Name oder Firma und Rechtsform (Kleinunternehmen, GmbH, AG usw.)",
+          "SIREN- oder SIRET-Nummer (französische Unternehmenskennungen)",
+          "Adresse des Firmensitzes oder der Niederlassung",
+          "RCS- oder RM-Nummer, falls Sie eingetragen sind",
+          "Stammkapital, bei einer Gesellschaft",
+          "Innergemeinschaftliche USt-IdNr., falls Sie umsatzsteuerpflichtig sind",
+        ],
+      },
+      {
+        title: "Ihre Kontaktdaten und Verantwortlichkeiten",
+        items: [
+          "E-Mail-Adresse und Telefonnummer",
+          "Name des Verantwortlichen für den Inhalt (oft Sie selbst)",
+          "Reglementierter Beruf: Kammer, Registrierungsnummer, Berufshaftpflichtversicherung",
+          "Verkauf an Verbraucher: ein Verbraucherschlichter",
+        ],
+      },
+      {
+        title: "Wenn Sie verkaufen oder Reservierungen annehmen",
+        items: [
+          "Ihre Allgemeinen Geschäftsbedingungen (AGB)",
+          "Ihre Zahlungs-, Liefer- und Widerrufsbedingungen",
+          "Ihre aktuellen Preise",
+        ],
+      },
+      {
+        title: "Der Inhalt Ihrer Website",
+        items: [
+          "Ihr Logo, falls vorhanden",
+          "Ihre Fotos (andernfalls verwende ich lizenzfreie Bilder)",
+          "Ihre Öffnungszeiten, Preise, Adresse und Anfahrt",
+          "Ihre sozialen Netzwerke und Kundenbewertungen",
+          "Ihr Domainname, falls Sie bereits einen haben",
+        ],
+      },
+    ],
+    setup: "Anhand dieser Angaben richte ich die rechtlichen Seiten (Impressum, Datenschutz, Cookies) und das Einwilligungsbanner ein.",
+    riskTitle: "Warum das wichtig ist",
+    risks: [
+      "Fehlende oder unvollständige Impressumsangaben: bis zu 75 000 € Geldstrafe und ein Jahr Freiheitsstrafe für eine natürliche Person, bis zu 375 000 € Geldstrafe für eine Gesellschaft (französisches Gesetz zum Vertrauen in die digitale Wirtschaft, LCEN).",
+      "Fehlende Pflichtangaben beim Verkauf an Verbraucher (AGB, Schlichter usw.): bis zu 3 000 € Verwaltungsbußgeld für eine natürliche Person und 15 000 € für eine Gesellschaft (französisches Verbrauchergesetzbuch).",
+      "Unsachgemäßer Umgang mit personenbezogenen Daten oder Cookies: Sanktionen der CNIL (der französischen Datenschutzbehörde), bis zu 20 Millionen Euro oder 4 % des weltweiten Umsatzes (DSGVO).",
+    ],
+    disclaimer: "Die auf Ihrer Website veröffentlichten rechtlichen Angaben stammen von Ihnen und liegen in Ihrer Verantwortung als Betreiber der Website. Ich weise Sie hier auf die Pflichtangaben und die drohenden Risiken hin; sind übermittelte Angaben unvollständig oder unrichtig, kann ich dafür nicht haftbar gemacht werden.",
   },
   contact: {
     title: "Sprechen wir über Ihr Projekt.",

@@ -3,10 +3,10 @@ import { flushSync } from "react-dom";
 type VT = { ready: Promise<void>; finished: Promise<void>; skipTransition: () => void };
 let current: VT | null = null;
 
-const DURATION = 760;
+const DURATION = 820;
 
 function waveFrames() {
-  const steps = 18;
+  const steps = 30;
   const points = 28;
   const phase0 = Math.random() * Math.PI * 2;
   const frames: Keyframe[] = [];
@@ -49,8 +49,8 @@ export function withPageTransition(update: () => void, after?: () => void) {
       root.animate(waveFrames(), { duration: DURATION, easing, fill: "both", pseudoElement: "::view-transition-new(root)" });
       root.animate(
         [
-          { transform: "none", filter: "none" },
-          { transform: "perspective(1400px) translateX(-7%) rotateY(9deg) scale(0.94)", filter: "brightness(0.82)" },
+          { transform: "none", opacity: 1 },
+          { transform: "perspective(1400px) translateX(-7%) rotateY(9deg) scale(0.94)", opacity: 0.55 },
         ],
         { duration: DURATION, easing: "cubic-bezier(.65,0,.35,1)", fill: "both", pseudoElement: "::view-transition-old(root)" }
       );

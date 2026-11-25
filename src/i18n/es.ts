@@ -200,12 +200,12 @@ const es: Dict = {
     onQuote: "Con presupuesto",
     cta: "Elegir este plan",
     pay: "Reservar y pagar en línea",
-    note: "Para una necesidad sencilla, el precio puede ser inferior a 799 €. Para un proyecto más ambicioso, elaboramos el presupuesto juntos. En todos los casos, sin sorpresas.",
+    note: "«Bajo presupuesto» no significa más caro: según su necesidad, el precio puede ser inferior o superior. Y para un sitio escaparate de una sola página, la oferta Esencial puede bajar de 799 €.",
     items: [
       {
         name: "Esencial",
         price: "799 €",
-        text: "Una web corporativa profesional, clara y rápida, para que le encuentren y le contacten fácilmente.",
+        text: "Un sitio escaparate profesional, claro y rápido, para que le encuentren y le contacten fácilmente. ¿Solo una página? El precio puede ser inferior.",
         features: [
           "Web de una página o hasta 5 secciones",
           "Adaptada a móvil, tableta y ordenador",
@@ -313,6 +313,59 @@ const es: Dict = {
         a: "Sí. Con el plan Tranquilidad, el dominio se registra a su nombre: le pertenece legalmente. Yo solo me ocupo de la parte técnica (hosting, seguridad, actualizaciones).",
       },
     ],
+  },
+  prep: {
+    title: "Lo que necesito para crear su sitio web",
+    intro: "Para que un sitio web esté en línea de forma legal, ciertos datos son obligatorios. Prepárelos antes de que hablemos: ganará tiempo y su sitio será conforme desde el primer día.",
+    link: "Lo que necesito para empezar",
+    groups: [
+      {
+        title: "Su empresa",
+        items: [
+          "Nombre o razón social y forma jurídica (autónomo, SL, SA, etc.)",
+          "Número SIREN o SIRET (identificadores de empresa en Francia)",
+          "Dirección de la sede o del establecimiento",
+          "Número RCS o RM, si está inscrito",
+          "Capital social, en el caso de una sociedad",
+          "Número de IVA intracomunitario, si está sujeto a IVA",
+        ],
+      },
+      {
+        title: "Sus datos de contacto y responsabilidades",
+        items: [
+          "Correo electrónico y teléfono de contacto",
+          "Nombre del director de la publicación (a menudo usted mismo)",
+          "Profesión regulada: colegio profesional, número de colegiado, seguro profesional",
+          "Venta a particulares: un mediador de consumo",
+        ],
+      },
+      {
+        title: "Si vende o acepta reservas",
+        items: [
+          "Sus condiciones generales de venta",
+          "Sus condiciones de pago, entrega y desistimiento",
+          "Sus tarifas actualizadas",
+        ],
+      },
+      {
+        title: "El contenido de su sitio",
+        items: [
+          "Su logotipo, si tiene uno",
+          "Sus fotos (si no, utilizo imágenes libres de derechos)",
+          "Sus horarios, tarifas, dirección y cómo llegar",
+          "Sus redes sociales y opiniones de clientes",
+          "Su nombre de dominio, si ya tiene uno",
+        ],
+      },
+    ],
+    setup: "Con estos datos, preparo las páginas legales (aviso legal, privacidad, cookies) y el banner de consentimiento.",
+    riskTitle: "Por qué es importante",
+    risks: [
+      "Avisos legales ausentes o incompletos: hasta 75 000 € de multa y un año de prisión para una persona física, hasta 375 000 € de multa para una sociedad (ley francesa para la confianza en la economía digital, LCEN).",
+      "Falta de información obligatoria para la venta a particulares (condiciones de venta, mediador, etc.): hasta 3 000 € de multa administrativa para una persona física y 15 000 € para una sociedad (Código de Consumo francés).",
+      "Datos personales o cookies mal gestionados: sanciones de la CNIL (la autoridad francesa de protección de datos), hasta 20 millones de euros o el 4 % de la facturación mundial (RGPD).",
+    ],
+    disclaimer: "La información legal publicada en su sitio la proporciona usted y es de su responsabilidad como editor del sitio. Aquí le señalo los elementos obligatorios y los riesgos en que se incurre; si la información facilitada falta o es inexacta, no se podrá exigir mi responsabilidad.",
   },
   contact: {
     title: "Hablemos de su proyecto.",

@@ -117,9 +117,9 @@ export default function Hero() {
   return (
     <section className="relative overflow-x-clip" aria-labelledby="hero-heading" onPointerMove={tilt} onPointerLeave={untilt}>
       <div className="hero-glow" aria-hidden="true" />
-      <div className="wrap relative grid items-center gap-12 pb-16 pt-28 sm:pt-32 lg:min-h-[min(100svh,58rem)] lg:grid-cols-12 lg:gap-14 lg:pb-20">
-        <div className="lg:col-span-6">
-          <h1 id="hero-heading" className="font-display text-[clamp(3rem,6.2vw,6rem)] leading-[0.93] tracking-[-0.025em]">
+      <div className="wrap relative grid items-center gap-12 pb-16 pt-28 sm:pt-32 lg:min-h-[min(100svh,64rem)] lg:grid-cols-12 lg:gap-16 lg:pb-20">
+        <div className="lg:col-span-6 xl:col-span-7">
+          <h1 id="hero-heading" className="font-display text-[clamp(3.1rem,6.6vw,8rem)] leading-[0.92] tracking-[-0.028em]">
             {h.title}
           </h1>
           <p className="mt-6 max-w-[36rem] text-[clamp(1.08rem,1.5vw,1.28rem)] leading-relaxed" style={{ color: "var(--ink-2)" }}>
@@ -146,7 +146,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mock-stage lg:col-span-6" ref={stageRef}>
+        <div className="mock-stage lg:col-span-6 xl:col-span-5" ref={stageRef}>
           <figure className="mock" aria-label={b.label}>
             <div className="mock-bar" aria-hidden="true">
               <span className="dots">
