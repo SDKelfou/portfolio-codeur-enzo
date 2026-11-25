@@ -41,7 +41,7 @@ export default function LangSwitcher({ onPick, up = false }: { onPick?: () => vo
       {open && (
         <ul
           className={`surface absolute right-0 z-50 w-48 overflow-hidden py-1.5 text-sm ${up ? "bottom-full mb-2" : "mt-2"}`}
-          style={{ boxShadow: "var(--shadow)", borderRadius: 18 }}
+          style={{ boxShadow: "var(--shadow)", borderRadius: "var(--r-md)" }}
         >
           {LANGS.map((l) => (
             <li key={l.code}>

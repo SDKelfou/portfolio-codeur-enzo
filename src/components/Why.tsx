@@ -26,7 +26,7 @@ export default function Why() {
           {sides.map(({ key, data, featured }, i) => (
             <article
               key={key}
-              className="flex flex-col rounded-[28px] border p-7 sm:p-10"
+              className="flex flex-col rounded-[var(--r-xl)] border p-7 sm:p-10"
               style={{
                 borderColor: featured ? "var(--ink)" : "var(--line)",
                 background: featured ? "var(--surface)" : "transparent",

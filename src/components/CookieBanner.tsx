@@ -25,7 +25,7 @@ export default function CookieBanner() {
     >
       <div
         className="surface p-6"
-        style={{ color: "var(--ink)", boxShadow: "var(--shadow)", borderRadius: 22 }}
+        style={{ color: "var(--ink)", boxShadow: "var(--shadow)", borderRadius: "var(--r-lg)" }}
       >
         <h2 id="cookie-title" className="text-base font-extrabold">
           {c.title}

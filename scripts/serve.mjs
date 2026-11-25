@@ -40,6 +40,8 @@ http
     if (gzip) headers["Content-Encoding"] = "gzip";
     res.writeHead(file ? 200 : 404, headers);
     const stream = fs.createReadStream(target);
+    // during a rebuild dist/ is briefly empty: answer 503 instead of crashing
+    stream.on("error", () => res.end());
     (gzip ? stream.pipe(zlib.createGzip()) : stream).pipe(res);
   })
   .listen(port, () => console.log(`http://localhost:${port}`));

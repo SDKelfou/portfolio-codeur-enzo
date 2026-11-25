@@ -67,7 +67,7 @@ export default function Offers() {
         </div>
 
         <article
-          className="mt-5 grid gap-8 rounded-[28px] border p-7 sm:p-10 lg:grid-cols-12 lg:items-center"
+          className="mt-5 grid gap-8 rounded-[var(--r-xl)] border p-7 sm:p-10 lg:grid-cols-12 lg:items-center"
           style={{ borderColor: "var(--line)", background: "var(--bg-2)" }}
           data-reveal="rise"
         >

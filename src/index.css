@@ -47,6 +47,11 @@
   --dur-reveal: 560ms;
   --dur-page: 460ms;
 
+  /* one radius scale for the whole site: containers, media, controls */
+  --r-xl: 28px;
+  --r-lg: 20px;
+  --r-md: 14px;
+  --r-sm: 10px;
   --fs-name: clamp(7.25rem, 31vw, 19rem);
   --fs-h2: clamp(2.75rem, 7.4vw, 6.25rem);
   --fs-h3: clamp(1.6rem, 2.8vw, 2.35rem);
@@ -272,7 +277,7 @@ h3 {
   width: 100%;
   margin-top: 0.4rem;
   padding: 0.85rem 1rem;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   border: 1px solid var(--line-strong);
   background: var(--bg);
   color: var(--ink);
@@ -299,7 +304,7 @@ h3 {
 .surface {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 28px;
+  border-radius: var(--r-xl);
 }
 
 .hairline {
@@ -314,7 +319,7 @@ h3 {
   top: -4rem;
   z-index: 100;
   padding: 0.75rem 1rem;
-  border-radius: 12px;
+  border-radius: var(--r-sm);
   background: var(--light);
   color: var(--light-ink);
   font-weight: 700;
@@ -448,7 +453,7 @@ h3 {
 
 .project-media {
   position: relative;
-  border-radius: 24px;
+  border-radius: var(--r-lg);
   overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -499,7 +504,7 @@ h3 {
   display: flex;
   flex-direction: column;
   padding: clamp(1.75rem, 3vw, 2.5rem);
-  border-radius: 28px;
+  border-radius: var(--r-xl);
   border: 1px solid var(--line);
   background: var(--surface);
   transition: border-color var(--dur-comp), transform var(--dur-comp) var(--ease-out);
@@ -627,19 +632,13 @@ h3 {
   }
 }
 
-.fracture-lines {
+.fracture-canvas {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none;
   z-index: 9999;
-  view-transition-name: fracture-lines;
-}
-
-::view-transition-group(fracture-lines),
-::view-transition-new(fracture-lines) {
-  animation: none;
+  pointer-events: none;
 }
 
 /* fallback when the View Transitions API is missing */
@@ -678,7 +677,7 @@ h3 {
 .mock {
   margin: 0;
   container-type: inline-size;
-  border-radius: 22px;
+  border-radius: var(--r-lg);
   overflow: hidden;
   border: 1px solid var(--line-strong);
   background: #fffaf2;
@@ -933,7 +932,7 @@ h3 {
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  border-radius: 12px;
+  border-radius: var(--r-sm);
   background: #24222d;
   color: #fff;
   font-size: 12px;
@@ -1125,7 +1124,7 @@ h3 {
   display: flex;
   flex-direction: column;
   padding: 22px;
-  border-radius: 26px;
+  border-radius: var(--r-xl);
   border: 1px solid var(--line);
   background: var(--surface);
   overflow: hidden;
@@ -1157,7 +1156,7 @@ h3 {
 .chip,
 .slot {
   padding: 6px 10px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   border: 1px solid var(--line-strong);
   background: transparent;
   color: var(--ink);
@@ -1215,7 +1214,7 @@ h3 {
   inset: 0;
   display: grid;
   place-items: center;
-  border-radius: 18px;
+  border-radius: 4px;
   border: 1px solid rgba(36, 34, 45, 0.25);
   backface-visibility: visible;
   background: linear-gradient(135deg, #ffffff, #dcd0f5);
@@ -1259,7 +1258,7 @@ h3 {
   width: 52px;
   height: 52px;
   flex-shrink: 0;
-  border-radius: 14px;
+  border-radius: var(--r-md);
   background: linear-gradient(140deg, #f6a95e, #c27a35);
   box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.12);
 }
@@ -1400,51 +1399,12 @@ h3 {
 
 .speed {
   padding: 14px 16px;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   background: var(--bg);
   border: 1px solid var(--line);
 }
 
-/* site-wide "Enzo" cursor that selects each section title */
-.guide-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 45;
-  pointer-events: none;
-  opacity: 0;
-  transition:
-    transform 900ms cubic-bezier(0.45, 0, 0.15, 1),
-    opacity 400ms;
-  filter: drop-shadow(0 4px 8px rgba(36, 34, 45, 0.25));
-}
 
-.guide-cursor[data-show="true"] {
-  opacity: 1;
-}
-
-.guide-cursor span {
-  position: absolute;
-  left: 16px;
-  top: 19px;
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px solid #24222d;
-  background: #fff010;
-  color: #24222d;
-  font: 700 11px/1.5 var(--font-body);
-}
-
-main h2 {
-  outline: 1.5px dashed transparent;
-  outline-offset: 10px;
-  border-radius: 6px;
-  transition: outline-color 400ms;
-}
-
-main h2.is-guided {
-  outline-color: var(--iris);
-}
 
 /* project showcase: desktop browser + phone */
 .device-pair {
@@ -1453,7 +1413,7 @@ main h2.is-guided {
 }
 
 .device-desk {
-  border-radius: 18px;
+  border-radius: var(--r-lg);
   overflow: hidden;
   border: 1px solid var(--line-strong);
   background: var(--bg-2);
@@ -1524,4 +1484,24 @@ main h2.is-guided {
 
 .project:hover .device-phone {
   transform: translateY(-12px) rotate(-2deg);
+}
+
+/* hero mock-up depth: leans toward the pointer, floats when idle */
+.mock-stage {
+  --rx: 3deg;
+  --ry: -6deg;
+  perspective: 1400px;
+}
+
+.mock-stage .mock {
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-origin: 50% 50%;
+  transition: transform 900ms var(--ease-out);
+  will-change: transform;
+}
+
+@media (max-width: 1023px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .mock-stage .mock {
+    transform: none;
+  }
 }

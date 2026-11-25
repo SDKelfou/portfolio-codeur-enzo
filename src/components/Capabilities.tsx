@@ -340,7 +340,7 @@ export default function Capabilities() {
                   <ArrowRightUp size={15} />
                 </a>
               </div>
-              <img src="/projets/nexus.webp" alt="NEXUS" width={800} height={500} loading="lazy" decoding="async" className="w-full rounded-2xl border" style={{ borderColor: "var(--line)" }} />
+              <img src="/projets/nexus.webp" alt="NEXUS" width={800} height={500} loading="lazy" decoding="async" className="w-full rounded-[var(--r-lg)] border" style={{ borderColor: "var(--line)" }} />
             </div>
           </article>
         </div>

@@ -16,7 +16,7 @@ export default function Legal({ page }: { page: LegalPageKey }) {
         <h1 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.92] tracking-[-0.025em]">{doc.title}</h1>
         <p className="meta mt-4">{t.legalPage.updated}</p>
         {t.legalPage.fallback && lang !== "en" && (
-          <p className="surface mt-8 p-4 text-sm" style={{ color: "var(--ink-2)", borderRadius: 16 }}>
+          <p className="surface mt-8 p-4 text-sm" style={{ color: "var(--ink-2)", borderRadius: "var(--r-md)" }}>
             {t.legalPage.fallback}
           </p>
         )}

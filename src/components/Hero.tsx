@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { PointerEvent as RPointerEvent } from "react";
 import { ArrowRight, Check, Lock } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import LiveTiming from "./LiveTiming";
@@ -47,6 +48,22 @@ export default function Hero() {
   const [site, setSite] = useState(0);
   const [resetting, setResetting] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
+
+  // the mock-up leans toward the pointer (desktop): a real object, not a picture
+  const tilt = (e: RPointerEvent<HTMLElement>) => {
+    const el = stageRef.current;
+    if (!el || e.pointerType !== "mouse" || reduced) return;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
+    const y = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
+    el.style.setProperty("--ry", `${(x * 14).toFixed(2)}deg`);
+    el.style.setProperty("--rx", `${(-y * 10).toFixed(2)}deg`);
+  };
+  const untilt = () => {
+    stageRef.current?.style.setProperty("--ry", "-6deg");
+    stageRef.current?.style.setProperty("--rx", "3deg");
+  };
 
   useEffect(() => {
     const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -108,7 +125,7 @@ export default function Hero() {
   const [ex, ey, yx, yy] = CURSORS[resetting ? 0 : step];
 
   return (
-    <section className="relative overflow-x-clip" aria-labelledby="hero-heading">
+    <section className="relative overflow-x-clip" aria-labelledby="hero-heading" onPointerMove={tilt} onPointerLeave={untilt}>
       <div className="hero-glow" aria-hidden="true" />
       <div className="wrap relative grid items-center gap-12 pb-16 pt-28 sm:pt-32 lg:min-h-[min(100svh,58rem)] lg:grid-cols-12 lg:gap-14 lg:pb-20">
         <div className="lg:col-span-6">
@@ -139,7 +156,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="lg:col-span-6">
+        <div className="mock-stage lg:col-span-6" ref={stageRef}>
           <figure className="mock" aria-label={b.label}>
             <div className="mock-bar" aria-hidden="true">
               <span className="dots">

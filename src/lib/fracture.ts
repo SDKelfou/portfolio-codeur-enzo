@@ -1,45 +1,36 @@
-import { flushSync } from "react-dom";
 import { applyTheme } from "./theme";
 import type { Theme } from "./theme";
 
 /**
  * REALITY FRACTURE — the theme switch.
  *
- * No drawn lines. The screen shatters into a fresh, random Voronoi mosaic
- * on every click (fine shards near the impact, larger ones further out),
- * and the new theme spreads through it the way a crack runs through
- * glass: a shortest-path walk over the shard graph with random, uneven
- * "resistance" on every edge, so the front forks, races down some paths,
- * stalls on others. You see the surface turn shard by shard; you never
- * see a line.
+ * The screen cracks from the button: a fresh random Voronoi shatter on
+ * every click (fine shards at the impact, larger further away). Thin dark
+ * crack lines run ahead of the break, then each shard turns into the new
+ * theme's material. Once the whole surface has turned, the theme switches
+ * underneath and the shards dissolve to reveal it.
  *
- * Rendering: the View Transitions API freezes the old theme and renders
- * the new one live beneath it; the new view is masked by one SVG image
- * whose shards are grouped into time buckets with CSS animation delays.
- * The mask is decoded before the transition starts, so there is never a
- * frame where the whole new theme flashes through.
+ * Everything is drawn frame by frame on one canvas (only the shards that
+ * change are drawn each frame), so the timing is exact and nothing
+ * depends on how the browser schedules image animations: no flash, no
+ * hitch at the end.
  */
 
-const SPREAD = 820; // ms for the fracture to cross the screen
-const FLIP = 120; // ms for one shard to turn
-const BUCKET = 12; // ms granularity of the shard timeline
-const STYLE_ID = "fracture-mask";
+const SPREAD = 600; // ms for the fracture to cross the screen
+const FLIP = 110; // ms for one shard to turn
+const LEAD = 100; // ms a crack line appears before its shard turns
+const REVEAL = 340; // ms for the shards to fall away, revealing the new theme
 
-type ViewTransition = {
-  ready: Promise<void>;
-  finished: Promise<void>;
-  skipTransition: () => void;
-};
+const BG: Record<Theme, string> = { light: "#f8f6f0", dark: "#101016" };
+// the crack is drawn in the old surface's ink: dark lines on porcelain, light on obsidian
+const CRACK_ON: Record<Theme, string> = { light: "rgba(16,16,22,.92)", dark: "rgba(248,246,240,.85)" };
 
-let active: ViewTransition | null = null;
-let token = 0;
+let running: { cancel: () => void } | null = null;
 
 function gauss() {
-  // Box–Muller
   return Math.sqrt(-2 * Math.log(Math.random() || 1e-9)) * Math.cos(2 * Math.PI * Math.random());
 }
 
-/** tiny binary min-heap for Dijkstra */
 class Heap {
   private a: [number, number][] = [];
   push(v: [number, number]) {
@@ -78,19 +69,22 @@ class Heap {
   }
 }
 
-async function buildMask(W: number, H: number, ox: number, oy: number) {
+interface Shard {
+  poly: Float64Array; // x0,y0,x1,y1,...
+  delay: number;
+}
+
+async function shatter(W: number, H: number, ox: number, oy: number): Promise<Shard[]> {
   const { Delaunay } = await import("d3-delaunay");
   const maxD = Math.hypot(Math.max(ox, W - ox), Math.max(oy, H - oy));
-  const n = Math.round(Math.min(2600, Math.max(700, (W * H) / 850)));
-
-  // denser near the impact point, like real shatter patterns
+  const n = Math.round(Math.min(2400, Math.max(650, (W * H) / 900)));
   const pts = new Float64Array(n * 2);
   for (let i = 0; i < n; i++) {
     let x: number;
     let y: number;
-    if (Math.random() < 0.38) {
+    if (Math.random() < 0.4) {
       const a = Math.random() * Math.PI * 2;
-      const r = maxD * Math.pow(Math.random(), 2.1);
+      const r = maxD * Math.pow(Math.random(), 2.2);
       x = ox + Math.cos(a) * r;
       y = oy + Math.sin(a) * r;
     } else {
@@ -100,12 +94,11 @@ async function buildMask(W: number, H: number, ox: number, oy: number) {
     pts[i * 2] = Math.min(W, Math.max(0, x));
     pts[i * 2 + 1] = Math.min(H, Math.max(0, y));
   }
-
   const delaunay = new Delaunay(pts);
   const voronoi = delaunay.voronoi([0, 0, W, H]);
   const start = delaunay.find(ox, oy);
 
-  // crack propagation: shortest paths with random, heavy-tailed resistance
+  // crack propagation: shortest paths with random heavy-tailed resistance
   const time = new Float64Array(n).fill(Infinity);
   time[start] = 0;
   const heap = new Heap();
@@ -114,77 +107,33 @@ async function buildMask(W: number, H: number, ox: number, oy: number) {
     const [t, i] = heap.pop();
     if (t > time[i]) continue;
     for (const j of delaunay.neighbors(i)) {
-      const dx = pts[j * 2] - pts[i * 2];
-      const dy = pts[j * 2 + 1] - pts[i * 2 + 1];
-      const resist = Math.exp(gauss() * 0.85); // log-normal: some paths race, some stall
-      const nt = t + Math.hypot(dx, dy) * resist;
+      const nt = t + Math.hypot(pts[j * 2] - pts[i * 2], pts[j * 2 + 1] - pts[i * 2 + 1]) * Math.exp(gauss() * 0.85);
       if (nt < time[j]) {
         time[j] = nt;
         heap.push([nt, j]);
       }
     }
   }
-
-  // rank-based timing: the broken area grows at an even pace and the last
-  // shards never linger (no long tail at the end of the animation)
+  // rank-based timing: the broken area grows at an even pace, no straggler
   const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => time[a] - time[b]);
-  const rank = new Float64Array(n);
-  order.forEach((cell, k) => (rank[cell] = k / Math.max(1, n - 1)));
-
-  const buckets = new Map<number, string[]>();
-  for (let i = 0; i < n; i++) {
-    const poly = voronoi.cellPolygon(i);
-    if (!poly) continue;
-    const delay = Math.round((Math.pow(rank[i], 0.85) * SPREAD) / BUCKET) * BUCKET;
-    let d = "";
-    for (let k = 0; k < poly.length - 1; k++) d += `${k ? "L" : "M"}${poly[k][0].toFixed(1)} ${poly[k][1].toFixed(1)}`;
-    d += "Z";
-    const list = buckets.get(delay);
-    if (list) list.push(d);
-    else buckets.set(delay, [d]);
-  }
-
-  let paths = "";
-  let lines = "";
-  let last = 0;
-  for (const [delay, list] of buckets) {
-    const d = list.join("");
-    paths += `<path style="animation-delay:${delay}ms" d="${d}"/>`;
-    // the crack itself: each shard's outline flashes as it breaks, then fades
-    lines += `<path style="animation-delay:${Math.max(0, delay - 70)}ms" d="${d}"/>`;
-    last = Math.max(last, delay);
-  }
-  // a thin same-colour stroke overlaps neighbouring shards: no seam lines
-  const mask =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
-    `<style>path{fill:#fff;stroke:#fff;stroke-width:1.4;stroke-linejoin:round;opacity:0;animation:f ${FLIP}ms ease-out forwards}@keyframes f{to{opacity:1}}</style>` +
-    paths +
-    `</svg>`;
-  const crack =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
-    `<style>path{fill:none;stroke:#fff010;stroke-width:1.3;stroke-linejoin:round;opacity:0;animation:c 360ms ease-out forwards;filter:drop-shadow(0 0 1.5px #24222d)}@keyframes c{25%{opacity:.95}to{opacity:0}}</style>` +
-    lines +
-    `</svg>`;
-  return {
-    src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(mask)}`,
-    lines: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(crack)}`,
-    total: last + FLIP,
-  };
+  const shards: Shard[] = [];
+  order.forEach((cell, k) => {
+    const p = voronoi.cellPolygon(cell);
+    if (!p) return;
+    const poly = new Float64Array((p.length - 1) * 2);
+    for (let q = 0; q < p.length - 1; q++) {
+      poly[q * 2] = p[q][0];
+      poly[q * 2 + 1] = p[q][1];
+    }
+    shards.push({ poly, delay: LEAD + Math.pow(k / Math.max(1, n - 1), 0.85) * SPREAD });
+  });
+  return shards;
 }
 
-function setMaskStyle(src: string | null) {
-  let el = document.getElementById(STYLE_ID) as HTMLStyleElement | null;
-  if (!src) {
-    el?.remove();
-    return;
-  }
-  if (!el) {
-    el = document.createElement("style");
-    el.id = STYLE_ID;
-    document.head.appendChild(el);
-  }
-  const url = `url("${src}")`;
-  el.textContent = `::view-transition-new(root){-webkit-mask-image:${url};mask-image:${url};-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}`;
+function trace(ctx: CanvasRenderingContext2D, poly: Float64Array) {
+  ctx.moveTo(poly[0], poly[1]);
+  for (let i = 2; i < poly.length; i += 2) ctx.lineTo(poly[i], poly[i + 1]);
+  ctx.closePath();
 }
 
 /** warm the Voronoi chunk once the page is idle, so the first click is instant */
@@ -193,77 +142,146 @@ export function preloadFracture() {
 }
 
 export async function fractureTheme(next: Theme, button: HTMLElement) {
-  const doc = document as Document & { startViewTransition?: (cb: () => void) => ViewTransition };
   const root = document.documentElement;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const my = ++token;
 
-  if (active) {
-    active.skipTransition();
-    active = null;
-  }
-  setMaskStyle(null);
+  // a click during a fracture finishes it at once
+  running?.cancel();
 
-  if (!doc.startViewTransition) {
+  if (reduced) {
     root.classList.add("theme-fade");
     applyTheme(next);
     window.setTimeout(() => root.classList.remove("theme-fade"), 360);
     return;
   }
 
-  if (reduced) {
-    const vt = doc.startViewTransition(() => flushSync(() => applyTheme(next)));
-    vt.ready
-      .then(() => root.animate({ opacity: [0, 1] }, { duration: 160, pseudoElement: "::view-transition-new(root)" }))
-      .catch(() => {});
-    return;
-  }
-
-  button.classList.add("is-cracking");
+  const W = window.innerWidth;
+  const H = window.innerHeight;
   const r = button.getBoundingClientRect();
-  let mask: { src: string; lines: string; total: number };
+  const ox = r.left + r.width / 2;
+  const oy = r.top + r.height / 2;
+  button.classList.add("is-cracking");
+
+  let shards: Shard[];
   try {
-    mask = await buildMask(window.innerWidth, window.innerHeight, r.left + r.width / 2, r.top + r.height / 2);
-    // decode first: the transition must never show an unmasked frame
-    const img = new Image();
-    img.src = mask.src;
-    const lineImg = new Image();
-    lineImg.src = mask.lines;
-    await Promise.all([img.decode().catch(() => {}), lineImg.decode().catch(() => {})]);
+    shards = await shatter(W, H, ox, oy);
   } catch {
     button.classList.remove("is-cracking");
     applyTheme(next);
     return;
   }
-  if (my !== token) return; // a newer click took over while we prepared
 
-  setMaskStyle(mask.src);
-  // the crack lines ride above both snapshots in their own transition group
-  const overlay = document.createElement("img");
-  overlay.className = "fracture-lines";
-  overlay.alt = "";
-  overlay.src = mask.lines;
-  const vt = doc.startViewTransition(() => {
-    flushSync(() => applyTheme(next));
-    document.body.appendChild(overlay);
-  });
-  active = vt;
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  const canvas = document.createElement("canvas");
+  canvas.className = "fracture-canvas";
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  canvas.setAttribute("aria-hidden", "true");
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d")!;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.lineJoin = "round";
 
-  vt.ready
-    .then(() => {
-      // holds the transition open while the mask image animates itself
-      root.animate({ opacity: [1, 1] }, { duration: mask.total + 120, pseudoElement: "::view-transition-new(root)" });
-    })
-    .catch(() => {});
+  const fill = BG[next];
+  const crack = CRACK_ON[next === "dark" ? "light" : "dark"];
+  let lineIdx = 0; // next shard whose crack line is not drawn yet
+  let fillIdx = 0; // first shard not yet fully turned
+  let raf = 0;
+  let done = false;
+  const t0 = performance.now();
+  const end = LEAD + SPREAD + FLIP;
 
-  vt.finished
-    .catch(() => {})
-    .finally(() => {
-      button.classList.remove("is-cracking");
-      overlay.remove();
-      if (active === vt) {
-        active = null;
-        setMaskStyle(null);
+  // phase 2: the theme has switched under a solid sheet; the shards now
+  // fall away one by one (same order as they broke), revealing it
+  const reveal = () => {
+    const r0 = performance.now();
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillStyle = "#000";
+    ctx.strokeStyle = "#000";
+    let idx = 0;
+    const n = shards.length;
+    const step = (now: number) => {
+      const t = now - r0;
+      ctx.lineWidth = 1.6;
+      for (let i = idx; i < n; i++) {
+        const d = (i / n) * (REVEAL - 120);
+        if (d > t) break;
+        const k = Math.min(1, (t - d) / 120);
+        ctx.globalAlpha = 0.35 + 0.65 * k;
+        ctx.beginPath();
+        trace(ctx, shards[i].poly);
+        ctx.fill();
+        ctx.stroke();
+        if (k >= 1 && i === idx) idx++;
       }
-    });
+      if (t >= REVEAL) {
+        canvas.remove();
+        running = null;
+      } else raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    // safety net: a background tab pauses animation frames; never leave the sheet behind
+    window.setTimeout(() => {
+      if (canvas.isConnected) {
+        canvas.remove();
+        running = null;
+      }
+    }, REVEAL + 600);
+  };
+
+  const finish = (instant = false) => {
+    if (done) return;
+    done = true;
+    cancelAnimationFrame(raf);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = fill;
+    ctx.fillRect(0, 0, W, H);
+    applyTheme(next);
+    button.classList.remove("is-cracking");
+    if (instant) {
+      canvas.remove();
+      running = null;
+    } else reveal();
+  };
+
+  const frame = (now: number) => {
+    const t = now - t0;
+    // 1. crack lines run ahead of the break
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = crack;
+    ctx.lineWidth = 1.1;
+    ctx.beginPath();
+    while (lineIdx < shards.length && shards[lineIdx].delay - LEAD <= t) {
+      trace(ctx, shards[lineIdx].poly);
+      lineIdx++;
+    }
+    ctx.stroke();
+    // 2. shards in their flip window get painted again, more opaque each frame
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = fill;
+    ctx.lineWidth = 1.4; // same-colour hairline hides antialiasing seams
+    let allDone = true;
+    for (let i = fillIdx; i < shards.length && shards[i].delay <= t; i++) {
+      const k = Math.min(1, (t - shards[i].delay) / FLIP);
+      ctx.globalAlpha = 0.3 + 0.7 * k;
+      ctx.beginPath();
+      trace(ctx, shards[i].poly);
+      ctx.fill();
+      ctx.stroke();
+      if (k < 1) allDone = false;
+      else if (allDone) fillIdx = i + 1;
+    }
+    if (t >= end) finish();
+    else raf = requestAnimationFrame(frame);
+  };
+  raf = requestAnimationFrame(frame);
+
+  running = {
+    cancel: () => {
+      cancelAnimationFrame(raf);
+      if (!done) finish(true);
+      canvas.remove();
+      running = null;
+    },
+  };
 }
