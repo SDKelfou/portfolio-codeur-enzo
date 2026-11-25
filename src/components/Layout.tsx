@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import GuideCursor from "./GuideCursor";
 import { useI18n } from "../i18n";
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -15,6 +16,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
+      <GuideCursor />
     </>
   );
 }

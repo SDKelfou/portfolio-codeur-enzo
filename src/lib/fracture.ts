@@ -34,7 +34,6 @@ type ViewTransition = {
 let active: ViewTransition | null = null;
 let token = 0;
 
-const rand = (a: number, b: number) => a + Math.random() * (b - a);
 function gauss() {
   // Box–Muller
   return Math.sqrt(-2 * Math.log(Math.random() || 1e-9)) * Math.cos(2 * Math.PI * Math.random());
@@ -125,37 +124,52 @@ async function buildMask(W: number, H: number, ox: number, oy: number) {
       }
     }
   }
-  let tMax = 0;
-  for (let i = 0; i < n; i++) if (Number.isFinite(time[i])) tMax = Math.max(tMax, time[i]);
+
+  // rank-based timing: the broken area grows at an even pace and the last
+  // shards never linger (no long tail at the end of the animation)
+  const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => time[a] - time[b]);
+  const rank = new Float64Array(n);
+  order.forEach((cell, k) => (rank[cell] = k / Math.max(1, n - 1)));
 
   const buckets = new Map<number, string[]>();
   for (let i = 0; i < n; i++) {
     const poly = voronoi.cellPolygon(i);
     if (!poly) continue;
-    const u = Number.isFinite(time[i]) ? time[i] / (tMax || 1) : 1;
-    const delay = Math.round((Math.pow(u, 0.9) * SPREAD + rand(-14, 14)) / BUCKET) * BUCKET;
+    const delay = Math.round((Math.pow(rank[i], 0.85) * SPREAD) / BUCKET) * BUCKET;
     let d = "";
     for (let k = 0; k < poly.length - 1; k++) d += `${k ? "L" : "M"}${poly[k][0].toFixed(1)} ${poly[k][1].toFixed(1)}`;
     d += "Z";
-    const key = Math.max(0, delay);
-    const list = buckets.get(key);
+    const list = buckets.get(delay);
     if (list) list.push(d);
-    else buckets.set(key, [d]);
+    else buckets.set(delay, [d]);
   }
 
   let paths = "";
+  let lines = "";
   let last = 0;
   for (const [delay, list] of buckets) {
-    paths += `<path style="animation-delay:${delay}ms" d="${list.join("")}"/>`;
+    const d = list.join("");
+    paths += `<path style="animation-delay:${delay}ms" d="${d}"/>`;
+    // the crack itself: each shard's outline flashes as it breaks, then fades
+    lines += `<path style="animation-delay:${Math.max(0, delay - 70)}ms" d="${d}"/>`;
     last = Math.max(last, delay);
   }
   // a thin same-colour stroke overlaps neighbouring shards: no seam lines
-  const svg =
+  const mask =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
     `<style>path{fill:#fff;stroke:#fff;stroke-width:1.4;stroke-linejoin:round;opacity:0;animation:f ${FLIP}ms ease-out forwards}@keyframes f{to{opacity:1}}</style>` +
     paths +
     `</svg>`;
-  return { src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`, total: last + FLIP };
+  const crack =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
+    `<style>path{fill:none;stroke:#fff010;stroke-width:1.3;stroke-linejoin:round;opacity:0;animation:c 360ms ease-out forwards;filter:drop-shadow(0 0 1.5px #24222d)}@keyframes c{25%{opacity:.95}to{opacity:0}}</style>` +
+    lines +
+    `</svg>`;
+  return {
+    src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(mask)}`,
+    lines: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(crack)}`,
+    total: last + FLIP,
+  };
 }
 
 function setMaskStyle(src: string | null) {
@@ -207,13 +221,15 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
 
   button.classList.add("is-cracking");
   const r = button.getBoundingClientRect();
-  let mask: { src: string; total: number };
+  let mask: { src: string; lines: string; total: number };
   try {
     mask = await buildMask(window.innerWidth, window.innerHeight, r.left + r.width / 2, r.top + r.height / 2);
     // decode first: the transition must never show an unmasked frame
     const img = new Image();
     img.src = mask.src;
-    await img.decode().catch(() => {});
+    const lineImg = new Image();
+    lineImg.src = mask.lines;
+    await Promise.all([img.decode().catch(() => {}), lineImg.decode().catch(() => {})]);
   } catch {
     button.classList.remove("is-cracking");
     applyTheme(next);
@@ -222,13 +238,21 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
   if (my !== token) return; // a newer click took over while we prepared
 
   setMaskStyle(mask.src);
-  const vt = doc.startViewTransition(() => flushSync(() => applyTheme(next)));
+  // the crack lines ride above both snapshots in their own transition group
+  const overlay = document.createElement("img");
+  overlay.className = "fracture-lines";
+  overlay.alt = "";
+  overlay.src = mask.lines;
+  const vt = doc.startViewTransition(() => {
+    flushSync(() => applyTheme(next));
+    document.body.appendChild(overlay);
+  });
   active = vt;
 
   vt.ready
     .then(() => {
       // holds the transition open while the mask image animates itself
-      root.animate({ opacity: [1, 1] }, { duration: mask.total + 40, pseudoElement: "::view-transition-new(root)" });
+      root.animate({ opacity: [1, 1] }, { duration: mask.total + 120, pseudoElement: "::view-transition-new(root)" });
     })
     .catch(() => {});
 
@@ -236,6 +260,7 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
     .catch(() => {})
     .finally(() => {
       button.classList.remove("is-cracking");
+      overlay.remove();
       if (active === vt) {
         active = null;
         setMaskStyle(null);

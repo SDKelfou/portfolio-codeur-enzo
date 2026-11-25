@@ -34,8 +34,19 @@ export default function Projects({ headingLevel = 2 }: { headingLevel?: 1 | 2 })
                   aria-label={`${p.name} — ${p.example ? w.visitExample : w.visit}`}
                   tabIndex={-1}
                 >
-                  <div className="project-media">
-                    <img src={p.image} alt={`${p.name} — aperçu`} width={800} height={500} decoding="async" />
+                  <div className="device-pair" data-reveal="rise">
+                    <div className="device-desk">
+                      <div className="device-bar" aria-hidden="true">
+                        <i />
+                        <i />
+                        <i />
+                        <span>{p.href.replace(/^https?:\/\//, "").replace(/\/$/, "") || p.href}</span>
+                      </div>
+                      <img src={p.image} alt={`${p.name} — aperçu ordinateur`} width={800} height={500} decoding="async" />
+                    </div>
+                    <div className="device-phone">
+                      <img src={p.mobile} alt={`${p.name} — aperçu mobile`} width={300} height={650} decoding="async" />
+                    </div>
                   </div>
                 </a>
 

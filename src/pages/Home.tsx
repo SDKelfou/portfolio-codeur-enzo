@@ -4,6 +4,8 @@ import Projects from "../components/Projects";
 import Method from "../components/Method";
 import Offers from "../components/Offers";
 import About from "../components/About";
+import Capabilities from "../components/Capabilities";
+import Why from "../components/Why";
 import Faq from "../components/Faq";
 import ContactCTA from "../components/ContactCTA";
 import { useI18n } from "../i18n";
@@ -16,8 +18,10 @@ export default function Home() {
     <Layout>
       <Hero />
       <Projects />
-      <Method />
+      <Capabilities />
+      <Why />
       <Offers />
+      <Method />
       <About />
       <Faq />
       <ContactCTA />

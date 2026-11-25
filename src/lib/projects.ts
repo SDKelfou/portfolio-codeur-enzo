@@ -8,6 +8,8 @@ export interface Project {
   /** which translated copy to use: work.items[n] or work.leos */
   copy: number | "leos";
   image: string;
+  /** phone-width capture of the same site */
+  mobile: string;
   /** only what is actually known about how it was built */
   tech: string[];
 }
@@ -22,6 +24,7 @@ export const PROJECTS: Project[] = [
     inProgress: true,
     copy: "leos",
     image: "/projets/leos-export.webp",
+    mobile: "/projets/leos-export-m.webp",
     tech: [],
   },
   {
@@ -32,6 +35,7 @@ export const PROJECTS: Project[] = [
     example: false,
     copy: 0,
     image: "/projets/nexus.webp",
+    mobile: "/projets/nexus-m.webp",
     tech: [],
   },
   {
@@ -42,6 +46,7 @@ export const PROJECTS: Project[] = [
     example: true,
     copy: 1,
     image: "/projets/cafe-mistral.webp",
+    mobile: "/projets/cafe-mistral-m.webp",
     tech: ["HTML", "CSS", "SVG"],
   },
   {
@@ -52,6 +57,7 @@ export const PROJECTS: Project[] = [
     example: true,
     copy: 2,
     image: "/projets/atelier-lune.webp",
+    mobile: "/projets/atelier-lune-m.webp",
     tech: ["HTML", "CSS", "SVG"],
   },
 ];
