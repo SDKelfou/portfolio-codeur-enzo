@@ -202,12 +202,12 @@ const fr = {
     onQuote: "Sur devis",
     cta: "Choisir cette formule",
     pay: "Réserver et payer en ligne",
-    note: "« Sur devis » ne veut pas dire plus cher : selon votre besoin, le prix peut être inférieur ou supérieur. Et pour un site vitrine d'une seule page, l'offre Essentiel peut descendre sous 799 €.",
+    note: "« Sur devis » ne veut pas dire plus cher : selon votre besoin, le prix peut être inférieur ou supérieur. Pour descendre sous 799 € avec un site vitrine plus court, il me faut votre style déjà défini : polices, couleurs et formes que vous aimez, en PDF ou sous toute autre forme. Sans cela, il s'agit d'une direction artistique, comprise à partir de l'offre du même nom.",
     items: [
       {
         name: "Essentiel",
         price: "799 €",
-        text: "Un site vitrine professionnel, clair et rapide, pour être trouvé et contacté facilement. Une seule page ? Le prix peut être inférieur.",
+        text: "Un site vitrine professionnel, clair et rapide, pour être trouvé et contacté facilement. Moins de pages ? Le prix peut être inférieur, si vous me fournissez votre charte graphique.",
         features: [
           "Site one-page ou jusqu'à 5 sections",
           "Adapté mobile, tablette et ordinateur",
@@ -248,7 +248,7 @@ const fr = {
     period: "/ mois",
     text: "Je m'occupe de toute la partie technique pour que votre site reste en ligne, rapide et sécurisé. Vous, vous vous concentrez sur votre activité.",
     features: [
-      "Nom de domaine à votre nom : il vous appartient légalement",
+      "Nom de domaine classique à votre nom (.fr, .com…, jusqu'à 20 € par an) : il vous appartient légalement",
       "Hébergement rapide et sécurisé (HTTPS)",
       "Certificat SSL et mises à jour de sécurité",
       "Sauvegarde de votre site",
@@ -278,6 +278,10 @@ const fr = {
   faq: {
     title: "Questions fréquentes",
     items: [
+      {
+        q: "Le nom de domaine est-il toujours inclus ?",
+        a: "Avec la formule Sérénité, un nom de domaine classique (.fr, .com…) jusqu'à 20 € par an est inclus. Pour un domaine premium plus cher, seule la différence vous est facturée, après accord.",
+      },
       {
         q: "Quelqu'un peut-il copier mon site pendant sa création ?",
         a: "Non. Tant qu'il n'est pas publié, votre site reste privé et protégé par un mot de passe : seuls vous et moi y avons accès.",
@@ -352,6 +356,7 @@ const fr = {
       {
         "title": "Le contenu de votre site",
         "items": [
+        "Pour un prix sous l'offre Essentiel : votre charte graphique (polices, couleurs, formes que vous aimez), en PDF ou sous toute autre forme",
           "Votre logo, si vous en avez un",
           "Vos photos (sinon, j'utilise des visuels libres de droits)",
           "Vos horaires, tarifs, adresse et accès",

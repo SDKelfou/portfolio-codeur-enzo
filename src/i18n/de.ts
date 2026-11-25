@@ -200,12 +200,12 @@ const de: Dict = {
     onQuote: "Auf Anfrage",
     cta: "Dieses Paket wählen",
     pay: "Online buchen und bezahlen",
-    note: "„Auf Anfrage“ heißt nicht teurer: je nach Bedarf kann der Preis niedriger oder höher ausfallen. Und für eine einseitige Visitenkarten-Website kann das Angebot Essential unter 799 € liegen.",
+    note: "„Auf Anfrage“ heißt nicht teurer: Je nach Bedarf kann der Preis niedriger oder höher sein. Um mit einer kürzeren Website unter 799 € zu bleiben, brauche ich Ihren bereits festgelegten Stil: Schriften, Farben und Formen, die Ihnen gefallen, als PDF oder in anderer Form. Ohne diese Vorgaben ist das Gestaltungsarbeit, enthalten ab dem gleichnamigen Angebot.",
     items: [
       {
         name: "Essential",
         price: "799 €",
-        text: "Eine professionelle Visitenkarten-Website, klar und schnell, damit man Sie leicht findet und kontaktiert. Nur eine Seite? Der Preis kann niedriger sein.",
+        text: "Eine professionelle, klare und schnelle Unternehmenswebsite, damit Kunden Sie leicht finden und kontaktieren. Weniger Seiten? Der Preis kann niedriger sein, wenn Sie mir Ihre Gestaltungsrichtlinien liefern.",
         features: [
           "One-Page-Website oder bis zu 5 Abschnitte",
           "Für Smartphone, Tablet und Computer optimiert",
@@ -246,7 +246,7 @@ const de: Dict = {
     period: "/ Monat",
     text: "Ich kümmere mich um die gesamte Technik, damit Ihre Website online, schnell und sicher bleibt. Sie konzentrieren sich auf Ihr Geschäft.",
     features: [
-      "Domain auf Ihren Namen: Sie gehört Ihnen rechtlich",
+      "Standard-Domain auf Ihren Namen (.fr, .com…, bis 20 € pro Jahr): Sie gehört Ihnen rechtlich",
       "Schnelles, sicheres Hosting (HTTPS)",
       "SSL-Zertifikat und Sicherheitsupdates",
       "Sicherung Ihrer Website",
@@ -276,6 +276,10 @@ const de: Dict = {
   faq: {
     title: "Häufige Fragen",
     items: [
+      {
+        q: "Ist der Domainname immer inbegriffen?",
+        a: "Im Sorglos-Paket ist eine Standard-Domain (.fr, .com…) bis 20 € pro Jahr enthalten. Für eine teurere Premium-Domain wird nur die Differenz berechnet, nach Ihrer Zustimmung.",
+      },
       {
         q: "Kann jemand meine Website kopieren, während sie entsteht?",
         a: "Nein. Solange sie nicht veröffentlicht ist, bleibt Ihre Website privat und passwortgeschützt: Nur Sie und ich haben Zugriff.",
@@ -350,6 +354,7 @@ const de: Dict = {
       {
         title: "Der Inhalt Ihrer Website",
         items: [
+        "Für einen Preis unter dem Essential-Angebot: Ihre Gestaltungsrichtlinien (Schriften, Farben, Formen, die Ihnen gefallen), als PDF oder in anderer Form",
           "Ihr Logo, falls vorhanden",
           "Ihre Fotos (andernfalls verwende ich lizenzfreie Bilder)",
           "Ihre Öffnungszeiten, Preise, Adresse und Anfahrt",

@@ -1,5 +1,5 @@
 import { flushSync } from "react-dom";
-import { applyTheme } from "./theme";
+import { applyTheme, currentTheme } from "./theme";
 import type { Theme } from "./theme";
 
 const SPREAD = 700;
@@ -257,4 +257,16 @@ export async function fractureTheme(next: Theme, button: HTMLElement) {
         setMaskStyle(null);
       }
     });
+}
+
+let target: Theme | null = null;
+
+export function toggleTheme(button: HTMLElement) {
+  const base = target ?? currentTheme();
+  const next: Theme = base === "dark" ? "light" : "dark";
+  target = next;
+  fractureTheme(next, button).finally(() => {
+    if (target === next && currentTheme() === next) target = null;
+  });
+  return next;
 }

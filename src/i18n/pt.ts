@@ -200,12 +200,12 @@ const pt: Dict = {
     onQuote: "Sob orçamento",
     cta: "Escolher este plano",
     pay: "Reservar e pagar online",
-    note: "«Sob orçamento» não significa mais caro: consoante a sua necessidade, o preço pode ser inferior ou superior. E para um site de apresentação de uma só página, a oferta Essencial pode ficar abaixo dos 799 €.",
+    note: "«Sob orçamento» não quer dizer mais caro: conforme a sua necessidade, o preço pode ser inferior ou superior. Para ficar abaixo de 799 € com um site mais curto, preciso do seu estilo já definido: tipos de letra, cores e formas de que gosta, em PDF ou noutro formato. Sem isso, trata-se de direção artística, incluída a partir da oferta com o mesmo nome.",
     items: [
       {
         name: "Essencial",
         price: "799 €",
-        text: "Um site de apresentação profissional, claro e rápido, para ser encontrado e contactado facilmente. Apenas uma página? O preço pode ser inferior.",
+        text: "Um site institucional profissional, claro e rápido, para ser encontrado e contactado facilmente. Menos páginas? O preço pode ser inferior, se me fornecer a sua identidade visual.",
         features: [
           "Site de uma página ou até 5 secções",
           "Adaptado a telemóvel, tablet e computador",
@@ -246,7 +246,7 @@ const pt: Dict = {
     period: "/ mês",
     text: "Trato de toda a parte técnica para que o seu site se mantenha online, rápido e seguro. Você concentra-se na sua atividade.",
     features: [
-      "Domínio em seu nome: pertence-lhe legalmente",
+      "Nome de domínio standard em seu nome (.fr, .com…, até 20 € por ano): pertence-lhe legalmente",
       "Alojamento rápido e seguro (HTTPS)",
       "Certificado SSL e atualizações de segurança",
       "Cópia de segurança do seu site",
@@ -276,6 +276,10 @@ const pt: Dict = {
   faq: {
     title: "Perguntas frequentes",
     items: [
+      {
+        q: "O nome de domínio está sempre incluído?",
+        a: "Com o Plano Tranquilidade, está incluído um nome de domínio standard (.fr, .com…) até 20 € por ano. Para um domínio premium mais caro, só é faturada a diferença, com o seu acordo.",
+      },
       {
         q: "Alguém pode copiar o meu site enquanto está a ser criado?",
         a: "Não. Enquanto não estiver publicado, o seu site permanece privado e protegido por palavra-passe: só você e eu temos acesso.",
@@ -350,6 +354,7 @@ const pt: Dict = {
       {
         title: "O conteúdo do seu site",
         items: [
+        "Para um preço abaixo da oferta Essencial: a sua identidade visual (tipos de letra, cores, formas de que gosta), em PDF ou noutro formato",
           "O seu logótipo, se tiver um",
           "As suas fotografias (caso contrário, utilizo imagens livres de direitos)",
           "Os seus horários, preços, morada e acessos",

@@ -47,13 +47,12 @@ export function withPageTransition(update: () => void, after?: () => void) {
     .then(() => {
       const easing = "linear";
       root.animate(waveFrames(), { duration: DURATION, easing, fill: "both", pseudoElement: "::view-transition-new(root)" });
-      root.animate(
-        [
-          { transform: "none", opacity: 1 },
-          { transform: "perspective(1400px) translateX(-7%) rotateY(9deg) scale(0.94)", opacity: 0.55 },
-        ],
-        { duration: DURATION, easing: "cubic-bezier(.65,0,.35,1)", fill: "both", pseudoElement: "::view-transition-old(root)" }
-      );
+      root.animate([{ opacity: 1 }, { opacity: 0.92 }], {
+        duration: DURATION,
+        easing: "ease-in",
+        fill: "both",
+        pseudoElement: "::view-transition-old(root)",
+      });
     })
     .catch(() => {});
   vt.finished.finally(() => {

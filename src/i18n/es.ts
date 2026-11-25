@@ -200,12 +200,12 @@ const es: Dict = {
     onQuote: "Con presupuesto",
     cta: "Elegir este plan",
     pay: "Reservar y pagar en línea",
-    note: "«Bajo presupuesto» no significa más caro: según su necesidad, el precio puede ser inferior o superior. Y para un sitio escaparate de una sola página, la oferta Esencial puede bajar de 799 €.",
+    note: "«Presupuesto a medida» no significa más caro: según su necesidad, el precio puede ser inferior o superior. Para bajar de 799 € con una web más corta, necesito su estilo ya definido: tipografías, colores y formas que le gustan, en PDF o en cualquier otro formato. Sin ello, se trata de dirección artística, incluida a partir de la oferta del mismo nombre.",
     items: [
       {
         name: "Esencial",
         price: "799 €",
-        text: "Un sitio escaparate profesional, claro y rápido, para que le encuentren y le contacten fácilmente. ¿Solo una página? El precio puede ser inferior.",
+        text: "Una web corporativa profesional, clara y rápida, para que le encuentren y le contacten fácilmente. ¿Menos páginas? El precio puede ser inferior si me facilita su identidad visual.",
         features: [
           "Web de una página o hasta 5 secciones",
           "Adaptada a móvil, tableta y ordenador",
@@ -246,7 +246,7 @@ const es: Dict = {
     period: "/ mes",
     text: "Me ocupo de toda la parte técnica para que su web siga en línea, rápida y segura. Usted se concentra en su negocio.",
     features: [
-      "Dominio a su nombre: le pertenece legalmente",
+      "Nombre de dominio estándar a su nombre (.fr, .com…, hasta 20 € al año): le pertenece legalmente",
       "Hosting rápido y seguro (HTTPS)",
       "Certificado SSL y actualizaciones de seguridad",
       "Copia de seguridad de su web",
@@ -276,6 +276,10 @@ const es: Dict = {
   faq: {
     title: "Preguntas frecuentes",
     items: [
+      {
+        q: "¿El nombre de dominio siempre está incluido?",
+        a: "Con el Plan Tranquilidad se incluye un nombre de dominio estándar (.fr, .com…) de hasta 20 € al año. Para un dominio premium más caro, solo se le factura la diferencia, previo acuerdo.",
+      },
       {
         q: "¿Puede alguien copiar mi web mientras se crea?",
         a: "No. Mientras no esté publicada, su web permanece privada y protegida con contraseña: solo usted y yo tenemos acceso.",
@@ -350,6 +354,7 @@ const es: Dict = {
       {
         title: "El contenido de su sitio",
         items: [
+        "Para un precio inferior a la oferta Esencial: su identidad visual (tipografías, colores, formas que le gustan), en PDF o en cualquier otro formato",
           "Su logotipo, si tiene uno",
           "Sus fotos (si no, utilizo imágenes libres de derechos)",
           "Sus horarios, tarifas, dirección y cómo llegar",

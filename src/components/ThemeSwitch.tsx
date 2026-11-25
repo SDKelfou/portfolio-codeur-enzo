@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n";
 import { currentTheme } from "../lib/theme";
 import type { Theme } from "../lib/theme";
-import { fractureTheme, preloadFracture } from "../lib/fracture";
+import { toggleTheme, preloadFracture } from "../lib/fracture";
 
 export default function ThemeSwitch({ className = "" }: { className?: string }) {
   const { t } = useI18n();
@@ -19,7 +19,6 @@ export default function ThemeSwitch({ className = "" }: { className?: string }) 
     return () => window.removeEventListener("enzo:theme", sync);
   }, []);
 
-  const next: Theme = theme === "dark" ? "light" : "dark";
 
   return (
     <button
@@ -28,7 +27,7 @@ export default function ThemeSwitch({ className = "" }: { className?: string }) 
       className={`theme-switch ${className}`}
       aria-label={theme === "dark" ? t.nav.toLight : t.nav.toDark}
       title={theme === "dark" ? t.nav.toLight : t.nav.toDark}
-      onClick={() => ref.current && fractureTheme(next, ref.current)}
+      onClick={() => ref.current && toggleTheme(ref.current)}
     >
       <span className="core" aria-hidden="true" />
     </button>

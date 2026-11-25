@@ -200,12 +200,12 @@ const it: Dict = {
     onQuote: "Su preventivo",
     cta: "Scegli questo pacchetto",
     pay: "Prenota e paga online",
-    note: "«Su preventivo» non significa più caro: in base alle sue esigenze, il prezzo può essere inferiore o superiore. E per un sito vetrina di una sola pagina, l'offerta Essenziale può scendere sotto i 799 €.",
+    note: "«Su preventivo» non significa più caro: in base alle sue esigenze, il prezzo può essere inferiore o superiore. Per scendere sotto i 799 € con un sito più breve, mi serve il suo stile già definito: font, colori e forme che preferisce, in PDF o in qualsiasi altra forma. Altrimenti si tratta di direzione artistica, inclusa a partire dall'offerta omonima.",
     items: [
       {
         name: "Essenziale",
         price: "799 €",
-        text: "Un sito vetrina professionale, chiaro e veloce, per essere trovati e contattati facilmente. Una sola pagina? Il prezzo può essere inferiore.",
+        text: "Un sito vetrina professionale, chiaro e veloce, per essere trovati e contattati facilmente. Meno pagine? Il prezzo può essere inferiore, se mi fornisce la sua identità visiva.",
         features: [
           "Sito di una pagina o fino a 5 sezioni",
           "Adatto a cellulare, tablet e computer",
@@ -246,7 +246,7 @@ const it: Dict = {
     period: "/ mese",
     text: "Mi occupo di tutta la parte tecnica perché il suo sito resti online, veloce e sicuro. Lei si concentra sulla sua attività.",
     features: [
-      "Nome a dominio intestato a lei: le appartiene legalmente",
+      "Nome di dominio standard a suo nome (.fr, .com…, fino a 20 € l'anno): le appartiene legalmente",
       "Hosting veloce e sicuro (HTTPS)",
       "Certificato SSL e aggiornamenti di sicurezza",
       "Backup del suo sito",
@@ -276,6 +276,10 @@ const it: Dict = {
   faq: {
     title: "Domande frequenti",
     items: [
+      {
+        q: "Il nome di dominio è sempre incluso?",
+        a: "Con il Pacchetto Serenità è incluso un nome di dominio standard (.fr, .com…) fino a 20 € l'anno. Per un dominio premium più costoso, viene fatturata solo la differenza, previo accordo.",
+      },
       {
         q: "Qualcuno può copiare il mio sito mentre viene creato?",
         a: "No. Finché non è pubblicato, il suo sito resta privato e protetto da password: solo lei e io abbiamo accesso.",
@@ -350,6 +354,7 @@ const it: Dict = {
       {
         title: "I contenuti del suo sito",
         items: [
+        "Per un prezzo inferiore all'offerta Essenziale: la sua identità visiva (font, colori, forme che preferisce), in PDF o in qualsiasi altra forma",
           "Il suo logo, se ne ha uno",
           "Le sue foto (altrimenti utilizzo immagini libere da diritti)",
           "I suoi orari, prezzi, indirizzo e indicazioni stradali",

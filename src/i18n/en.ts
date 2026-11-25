@@ -200,12 +200,12 @@ const en: Dict = {
     onQuote: "On quote",
     cta: "Choose this plan",
     pay: "Book and pay online",
-    note: "“On quote” does not mean more expensive: depending on your needs, the price can be lower or higher. And for a one-page showcase website, the Essential plan can go below 799 €.",
+    note: "“On quote” doesn't mean more expensive: depending on your needs, the price can be lower or higher. To go below 799 € with a shorter business website, I need your style already defined: the fonts, colours and shapes you like, as a PDF or in any other form. Without it, that work is art direction, included from the offer of the same name.",
     items: [
       {
         name: "Essential",
         price: "799 €",
-        text: "A professional showcase website, clear and fast, so you can be found and contacted easily. Only one page? The price can be lower.",
+        text: "A professional, clear and fast business website, so customers can find and contact you easily. Fewer pages? The price can be lower, provided you supply your brand guidelines.",
         features: [
           "One-page site or up to 5 sections",
           "Works on mobile, tablet and desktop",
@@ -246,7 +246,7 @@ const en: Dict = {
     period: "/ month",
     text: "I take care of all the technical side so your website stays online, fast and secure. You focus on your business.",
     features: [
-      "Domain name in your own name: it legally belongs to you",
+      "Standard domain name in your name (.fr, .com…, up to 20 € a year): it legally belongs to you",
       "Fast, secure hosting (HTTPS)",
       "SSL certificate and security updates",
       "Backups of your website",
@@ -276,6 +276,10 @@ const en: Dict = {
   faq: {
     title: "Frequently asked questions",
     items: [
+      {
+        q: "Is the domain name always included?",
+        a: "With the Peace of Mind plan, a standard domain name (.fr, .com…) up to 20 € a year is included. For a more expensive premium domain, only the difference is invoiced, with your agreement.",
+      },
       {
         q: "Can someone copy my website while it is being created?",
         a: "No. Until it is published, your website stays private and password-protected: only you and I have access.",
@@ -350,6 +354,7 @@ const en: Dict = {
       {
         title: "Your website content",
         items: [
+        "For a price below the Essential offer: your brand guidelines (fonts, colours, shapes you like), as a PDF or in any other form",
           "Your logo, if you have one",
           "Your photos (otherwise, I use royalty-free images)",
           "Your opening hours, prices, address and directions",

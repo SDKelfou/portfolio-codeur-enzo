@@ -200,12 +200,12 @@ const nl: Dict = {
     onQuote: "Op offerte",
     cta: "Dit pakket kiezen",
     pay: "Reserveren en online betalen",
-    note: "“Op offerte” betekent niet duurder: afhankelijk van uw behoefte kan de prijs lager of hoger uitvallen. En voor een eenpagina-website kan het pakket Essentieel onder de 799 € uitkomen.",
+    note: "„Op offerte” betekent niet duurder: afhankelijk van uw behoefte kan de prijs lager of hoger uitvallen. Om met een kortere website onder 799 € te blijven, heb ik uw stijl al vastgelegd nodig: lettertypes, kleuren en vormen die u mooi vindt, als pdf of in een andere vorm. Zonder dat is het art direction, inbegrepen vanaf het gelijknamige pakket.",
     items: [
       {
         name: "Essentieel",
         price: "799 €",
-        text: "Een professionele visitekaartjeswebsite, duidelijk en snel, zodat u gemakkelijk gevonden en gecontacteerd wordt. Maar één pagina? Dan kan de prijs lager zijn.",
+        text: "Een professionele, heldere en snelle bedrijfswebsite, zodat klanten u makkelijk vinden en contacteren. Minder pagina's? De prijs kan lager zijn als u mij uw huisstijl aanlevert.",
         features: [
           "Eenpagina-site of tot 5 secties",
           "Geschikt voor mobiel, tablet en computer",
@@ -246,7 +246,7 @@ const nl: Dict = {
     period: "/ maand",
     text: "Ik regel alle technische kant, zodat uw website online, snel en veilig blijft. U richt zich op uw bedrijf.",
     features: [
-      "Domeinnaam op uw naam: die is juridisch van u",
+      "Standaard domeinnaam op uw naam (.fr, .com…, tot 20 € per jaar): juridisch van u",
       "Snelle, veilige hosting (HTTPS)",
       "SSL-certificaat en beveiligingsupdates",
       "Back-up van uw website",
@@ -276,6 +276,10 @@ const nl: Dict = {
   faq: {
     title: "Veelgestelde vragen",
     items: [
+      {
+        q: "Is de domeinnaam altijd inbegrepen?",
+        a: "Bij het Zorgeloos-pakket is een standaard domeinnaam (.fr, .com…) tot 20 € per jaar inbegrepen. Voor een duurder premiumdomein wordt alleen het verschil gefactureerd, na uw akkoord.",
+      },
       {
         q: "Kan iemand mijn website kopiëren terwijl hij wordt gemaakt?",
         a: "Nee. Zolang hij niet is gepubliceerd, blijft uw website privé en met een wachtwoord beveiligd: alleen u en ik hebben toegang.",
@@ -350,6 +354,7 @@ const nl: Dict = {
       {
         title: "De inhoud van uw website",
         items: [
+        "Voor een prijs onder het Essential-pakket: uw huisstijl (lettertypes, kleuren, vormen die u mooi vindt), als pdf of in een andere vorm",
           "Uw logo, als u er een heeft",
           "Uw foto's (anders gebruik ik rechtenvrije beelden)",
           "Uw openingstijden, prijzen, adres en routebeschrijving",
