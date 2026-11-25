@@ -199,7 +199,7 @@ export default function Hero() {
               {!reduced && (
                 <>
                   <Cursor x={ex} y={ey} color="#fff010" label="Enzo" />
-                  <Cursor x={yx} y={yy} color="#a99bcf" label={b.you} dark />
+                  <Cursor x={yx} y={yy} color="#a99bcf" label={b.you} />
                 </>
               )}
             </div>
