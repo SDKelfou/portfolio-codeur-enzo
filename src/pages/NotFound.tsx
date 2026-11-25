@@ -1,23 +1,25 @@
-import { Link } from "wouter";
+import Layout from "../components/Layout";
+import TLink from "../components/TLink";
+import Sculpture from "../components/Sculpture";
 import { useI18n } from "../i18n";
+import { usePageMeta } from "../lib/head";
 
 export default function NotFound() {
   const { t } = useI18n();
+  usePageMeta(t.pages.notFound.title, t.pages.notFound.description, 404);
   return (
-    <main
-      className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 text-center"
-      style={{ background: "var(--home-bg)", color: "var(--home-text)" }}
-    >
-      <span className="font-display text-sm tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-        404
-      </span>
-      <h1 className="font-display text-3xl font-bold sm:text-4xl">{t.notFound.title}</h1>
-      <p className="max-w-md" style={{ color: "var(--home-text-muted)" }}>
-        {t.notFound.text}
-      </p>
-      <Link href="/" className="btn-accent rounded-full px-6 py-3 text-sm font-semibold transition-transform hover:scale-[1.03]">
-        {t.notFound.back}
-      </Link>
-    </main>
+    <Layout>
+      <section className="wrap grid min-h-[80svh] items-center gap-10 pb-16 pt-32 md:grid-cols-2">
+        <div>
+          <p className="font-display tnum text-[clamp(6rem,18vw,12rem)] italic leading-none">404</p>
+          <h1 className="h3 mt-4">{t.notFound.title}</h1>
+          <p className="muted mt-4 max-w-md">{t.notFound.text}</p>
+          <TLink href="/" className="btn btn-light mt-8">
+            {t.notFound.back}
+          </TLink>
+        </div>
+        <Sculpture className="sculpture mx-auto w-full max-w-sm is-split" />
+      </section>
+    </Layout>
   );
 }

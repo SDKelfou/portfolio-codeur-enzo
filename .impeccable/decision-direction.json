@@ -1,0 +1,118 @@
+{
+  "title": "Choisis l'univers visuel du site",
+  "question": "Le tirage a désigné « Chronométrage ». Garde-le, prends l'alternative, ou relance.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Chronométrage",
+      "kicker": "LE TIRAGE",
+      "lineage": "Feuilles de chronométrage, tableaux d'affichage de stade, photo-finish",
+      "thesis": "Ton argument n°1 c'est la vitesse : le site se chronomètre lui-même, en direct, devant le client.",
+      "palette": ["#f4f3ef", "#0d0d0d", "#ffd400", "#e10600"],
+      "materials": ["papier de feuille de temps", "chiffres tabulaires noirs", "jaune signalétique", "bandes photo-finish"],
+      "viewport": "Un énorme chrono affiche le vrai temps de chargement de la page mesuré dans le navigateur du visiteur (ex. 0,38 s), à côté de « Des sites qui s'ouvrent avant que votre client ne s'impatiente. Dès 799 € ». Bouton jaune « Demander un devis ».",
+      "risk": "Peut sembler froid ou trop « sport » si le côté humain (toi, le suivi) n'est pas mis en avant juste après.",
+      "raised": [
+        { "from": "challenger-zine", "raise": "Le jaune est réservé à une seule chose : l'action (devis) et le chrono en direct. Jamais en décoration." },
+        { "from": "challenger-signal", "raise": "Le temps de chargement réel reste affiché en permanence dans un coin de la barre de navigation, sur toutes les pages." },
+        { "from": "challenger-teletext", "raise": "Tous les chiffres (prix, temps, scores) alignés sur une grille de colonnes stricte, comme une feuille de temps." },
+        { "from": "challenger-datamatics", "raise": "Deux encres seulement pour le texte, noir sur papier : zéro gris pâle illisible, contraste AA partout." },
+        { "from": "challenger-ikebana", "raise": "Une seule idée par écran, avec beaucoup de vide autour : simple et compréhensible." }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Vitrine peinte",
+      "kicker": "LE CHOIX D'IMPECCABLE",
+      "lineage": "Lettrage doré sur vitrine de commerce, enseignes peintes à la main",
+      "thesis": "Le site comme la vitrine d'un commerce de quartier : lettrage peint, reflets, tout ce que tes clients connaissent.",
+      "palette": ["#14342b", "#d9a441", "#f2ede3", "#8c1c13"],
+      "materials": ["verre de vitrine", "feuille d'or", "émail", "bois peint"],
+      "viewport": "Une vitrine plein écran avec « enzo.dev » peint à la feuille d'or, l'offre écrite comme un horaire d'ouverture sur la porte.",
+      "risk": "Plus familier et plus chaleureux, mais montre moins ta vitesse ; risque de faire « déco » plutôt que « tech ».",
+      "palette_note": ""
+    },
+    {
+      "id": "challenger-zine",
+      "label": "Fanzine photocopié",
+      "verdict": "declined",
+      "lineage": "Flyers punk collés-photocopiés",
+      "palette": ["#111111", "#ffffff", "#ff3fa4"],
+      "materials": ["toner", "papier déchiré"],
+      "thesis": "Le site comme un flyer de concert photocopié.",
+      "viewport": "Titre en lettres découpées, colonnes collées de travers.",
+      "risk": "Les commerçants n'y voient pas un prestataire sérieux.",
+      "case": "Perd sur les deux axes : ni ta cible, ni la clarté.",
+      "kept": "Une seule couleur réservée à l'action.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-punk-pasteup-table-hero.webp"
+    },
+    {
+      "id": "challenger-signal",
+      "label": "Signal télé brouillé",
+      "verdict": "declined",
+      "lineage": "Mires et bandeaux d'alerte",
+      "palette": ["#0a0a0a", "#ffffff", "#ffe600", "#00b4ff"],
+      "materials": ["mire de couleurs", "bruit vidéo"],
+      "thesis": "Le site comme une émission interrompue.",
+      "viewport": "Mire de couleurs, timecode dans un coin, bandeau qui défile.",
+      "risk": "Fait bug, l'inverse de « fiable et rapide ».",
+      "case": "Perd sur les deux axes.",
+      "kept": "Un indicateur en direct fixé dans un coin.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-emergency-signal-degradation-hero.webp"
+    },
+    {
+      "id": "challenger-teletext",
+      "label": "Télétexte",
+      "verdict": "declined",
+      "lineage": "Pages Ceefax / Antiope",
+      "palette": ["#000000", "#ffff00", "#00ffff", "#ffffff"],
+      "materials": ["grille 40×24", "blocs mosaïque"],
+      "thesis": "Le site comme des pages télétexte numérotées.",
+      "viewport": "Page 100 : sommaire, offres en lignes numérotées.",
+      "risk": "Effet gadget rétro.",
+      "case": "Perd sur la clarté et sur la cible.",
+      "kept": "Une grille de chiffres stricte.",
+      "hero": "https://impeccable.style/worlds/cards/broadcast-programming-teletext-service-hero.webp"
+    },
+    {
+      "id": "challenger-datamatics",
+      "label": "Data art noir et blanc",
+      "verdict": "declined",
+      "lineage": "Installations de Ryoji Ikeda",
+      "palette": ["#000000", "#ffffff"],
+      "materials": ["codes-barres", "chiffres monospace"],
+      "thesis": "Le site comme un mur de données.",
+      "viewport": "Champs de codes-barres stroboscopiques.",
+      "risk": "Froid, abstrait, inaccessible pour un commerçant.",
+      "case": "Perd sur les deux axes.",
+      "kept": "Deux encres, contraste maximal.",
+      "hero": "https://impeccable.style/worlds/cards/ikeda-datamatics-hero.webp"
+    },
+    {
+      "id": "challenger-ikebana",
+      "label": "Ikebana",
+      "verdict": "declined",
+      "lineage": "Composition florale japonaise, le vide actif",
+      "palette": ["#e9e4da", "#6b5a48", "#3d5aa8"],
+      "materials": ["plâtre", "branche", "bronze"],
+      "thesis": "Le site comme une alcôve vide et calme.",
+      "viewport": "Une seule ligne asymétrique dans beaucoup d'espace.",
+      "risk": "Trop contemplatif, l'offre disparaît.",
+      "case": "Perd sur les deux axes.",
+      "kept": "Une seule idée par écran.",
+      "hero": "https://impeccable.style/worlds/cards/growth-metamorphosis-branching-ikebana-ma-arrangement-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard du métier",
+    "thesis": "Le portfolio de freelance classique, exécuté parfaitement.",
+    "palette": ["#ffffff", "#111827", "#2563eb"],
+    "materials": ["grille propre", "captures de projets"],
+    "viewport": "Titre, sous-titre, bouton, puis réalisations en cartes.",
+    "risk": "Impossible à distinguer de la concurrence, par construction."
+  },
+  "steer": true
+}

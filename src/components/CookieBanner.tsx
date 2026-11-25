@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
+import TLink from "./TLink";
 import { useConsent } from "../lib/consent";
 import { useI18n } from "../i18n";
 
@@ -24,17 +24,17 @@ export default function CookieBanner() {
       className="fixed inset-x-0 bottom-0 z-[200] p-4 sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-md"
     >
       <div
-        className="glass-light-solid rounded-2xl border p-6 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)]"
-        style={{ borderColor: "var(--home-border)", color: "var(--home-text)" }}
+        className="surface p-6"
+        style={{ color: "var(--ink)", boxShadow: "var(--shadow)", borderRadius: 22 }}
       >
-        <h2 id="cookie-title" className="font-display text-base font-bold">
+        <h2 id="cookie-title" className="text-base font-extrabold">
           {c.title}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
+        <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--ink-2)" }}>
           {c.text}{" "}
-          <Link href="/confidentialite#cookies" className="underline underline-offset-2">
+          <TLink href="/confidentialite#cookies" className="underline underline-offset-2">
             {c.more}
-          </Link>
+          </TLink>
         </p>
 
         {details && (
@@ -42,7 +42,7 @@ export default function CookieBanner() {
             <label className="flex items-start justify-between gap-4">
               <span>
                 <span className="font-semibold">{c.necessary}</span>
-                <span className="block text-xs" style={{ color: "var(--home-text-muted)" }}>
+                <span className="block text-xs" style={{ color: "var(--ink-2)" }}>
                   {c.necessaryDesc}
                 </span>
               </span>
@@ -51,7 +51,7 @@ export default function CookieBanner() {
             <label className="flex cursor-pointer items-start justify-between gap-4">
               <span>
                 <span className="font-semibold">{c.analytics}</span>
-                <span className="block text-xs" style={{ color: "var(--home-text-muted)" }}>
+                <span className="block text-xs" style={{ color: "var(--ink-2)" }}>
                   {c.analyticsDesc}
                 </span>
               </span>
@@ -59,26 +59,26 @@ export default function CookieBanner() {
                 type="checkbox"
                 checked={analytics}
                 onChange={(e) => setAnalytics(e.target.checked)}
-                className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-[var(--accent-strong)]"
+                className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-[#24222d]"
               />
             </label>
           </div>
         )}
 
         <div className="mt-5 flex flex-wrap gap-2">
-          <button type="button" onClick={() => save(false)} className="grow whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold" style={{ borderColor: "var(--home-border)" }}>
+          <button type="button" onClick={() => save(false)} className="btn btn-line grow !min-h-[2.6rem] whitespace-nowrap !py-2 text-sm">
             {c.reject}
           </button>
           {details ? (
-            <button type="button" onClick={() => save(analytics)} className="grow whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold" style={{ borderColor: "var(--home-border)" }}>
+            <button type="button" onClick={() => save(analytics)} className="btn btn-line grow !min-h-[2.6rem] whitespace-nowrap !py-2 text-sm">
               {c.save}
             </button>
           ) : (
-            <button type="button" onClick={() => setDetails(true)} className="grow whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold" style={{ borderColor: "var(--home-border)" }}>
+            <button type="button" onClick={() => setDetails(true)} className="btn btn-line grow !min-h-[2.6rem] whitespace-nowrap !py-2 text-sm">
               {c.customize}
             </button>
           )}
-          <button type="button" onClick={() => save(true)} className="btn-accent grow whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold">
+          <button type="button" onClick={() => save(true)} className="btn btn-light grow !min-h-[2.6rem] whitespace-nowrap !py-2 text-sm">
             {c.accept}
           </button>
         </div>

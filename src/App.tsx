@@ -1,59 +1,54 @@
-import { Suspense, lazy, useEffect } from "react";
-import { Route, Switch, useLocation } from "wouter";
-import { ThemeProvider } from "./lib/theme";
+import { useEffect } from "react";
+import { Route, Router, Switch, useLocation } from "wouter";
 import { ConsentProvider } from "./lib/consent";
-import { I18nProvider } from "./i18n";
-import { RealityWarpOverlay } from "./lib/warp/RealityWarpOverlay";
+import { I18nProvider, langBase, splitPath } from "./i18n";
+import { armReveals } from "./lib/reveal";
 import CookieBanner from "./components/CookieBanner";
 import Home from "./pages/Home";
 import Catalogue from "./pages/Catalogue";
 import Contact from "./pages/Contact";
+import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
 
-const Legal = lazy(() => import("./pages/Legal"));
-
-/** Scroll to the #hash target after a route change (e.g. /contact#offres),
- *  otherwise start the new page at the top. */
-function ScrollManager() {
+function Routes() {
   const [location] = useLocation();
-  useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (!hash) {
-      window.scrollTo(0, 0);
-      return;
-    }
-    const t = window.setTimeout(() => document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" }), 120);
-    return () => window.clearTimeout(t);
-  }, [location]);
-  return null;
+  useEffect(() => armReveals(), [location]);
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/projets" component={Catalogue} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/mentions-legales">{() => <Legal page="notice" />}</Route>
+      <Route path="/confidentialite">{() => <Legal page="privacy" />}</Route>
+      <Route path="/cgv">{() => <Legal page="terms" />}</Route>
+      <Route component={NotFound} />
+    </Switch>
+  );
 }
 
-export default function App() {
+/** The language is the first path segment (none for French); everything
+ *  below it runs inside a router based on that prefix. */
+function Shell({ ssrPath }: { ssrPath?: string }) {
+  const [fullPath] = useLocation();
+  const { lang } = splitPath(fullPath.replace(/\/+$/, "") || "/");
+  const base = langBase(lang);
+  const inner = ssrPath ? splitPath(ssrPath).rest : undefined;
   return (
-    <I18nProvider>
+    <I18nProvider lang={lang}>
       <ConsentProvider>
-        <ThemeProvider>
-          <ScrollManager />
-          <div className="mode-sweep" aria-hidden="true" />
-          {/* Stable node across route changes — useRealityWarp() transforms
-              this exact element (scale/blur/y) through the transition. */}
-          <div id="warp-viewport">
-            <Suspense fallback={<div style={{ minHeight: "100vh", background: "var(--home-bg)" }} />}>
-              <Switch>
-                <Route path="/" component={Home} />
-                <Route path="/projets" component={Catalogue} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/mentions-legales">{() => <Legal page="notice" />}</Route>
-                <Route path="/confidentialite">{() => <Legal page="privacy" />}</Route>
-                <Route path="/cgv">{() => <Legal page="terms" />}</Route>
-                <Route component={NotFound} />
-              </Switch>
-            </Suspense>
-          </div>
-          <RealityWarpOverlay />
-          <CookieBanner />
-        </ThemeProvider>
+        <Router base={base} ssrPath={inner}>
+          <Routes />
+        </Router>
+        <CookieBanner />
       </ConsentProvider>
     </I18nProvider>
+  );
+}
+
+export default function App({ ssrPath }: { ssrPath?: string }) {
+  return (
+    <Router ssrPath={ssrPath}>
+      <Shell ssrPath={ssrPath} />
+    </Router>
   );
 }

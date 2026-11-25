@@ -1,7 +1,6 @@
 import { useEffect, useId, useState } from "react";
 import type { FormEvent } from "react";
-import { Mail, Paper } from "@getpapillon/papicons";
-import { GsapReveal as Reveal } from "../lib/GsapReveal";
+import { Mail, Paper, Check } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import { CONTACT_EMAIL } from "../lib/site";
 import { onQuotePreset } from "../lib/quoteEvents";
@@ -23,6 +22,7 @@ export default function ContactCTA() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState<"email" | "message" | null>(null);
+  const [sent, setSent] = useState(false);
 
   useEffect(
     () =>
@@ -70,7 +70,10 @@ export default function ContactCTA() {
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    if (guard(e)) window.location.href = links.mailto;
+    if (guard(e)) {
+      window.location.href = links.mailto;
+      setSent(true);
+    }
   };
 
   const copy = async (what: "email" | "message") => {
@@ -83,47 +86,45 @@ export default function ContactCTA() {
     }
   };
 
-  const field = "mt-1.5 w-full rounded-xl border bg-transparent px-4 py-3 text-sm outline-none transition-colors focus:border-[var(--accent-strong)]";
-  const fieldStyle = { borderColor: "var(--home-border)", background: "var(--home-bg)" };
-  const label = "block text-left text-sm font-semibold";
+  const label = "block text-sm font-bold";
 
   return (
-    <section id="contact" className="relative scroll-mt-20 overflow-hidden px-6 py-24 sm:px-10 sm:py-32">
-      <div className="orb-field">
-        <span className="orb orb-a" style={{ opacity: 0.3 }} />
-        <span className="orb orb-b" style={{ opacity: 0.25 }} />
-      </div>
-      <Reveal className="relative z-10">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-            {c.kicker}
-          </span>
-          <h2 className="font-display mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-            {c.title1} <span className="text-gradient-ink">{c.title2}</span>
+    <section id="contact" className="cv scroll-mt-24 py-24 sm:py-32" style={{ background: "var(--bg-2)" }} aria-labelledby="contact-heading">
+      <div className="wrap grid gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <h2 id="contact-heading" className="h2" data-reveal="rise">
+            {c.title}
           </h2>
-          <p className="mt-5 text-base leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
+          <p className="muted mt-6 max-w-md text-lg" data-reveal="rise" style={{ ["--i" as string]: 1 }}>
             {c.text}
           </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3" data-reveal="rise" style={{ ["--i" as string]: 2 }}>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="link break-all text-lg font-bold" style={{ color: "var(--ink)" }}>
+              {CONTACT_EMAIL}
+            </a>
+            <button type="button" onClick={() => copy("email")} className="btn btn-line !min-h-[2.4rem] !px-3.5 !py-1.5 text-xs">
+              <Paper size={14} aria-hidden="true" />
+              <span aria-live="polite">{copied === "email" ? c.copied : c.copy}</span>
+            </button>
+          </div>
         </div>
 
-        <form onSubmit={submit} noValidate className="glass-light-solid mx-auto mt-12 max-w-2xl rounded-2xl p-6 sm:p-10">
-          <h3 className="font-display text-xl font-bold">{f.title}</h3>
-          <p className="mt-2 text-sm" style={{ color: "var(--home-text-muted)" }}>
-            {f.intro}
-          </p>
+        <form onSubmit={submit} noValidate className="surface p-6 sm:p-10 lg:col-span-7" style={{ boxShadow: "var(--shadow)" }}>
+          <h3 className="h3">{f.title}</h3>
+          <p className="muted mt-2 text-[0.95rem]">{f.intro}</p>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <label className={label}>
               {f.name}
-              <input className={field} style={fieldStyle} value={name} onChange={(e) => setName(e.target.value)} placeholder={f.namePh} autoComplete="name" />
+              <input className="field" value={name} onChange={(e) => setName(e.target.value)} placeholder={f.namePh} autoComplete="name" />
             </label>
             <label className={label}>
               {f.business}
-              <input className={field} style={fieldStyle} value={business} onChange={(e) => setBusiness(e.target.value)} placeholder={f.businessPh} autoComplete="organization" />
+              <input className="field" value={business} onChange={(e) => setBusiness(e.target.value)} placeholder={f.businessPh} autoComplete="organization" />
             </label>
             <label className={label}>
               {f.offer}
-              <select className={field} style={fieldStyle} value={offer} onChange={(e) => setOffer(Number(e.target.value))}>
+              <select className="field" value={offer} onChange={(e) => setOffer(Number(e.target.value))}>
                 <option value={-1}>{f.offerUnsure}</option>
                 {t.offers.items.map((o, i) => (
                   <option key={i} value={i}>
@@ -134,7 +135,7 @@ export default function ContactCTA() {
             </label>
             <label className={label}>
               {f.deadline}
-              <select className={field} style={fieldStyle} value={deadline} onChange={(e) => setDeadline(Number(e.target.value))}>
+              <select className="field" value={deadline} onChange={(e) => setDeadline(Number(e.target.value))}>
                 {f.deadlines.map((d, i) => (
                   <option key={d} value={i}>
                     {d}
@@ -144,8 +145,8 @@ export default function ContactCTA() {
             </label>
           </div>
 
-          <label className="mt-5 flex cursor-pointer items-center gap-3 text-left text-sm">
-            <input type="checkbox" checked={care} onChange={(e) => setCare(e.target.checked)} className="h-4 w-4 shrink-0 accent-[var(--accent-strong)]" />
+          <label className="mt-5 flex cursor-pointer items-center gap-3 text-[0.95rem] font-semibold">
+            <input type="checkbox" checked={care} onChange={(e) => setCare(e.target.checked)} className="h-5 w-5 shrink-0 accent-[#24222d]" />
             {f.care}
           </label>
 
@@ -154,8 +155,7 @@ export default function ContactCTA() {
           </label>
           <textarea
             id={`${id}-message`}
-            className={`${field} min-h-32 resize-y`}
-            style={{ ...fieldStyle, ...(error && !valid ? { borderColor: "#e5484d" } : null) }}
+            className="field min-h-36 resize-y"
             value={message}
             onChange={(e) => {
               setMessage(e.target.value);
@@ -166,44 +166,38 @@ export default function ContactCTA() {
             aria-describedby={error && !valid ? `${id}-err` : undefined}
           />
           {error && !valid && (
-            <p id={`${id}-err`} role="alert" className="mt-2 text-left text-sm" style={{ color: "#e5484d" }}>
+            <p id={`${id}-err`} role="alert" className="mt-2 text-sm font-semibold" style={{ color: "#c8323f" }}>
               {f.required}
             </p>
           )}
 
-          <button type="submit" className="btn-accent glow-pulse mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-semibold">
+          <button type="submit" className="btn btn-light mt-7 w-full">
             <Mail size={18} aria-hidden="true" />
             {f.send}
           </button>
+          {sent && (
+            <p role="status" className="mt-3 flex items-start gap-2 text-sm font-semibold">
+              <Check size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
+              {f.opened}
+            </p>
+          )}
 
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm">
-            <span style={{ color: "var(--home-text-muted)" }}>{f.webmail}</span>
-            <a href={links.gmail} target="_blank" rel="noopener noreferrer" onClick={guard} className="rounded-full border px-4 py-2 font-semibold" style={{ borderColor: "var(--home-border)" }}>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm">
+            <span className="muted">{f.webmail}</span>
+            <a href={links.gmail} target="_blank" rel="noopener noreferrer" onClick={guard} className="btn btn-line !min-h-[2.4rem] !px-4 !py-1.5 text-sm">
               Gmail
             </a>
-            <a href={links.outlook} target="_blank" rel="noopener noreferrer" onClick={guard} className="rounded-full border px-4 py-2 font-semibold" style={{ borderColor: "var(--home-border)" }}>
+            <a href={links.outlook} target="_blank" rel="noopener noreferrer" onClick={guard} className="btn btn-line !min-h-[2.4rem] !px-4 !py-1.5 text-sm">
               Outlook
             </a>
-            <button type="button" onClick={() => valid ? copy("message") : setError(true)} className="rounded-full border px-4 py-2 font-semibold" style={{ borderColor: "var(--home-border)" }}>
+            <button type="button" onClick={() => (valid ? copy("message") : setError(true))} className="btn btn-line !min-h-[2.4rem] !px-4 !py-1.5 text-sm">
               <span aria-live="polite">{copied === "message" ? f.copied : f.copy}</span>
             </button>
           </div>
 
-          <p className="mt-6 text-center text-xs" style={{ color: "var(--home-text-muted)" }}>
-            {f.privacy}
-          </p>
+          <p className="meta mt-6 text-center">{f.privacy}</p>
         </form>
-
-        <div className="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-3 text-sm" style={{ color: "var(--home-text-muted)" }}>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium break-all hover:text-[var(--accent-ink)]">
-            {CONTACT_EMAIL}
-          </a>
-          <button type="button" onClick={() => copy("email")} className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold" style={{ borderColor: "var(--home-border)" }}>
-            <Paper size={14} aria-hidden="true" />
-            <span aria-live="polite">{copied === "email" ? c.copied : c.copy}</span>
-          </button>
-        </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

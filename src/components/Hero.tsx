@@ -1,130 +1,91 @@
-import { lazy, Suspense, useEffect, useState } from "react";
-import { Link } from "wouter";
-import { Check } from "@getpapillon/papicons";
+import { ArrowRight, ArrowDown } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
-import { useMagnetic } from "../lib/useMagnetic";
-import { useReducedMotion } from "../lib/useReducedMotion";
-import { useTheme, MODE_COLORS } from "../lib/theme";
-import { StaticFallback } from "../lib/three/StaticFallback";
-import { useRealityWarp } from "../lib/warp/useRealityWarp";
+import Sculpture from "./Sculpture";
+import Particles from "./Particles";
+import LiveTiming from "./LiveTiming";
+import TLink from "./TLink";
 
-// three.js + @react-three/fiber + @react-three/drei are a genuinely heavy
-// dependency — code-split it into its own chunk so the headline/CTAs paint
-// immediately from the tiny StaticFallback gradient, then the real 3D
-// scene streams in and cross-fades once ready instead of blocking first
-// paint for every visitor.
-const HeroScene = lazy(() => import("../lib/three/HeroScene"));
+// where each letter of the name flies in from during Genesis
+const SCATTER = [
+  { dx: "-0.55em", dy: "-0.35em", r: "-16deg" },
+  { dx: "0.15em", dy: "0.55em", r: "11deg" },
+  { dx: "0.45em", dy: "-0.45em", r: "19deg" },
+  { dx: "0.8em", dy: "0.3em", r: "-13deg" },
+  { dx: "0.3em", dy: "0.5em", r: "9deg" },
+];
+
+// static keyframes per letter (no var() inside keyframes, so the
+// browser can run them off the main thread)
+const LETTER_KEYFRAMES = SCATTER.map(
+  (s, i) => `@keyframes letter-${i}{from{transform:translate(${s.dx},${s.dy}) rotate(${s.r}) scale(.92)}}`
+).join("");
 
 export default function Hero() {
   const { t } = useI18n();
-  const { mode } = useTheme();
-  const reducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-  const primaryCta = useMagnetic<HTMLButtonElement>(0.3);
-  const secondaryCta = useMagnetic<HTMLAnchorElement>(0.3);
-  const { triggerWarp } = useRealityWarp();
-
-  useEffect(() => {
-    const t = window.setTimeout(() => setMounted(true), 80);
-    return () => window.clearTimeout(t);
-  }, []);
-
-  const enter = (delayMs: number) => ({
-    opacity: mounted || reducedMotion ? 1 : 0,
-    transform: mounted || reducedMotion ? "none" : "translateY(24px)",
-    transition: `opacity 0.7s var(--ease-out) ${delayMs}ms, transform 0.8s var(--ease-spring) ${delayMs}ms`,
-  });
+  const h = t.hero;
 
   return (
-    <section
-      id="top"
-      className="dark-scope relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-24 pt-32 sm:px-10 sm:pt-40"
-      style={{ background: "#07070a" }}
-    >
-      <Suspense fallback={<StaticFallback colors={MODE_COLORS[mode]} />}>
-        <HeroScene />
-      </Suspense>
-
-      {/* Legibility scrim so the headline always reads over the shader,
-          whatever hue the current accent mode swings toward. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(100deg, rgba(5,5,7,0.75) 0%, rgba(5,5,7,0.35) 46%, rgba(5,5,7,0.08) 75%)" }}
-      />
-
-      <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <span
-          style={{ ...enter(0), borderColor: "rgba(244,243,238,0.18)", color: "var(--accent)" }}
-          className="inline-block rounded-full border px-4 py-1.5 text-xs font-semibold tracking-[0.2em] backdrop-blur-sm"
-        >
-          {t.hero.badge}
-        </span>
-
-        <h1
-          id="hero-heading"
-          tabIndex={-1}
-          style={enter(90)}
-          className="font-display mt-7 max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight text-white outline-none sm:text-7xl lg:text-[5.5rem]"
-        >
-          {t.hero.title1} <span className="text-gradient">{t.hero.title2}</span>
-        </h1>
-
-        <p style={{ ...enter(190), color: "rgba(244,243,238,0.72)" }} className="mt-7 max-w-lg text-base leading-relaxed sm:text-lg">
-          {t.hero.subtitle}
-        </p>
-        <p style={{ ...enter(240), color: "var(--accent)" }} className="mt-4 text-sm font-semibold tracking-wide">
-          {t.hero.price}
-        </p>
-
-        <div style={enter(300)} className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
-          {/* The "Reality Warp" trigger: a real navigation to /projets, just
-              staged through a full-screen boost/impact sequence first
-              instead of a plain route swap — see useRealityWarp(). A
-              button (not a Link) since the transition itself, not a plain
-              href, drives when the route actually changes. */}
-          <button
-            type="button"
-            ref={primaryCta.ref}
-            onClick={() => triggerWarp("/projets")}
-            onPointerMove={primaryCta.onPointerMove}
-            onPointerLeave={primaryCta.onPointerLeave}
-            className="btn-accent glow-pulse rounded-full px-8 py-3.5 text-center text-sm font-semibold shadow-[0_14px_45px_-16px_rgba(var(--accent-rgb),0.85)] will-change-transform"
-          >
-            {t.hero.ctaPrimary}
-          </button>
-          {/* eslint-disable @typescript-eslint/no-explicit-any */}
-          <Link
-            {...({
-              ref: secondaryCta.ref,
-              href: "/contact#contact",
-              onPointerMove: secondaryCta.onPointerMove,
-              onPointerLeave: secondaryCta.onPointerLeave,
-              className:
-                "rounded-full border px-8 py-3.5 text-center text-sm font-semibold text-white/85 backdrop-blur-sm transition-colors hover:text-white will-change-transform",
-              style: { borderColor: "rgba(244,243,238,0.22)" },
-            } as any)}
-          >
-            {t.hero.ctaSecondary} →
-          </Link>
-          {/* eslint-enable @typescript-eslint/no-explicit-any */}
+    <section className="hero-stage relative overflow-hidden pt-[6.5rem] sm:pt-28" aria-labelledby="hero-heading">
+      <style>{LETTER_KEYFRAMES}</style>
+      <div className="wrap relative grid min-h-[calc(100svh-6.5rem)] grid-cols-1 content-center gap-y-10 pb-10 lg:grid-cols-12 lg:gap-x-8 lg:pb-14">
+        {/* sculpture: right column on desktop, tucked behind the name on phones */}
+        <div className="pointer-events-auto absolute right-[-2vw] top-[-0.75rem] z-0 w-[36vw] max-w-[18rem] sm:right-0 sm:top-0 sm:w-[30vw] lg:static lg:order-2 lg:col-span-5 lg:col-start-8 lg:w-auto lg:max-w-none lg:self-center lg:opacity-100">
+          <div className="relative mx-auto aspect-[41/45] w-full max-w-[31rem]">
+            <Particles />
+            <Sculpture className="relative h-full w-full" />
+          </div>
         </div>
 
-        <ul style={enter(400)} className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm">
-          {t.hero.trust.map((item) => (
-            <li key={item} className="flex items-center gap-1.5" style={{ color: "rgba(244,243,238,0.7)" }}>
-              <Check size={14} style={{ color: "var(--accent)" }} aria-hidden="true" />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="relative z-10 lg:order-1 lg:col-span-7">
+          <h1 id="hero-heading" className="font-display -ml-[0.04em] mt-2 italic" style={{ fontSize: "var(--fs-name)", lineHeight: 0.82, letterSpacing: "-0.035em" }}>
+            <span className="sr-only">
+              {h.name}, {h.role}
+            </span>
+            <span aria-hidden="true">
+              {Array.from(h.name).map((ch, i) => {
+                                return (
+                  <span key={i} className="genesis-letter" style={{ ["--i" as string]: i, animationName: `letter-${i % SCATTER.length}` }}>
+                    {ch}
+                  </span>
+                );
+              })}
+              <span className="genesis-letter not-italic" style={{ ["--i" as string]: h.name.length, animationName: `letter-${h.name.length % SCATTER.length}`, color: "var(--iris-ink)" }}>
+                .
+              </span>
+            </span>
+          </h1>
 
-      <div style={enter(520)} className="pointer-events-none absolute inset-x-0 bottom-8 z-10 flex flex-col items-center gap-2">
-        <span className="font-mono text-[10px] tracking-[0.3em]" style={{ color: "rgba(244,243,238,0.45)" }}>
-          {t.hero.scroll}
-        </span>
-        <span className="h-8 w-px animate-pulse" style={{ background: "var(--accent)" }} />
+          <p className="mt-5 text-xl font-extrabold">{h.role}</p>
+          <p className="genesis-up mt-3 max-w-[34rem]" style={{ ["--d" as string]: "380ms", fontSize: "var(--fs-lead)", lineHeight: 1.55, color: "var(--ink-2)" }}>
+            {h.lead}
+          </p>
+          <p className="genesis-up mt-5 font-display text-[1.9rem] leading-none" style={{ ["--d" as string]: "460ms" }}>
+            {h.price}
+          </p>
+
+          <div className="genesis-up mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" style={{ ["--d" as string]: "560ms" }}>
+            <TLink href="/contact#contact" className="btn btn-light">
+              {h.cta}
+              <ArrowRight size={18} aria-hidden="true" />
+            </TLink>
+            <TLink href="/projets" className="btn btn-line">
+              {h.ctaWork}
+            </TLink>
+          </div>
+        </div>
+
+        <div
+          className="genesis-up relative z-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-5 text-[0.8125rem] lg:order-3 lg:col-span-12"
+          style={{ ["--d" as string]: "720ms", borderColor: "var(--line)", color: "var(--ink-3)" }}
+        >
+          <LiveTiming />
+          <span>{h.based}</span>
+          <span>{h.reply}</span>
+          <a href="#realisations" className="ml-auto inline-flex items-center gap-1.5 font-semibold no-underline" style={{ color: "var(--ink)" }}>
+            {h.scroll}
+            <ArrowDown size={16} aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </section>
   );

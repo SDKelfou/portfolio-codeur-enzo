@@ -1,28 +1,26 @@
-import Nav from "../components/Nav";
+import Layout from "../components/Layout";
 import Hero from "../components/Hero";
+import Projects from "../components/Projects";
 import Method from "../components/Method";
 import Offers from "../components/Offers";
-import CatalogueTeaser from "../components/CatalogueTeaser";
+import About from "../components/About";
 import Faq from "../components/Faq";
 import ContactCTA from "../components/ContactCTA";
-import ModeSwitcher from "../components/ModeSwitcher";
 import { useI18n } from "../i18n";
+import { usePageMeta } from "../lib/head";
 
 export default function Home() {
   const { t } = useI18n();
+  usePageMeta(t.meta.title, t.meta.description);
   return (
-    <main style={{ background: "var(--home-bg)", color: "var(--home-text)" }}>
-      <a href="#hero-heading" className="skip-link">
-        {t.skip}
-      </a>
-      <Nav />
+    <Layout>
       <Hero />
+      <Projects />
       <Method />
-      <CatalogueTeaser />
       <Offers />
+      <About />
       <Faq />
       <ContactCTA />
-      <ModeSwitcher />
-    </main>
+    </Layout>
   );
 }

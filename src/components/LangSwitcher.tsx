@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Globe } from "@getpapillon/papicons";
-import { LANGS, useI18n } from "../i18n";
+import { useLocation } from "wouter";
+import { LANGS, localizedPath, useI18n } from "../i18n";
 
-/** Compact language picker: globe + current code, opens a list of the
- *  seven languages written in their own language. */
-export default function LangSwitcher() {
-  const { lang, setLang, t } = useI18n();
+/** Language picker: each language is a real URL (/en/…, /es/…), so the
+ *  options are links, which also lets crawlers find every version. */
+export default function LangSwitcher({ onPick, up = false }: { onPick?: () => void; up?: boolean }) {
+  const { lang, t } = useI18n();
+  const [location] = useLocation();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -28,37 +30,36 @@ export default function LangSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={t.nav.language}
-        className="flex h-11 items-center gap-1.5 rounded-full border px-3 text-xs font-semibold uppercase transition-transform hover:scale-105"
-        style={{ borderColor: "var(--home-border)" }}
+        className="flex h-11 items-center gap-1.5 rounded-full border px-3 text-xs font-bold uppercase transition-colors hover:border-[var(--ink)]"
+        style={{ borderColor: "var(--line-strong)" }}
       >
         <Globe size={16} aria-hidden="true" />
         {lang}
       </button>
       {open && (
         <ul
-          role="listbox"
-          aria-label={t.nav.language}
-          className="glass-light-solid absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border py-1 text-sm shadow-[0_20px_50px_-20px_rgba(0,0,0,0.45)]"
-          style={{ borderColor: "var(--home-border)" }}
+          className={`surface absolute right-0 z-50 w-48 overflow-hidden py-1.5 text-sm ${up ? "bottom-full mb-2" : "mt-2"}`}
+          style={{ boxShadow: "var(--shadow)", borderRadius: 18 }}
         >
           {LANGS.map((l) => (
-            <li key={l.code} role="option" aria-selected={l.code === lang}>
-              <button
-                type="button"
+            <li key={l.code}>
+              <a
+                href={localizedPath(l.code, location)}
+                hrefLang={l.code}
                 lang={l.code}
+                aria-current={l.code === lang ? "true" : undefined}
                 onClick={() => {
-                  setLang(l.code);
                   setOpen(false);
+                  onPick?.();
                 }}
-                className="flex w-full items-center justify-between px-4 py-2.5 text-left transition-colors hover:text-[var(--accent-ink)]"
-                style={l.code === lang ? { color: "var(--accent-ink)", fontWeight: 600 } : undefined}
+                className="flex items-center justify-between px-4 py-2.5 no-underline transition-colors hover:bg-[var(--bg)]"
+                style={{ color: "var(--ink)", fontWeight: l.code === lang ? 700 : 500 }}
               >
                 {l.label}
-                <span className="text-[10px] uppercase opacity-60">{l.code}</span>
-              </button>
+                <span className="meta uppercase">{l.code}</span>
+              </a>
             </li>
           ))}
         </ul>

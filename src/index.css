@@ -1,490 +1,711 @@
 @import "tailwindcss";
-@import "@fontsource/syne/700.css";
-@import "@fontsource/syne/800.css";
-@import "@fontsource-variable/dm-sans";
+@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
+@import "@fontsource-variable/manrope/wght.css";
 
 /* ==========================================================================
-   Design tokens — 4 accent modes: ice / neon / violet / obsidian
+   FRACTURE — design tokens
+   Porcelain (light) and Obsidian (dark) share every proportion; only the
+   material changes. Yellow #FFF010 is the single light source: the inside
+   of the cracks, the primary action, the focus ring.
    ========================================================================== */
 
 :root {
-  --font-display: "Syne", "DM Sans Variable", system-ui, sans-serif;
-  --font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
+  --font-body: "Manrope Variable", "Manrope", "Segoe UI", system-ui, sans-serif;
 
-  /* Light "commercial" surface (Home) */
-  --home-bg: #faf9f6;
-  --home-bg-soft: #f2f0ea;
-  --home-surface: #ffffff;
-  --home-text: #14140f;
-  --home-text-muted: #5c5b52;
-  --home-border: rgba(20, 20, 15, 0.09);
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-bg-solid: rgba(255, 255, 255, 0.94);
+  --light: #fff010;
+  --light-ink: #24222d; /* text set on the yellow */
 
-  /* Dark "immersive" surface (Experience, and Home when data-scheme="dark") */
-  --dark-bg: #08080a;
-  --dark-surface: #101014;
-  --dark-text: #f4f3ee;
-  --dark-text-muted: #9a9a94;
-  --dark-border: rgba(244, 243, 238, 0.1);
-
-  /* Accent — default: ice */
-  --accent: #17c3ff;
-  --accent-2: #6a5bff;
-  --accent-soft: #bfe8fa;
-  --accent-strong: #0f7fb8;
-  --accent-rgb: 23, 195, 255;
-  --accent-2-rgb: 106, 91, 255;
-
-  /* AA-safe "ink" text variants: darkened accent/accent-2 for use as TEXT
-     on the light home surface (badges, labels, headline gradient text).
-     The raw --accent/--accent-2 are tuned to glow on dark backgrounds and
-     fall well below 4.5:1 on the light surface in several modes — these
-     ink tokens fix that while staying in the same hue family. They flip
-     back to the bright originals under [data-scheme="dark"] below, where
-     the surface itself goes dark. Never used inside .dark-scope (Experience),
-     which is unconditionally dark and always uses the bright originals. */
-  --accent-ink: #0d7194;
-  --accent-2-ink: #6254eb;
-  --accent-on: #0b0b0d;
+  /* Porcelain */
+  --bg: #f8f6f0;
+  --bg-2: #efebe1;
+  --surface: #ffffff;
+  --ink: #24222d;
+  --ink-2: #4a4757;
+  --ink-3: #5f5b6e; /* smallest technical text, still 6:1 on --bg */
+  --lav: #dcd0f5;
+  --iris: #a99bcf;
+  --iris-ink: #57488c; /* iris dark enough to be text */
+  --cyan: #2f7d7c;
+  --line: rgba(36, 34, 45, 0.14);
+  --line-strong: rgba(36, 34, 45, 0.32);
+  --shard-a: #ffffff;
+  --shard-b: #ece6f8;
+  --shard-c: #dcd0f5;
+  --shard-d: #c7badf;
+  --shard-edge: rgba(36, 34, 45, 0.22);
+  --shadow: 0 30px 60px -30px rgba(52, 40, 92, 0.28), 0 8px 20px -12px rgba(36, 34, 45, 0.18);
+  --focus: var(--ink);
+  --header-bg: rgba(248, 246, 240, 0.94);
+  --particle: 87, 72, 140;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 160ms;
+  --dur-comp: 240ms;
+  --dur-reveal: 560ms;
+  --dur-page: 460ms;
+
+  --fs-name: clamp(7.25rem, 31vw, 19rem);
+  --fs-h2: clamp(2.75rem, 7.4vw, 6.25rem);
+  --fs-h3: clamp(1.6rem, 2.8vw, 2.35rem);
+  --fs-lead: clamp(1.125rem, 1.6vw, 1.35rem);
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+
   color-scheme: light;
 }
 
-[data-mode="ice"] {
-  --accent: #17c3ff;
-  --accent-2: #6a5bff;
-  --accent-soft: #bfe8fa;
-  --accent-strong: #0f7fb8;
-  --accent-rgb: 23, 195, 255;
-  --accent-2-rgb: 106, 91, 255;
-  --accent-ink: #0d7194;
-  --accent-2-ink: #6254eb;
+:root[data-theme="dark"] {
+  --bg: #101016;
+  --bg-2: #191b2b;
+  --surface: #191b2b;
+  --ink: #eeeaf8;
+  --ink-2: #bdb8d0;
+  --ink-3: #a9a3c0;
+  --lav: #c4b1f5;
+  --iris: #c4b1f5;
+  --iris-ink: #c4b1f5;
+  --cyan: #9ADDDC;
+  --line: rgba(238, 234, 248, 0.13);
+  --line-strong: rgba(238, 234, 248, 0.3);
+  --shard-a: #2c2840;
+  --shard-b: #221f33;
+  --shard-c: #191b2b;
+  --shard-d: #3a3256;
+  --shard-edge: rgba(196, 177, 245, 0.45);
+  --shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(196, 177, 245, 0.08);
+  --focus: var(--light);
+  --header-bg: rgba(16, 16, 22, 0.92);
+  --particle: 196, 177, 245;
+  color-scheme: dark;
 }
 
-[data-mode="neon"] {
-  --accent: #39ff88;
-  --accent-2: #d6ff2f;
-  --accent-soft: #c6ffde;
-  --accent-strong: #12c25f;
-  --accent-rgb: 57, 255, 136;
-  --accent-2-rgb: 214, 255, 47;
-  --accent-ink: #1b7a41;
-  --accent-2-ink: #5e7015;
-}
-
-[data-mode="violet"] {
-  --accent: #b565ff;
-  --accent-2: #ff5ec4;
-  --accent-soft: #e5d1fd;
-  --accent-strong: #8b2ee8;
-  --accent-rgb: 181, 101, 255;
-  --accent-2-rgb: 255, 94, 196;
-  --accent-ink: #8a4dc2;
-  --accent-2-ink: #ad4085;
-}
-
-[data-mode="obsidian"] {
-  --accent: #f5c14e;
-  --accent-2: #ff6a3d;
-  --accent-soft: #f6e2b3;
-  --accent-strong: #c98a2c;
-  --accent-rgb: 245, 193, 78;
-  --accent-2-rgb: 255, 106, 61;
-  --accent-ink: #7f6429;
-  --accent-2-ink: #b24a2b;
-}
-
+@layer base {
 /* ==========================================================================
-   Light / dark scheme — independent of the 4 accent modes above.
-   Applies to the light/commercial Home page; /experience is always dark.
+   Base
    ========================================================================== */
 
-[data-scheme="dark"] {
-  --home-bg: var(--dark-bg);
-  --home-bg-soft: #0c0c10;
-  --home-surface: #111116;
-  --home-text: var(--dark-text);
-  --home-text-muted: var(--dark-text-muted);
-  --home-border: var(--dark-border);
-  --glass-bg: rgba(20, 20, 26, 0.6);
-  --glass-bg-solid: rgba(20, 20, 26, 0.92);
-  /* Home surface is now dark — the bright originals read fine on it. */
-  --accent-ink: var(--accent);
-  --accent-2-ink: var(--accent-2);
-  color-scheme: dark;
-}
-
-/* Experience is unconditionally dark regardless of the Home light/dark
-   toggle — give native form controls / scrollbars the matching hint. */
-.dark-scope {
-  color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 html {
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5.5rem;
+  background: var(--bg);
 }
 
 body {
   margin: 0;
-  background: var(--home-bg);
-  color: var(--home-text);
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-feature-settings: "ss01", "cv05";
   text-rendering: optimizeLegibility;
-  transition: background 0.4s var(--ease-out), color 0.4s var(--ease-out);
-}
-
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display);
-}
-
-h1, h2, h3 {
-  text-wrap: balance;
-}
-
-a {
-  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 ::selection {
-  background: var(--accent);
-  color: #08080a;
+  background: var(--light);
+  color: var(--light-ink);
 }
 
-/* Focus visibility — never removed */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Sensible default tap behaviour: no double-tap-zoom delay, no lingering
-   grey flash on mobile (every interactive element already has its own
-   hover/active feedback, so the native highlight is redundant, not the
-   only feedback — focus-visible above still always applies). */
-button, a {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
-/* Jump targets for the in-page nav links and the skip link land clear of
-   the fixed header instead of half-hidden behind it. */
-#top, #methode, #projets, #offres {
-  scroll-margin-top: 96px;
+/* sections below the first screen are laid out and painted only when
+   they approach the viewport */
+.cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+.muted {
+  color: var(--ink-2);
+}
+
+.meta {
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* scrollbar themed from the palette */
+* {
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+}
+
+@layer components {
 /* ==========================================================================
-   Skip link — hidden until keyboard-focused, first thing in tab order
+   Controls
    ========================================================================== */
 
-.skip-link {
-  position: fixed;
-  top: -100px;
-  left: 1rem;
-  z-index: 500;
-  background: var(--home-surface);
-  color: var(--home-text);
-  padding: 0.75rem 1.25rem;
+.btn {
+  --press: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.85rem 1.5rem;
   border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.4);
-  transition: top 0.2s var(--ease-out);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    transform var(--dur-comp) var(--ease-out),
+    background-color var(--dur-comp) var(--ease-out),
+    border-color var(--dur-comp) var(--ease-out),
+    box-shadow var(--dur-comp) var(--ease-out);
+  transform: translateY(calc(var(--press) * 1px));
 }
 
-.skip-link:focus-visible {
-  top: 1rem;
+.btn:active {
+  --press: 1;
+  transition-duration: 60ms;
 }
 
-/* ==========================================================================
-   Mode-sweep transition (theme switch)
-   ========================================================================== */
-
-.mode-sweep {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  pointer-events: none;
-  background: radial-gradient(circle at var(--sweep-x, 50%) var(--sweep-y, 50%), var(--accent) 0%, transparent 70%);
-  opacity: 0;
+.btn svg {
+  transition: transform var(--dur-comp) var(--ease-out);
 }
 
-.mode-changing .mode-sweep {
-  animation: sweep 0.7s var(--ease-out);
+.btn:hover svg {
+  transform: translateX(3px);
 }
 
-@keyframes sweep {
-  0% { opacity: 0.55; transform: scale(0.2); }
-  60% { opacity: 0.22; }
-  100% { opacity: 0; transform: scale(2.4); }
+.btn-light {
+  background: var(--light);
+  color: var(--light-ink);
+  box-shadow: 0 10px 24px -14px rgba(120, 110, 0, 0.7);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mode-changing .mode-sweep {
-    animation: none;
-  }
+.btn-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -16px rgba(120, 110, 0, 0.75);
 }
 
-/* ==========================================================================
-   Pointer-tracked halo (Hero)
-   ========================================================================== */
-
-.pointer-halo {
-  background: radial-gradient(
-    480px circle at var(--pointer-x, 50%) var(--pointer-y, 40%),
-    rgba(var(--accent-rgb), 0.16),
-    transparent 65%
-  );
-  transition: background 0.4s var(--ease-out);
+.btn-line {
+  border-color: var(--line-strong);
+  color: var(--ink);
+  background: transparent;
 }
 
-/* ==========================================================================
-   Glass cards
-   ========================================================================== */
-
-.glass-light {
-  background: var(--glass-bg);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--home-border);
-  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+.btn-line:hover {
+  border-color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
 }
 
-.glass-dark {
-  background: rgba(16, 16, 20, 0.6);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--dark-border);
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
-/* Solid (non-backdrop-filter) equivalents — required for any card that also
-   gets a 3D tilt transform: combining backdrop-filter with a perspective/
-   rotate transform triggers a Chromium compositing bug that renders the
-   card permanently blurred. Use these inside .tilt-card instead. */
-.glass-light-solid {
-  background: var(--glass-bg-solid);
-  border: 1px solid var(--home-border);
-  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+/* text link with a crack-line underline that grows from the left */
+.link {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--dur-comp) var(--ease-out), color var(--dur-micro);
+  padding-bottom: 2px;
 }
 
-.glass-dark-solid {
-  background: rgba(18, 18, 23, 0.92);
-  border: 1px solid var(--dark-border);
+.link:hover,
+.link[aria-current="page"] {
+  background-size: 100% 1px;
 }
 
-/* ==========================================================================
-   Scrollbar (dark surfaces)
-   ========================================================================== */
-
-/* Scrollbar (dark experience page) */
-.dark-scope ::-webkit-scrollbar {
-  width: 10px;
-}
-.dark-scope ::-webkit-scrollbar-track {
-  background: var(--dark-bg);
-}
-.dark-scope ::-webkit-scrollbar-thumb {
-  background: rgba(var(--accent-rgb), 0.4);
-  border-radius: 999px;
+.field {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color var(--dur-micro), box-shadow var(--dur-comp) var(--ease-out);
 }
 
-/* ==========================================================================
-   Gradient text
-   ========================================================================== */
-
-.text-gradient {
-  background: linear-gradient(100deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Same treatment, AA-safe on the light home surface (see --accent-ink
-   above). Use this — not .text-gradient — for headline text that sits
-   directly on --home-bg / --home-bg-soft. Components that live on their
-   own always-dark surface (the Experience phases, the DemoCards banner)
-   keep .text-gradient. */
-.text-gradient-ink {
-  background: linear-gradient(100deg, var(--accent-ink), var(--accent-2-ink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ==========================================================================
-   Primary accent button — solid-ish accent surface + guaranteed-readable
-   ink text. Replaces the earlier white-text-on-bright-gradient buttons,
-   which dropped as low as 1.3:1 contrast in the neon/obsidian modes.
-   ========================================================================== */
-
-.btn-accent {
-  background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 80%, black));
-  color: var(--accent-on);
-}
-
-/* ==========================================================================
-   Floating gradient orbs (ambient depth)
-   ========================================================================== */
-
-.orb-field {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
-  animation: orbFloat 16s ease-in-out infinite;
-}
-
-.orb-a {
-  width: 42vw;
-  height: 42vw;
-  max-width: 560px;
-  max-height: 560px;
-  top: -14%;
-  left: -8%;
-  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.55), transparent 70%);
-  animation-duration: 18s;
-}
-
-.orb-b {
-  width: 34vw;
-  height: 34vw;
-  max-width: 460px;
-  max-height: 460px;
-  bottom: -12%;
-  right: -6%;
-  background: radial-gradient(circle, rgba(var(--accent-2-rgb), 0.5), transparent 70%);
-  animation-duration: 22s;
-  animation-delay: -6s;
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(4%, 6%) scale(1.08); }
-  66% { transform: translate(-3%, -4%) scale(0.95); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .orb {
-    animation: none;
-  }
-}
-
-/* ==========================================================================
-   3D tilt cards (mouse-tracked perspective)
-   ========================================================================== */
-
-.tilt-card {
-  perspective: 1000px;
-}
-
-.tilt-card-inner {
-  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
-}
-
-.tilt-card:hover .tilt-card-inner,
-.tilt-card:focus-within .tilt-card-inner {
-  transition: transform 0.08s linear, box-shadow 0.4s var(--ease-out);
-}
-
-.tilt-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(220px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(var(--accent-rgb), 0.22), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.35s var(--ease-out);
-  pointer-events: none;
-}
-
-.tilt-card:hover .tilt-glow,
-.tilt-card:focus-within .tilt-glow {
+.field::placeholder {
+  color: var(--ink-3);
   opacity: 1;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tilt-card-inner {
-    transform: none !important;
-    transition: none;
+.field:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--light) 70%, transparent);
+}
+
+.field[aria-invalid="true"] {
+  border-color: #c8323f;
+}
+
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+}
+
+.hairline {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--light);
+  color: var(--light-ink);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Theme switch — the fracture origin
+   ========================================================================== */
+
+.theme-switch {
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform var(--dur-comp) var(--ease-out), border-color var(--dur-micro);
+}
+
+.theme-switch:hover {
+  border-color: var(--ink);
+}
+
+.theme-switch:active {
+  transform: scale(0.92);
+}
+
+.theme-switch .core {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  background: conic-gradient(from 210deg, var(--ink) 0 50%, var(--light) 50% 100%);
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--line-strong);
+  transition: transform 600ms var(--ease-out);
+}
+
+:root[data-theme="dark"] .theme-switch .core {
+  transform: rotate(180deg);
+}
+
+.theme-switch.is-cracking .core {
+  animation: switch-tension 220ms var(--ease-out);
+}
+
+@keyframes switch-tension {
+  40% {
+    transform: scale(0.78);
   }
 }
 
 /* ==========================================================================
-   Glow-pulse CTA accent
+   Header
    ========================================================================== */
 
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.45); }
-  50% { box-shadow: 0 0 0 10px rgba(var(--accent-rgb), 0); }
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background-color var(--dur-comp), border-color var(--dur-comp);
+  border-bottom: 1px solid transparent;
 }
 
-.glow-pulse {
-  animation: glowPulse 2.6s var(--ease-out) infinite;
+.site-header[data-scrolled="true"],
+.site-header[data-open="true"] {
+  background: var(--header-bg);
+  border-bottom-color: var(--line);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .glow-pulse {
-    animation: none;
+.mobile-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: var(--bg);
+  padding: 6.5rem var(--gutter) 2rem;
+  display: flex;
+  flex-direction: column;
+  animation: panel-crack 420ms var(--ease-out) both;
+}
+
+.mobile-panel a.big {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 12vw, 4rem);
+  line-height: 1.05;
+  color: var(--ink);
+  text-decoration: none;
+  display: block;
+  animation: panel-item 480ms var(--ease-out) both;
+  animation-delay: calc(80ms + var(--i) * 45ms);
+}
+
+@keyframes panel-crack {
+  from {
+    clip-path: polygon(100% 0, 100% 0, 100% 0, 100% 18%, 100% 52%, 100% 100%, 100% 100%);
   }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 100% 18%, 100% 52%, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes panel-item {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+}
+
+
+/* ==========================================================================
+   Projects
+   ========================================================================== */
+
+.project-media {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: var(--bg-2);
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+}
+
+.project:hover .project-media img {
+  transform: scale(1.025);
+}
+
+.project-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 40%, color-mix(in srgb, var(--light) 22%, transparent) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 900ms var(--ease-out);
+}
+
+.project:hover .project-media::after {
+  transform: translateX(100%);
+}
+
+.project .go {
+  transition: transform var(--dur-comp) var(--ease-out);
+}
+
+.project:hover .go {
+  transform: translate(3px, -3px);
 }
 
 /* ==========================================================================
-   Easter egg (secret logo click)
+   Pricing
    ========================================================================== */
 
-.egg-pop {
-  animation: eggPop 0.5s var(--ease-spring);
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: border-color var(--dur-comp), transform var(--dur-comp) var(--ease-out);
 }
 
-@keyframes eggPop {
-  0% { opacity: 0; transform: scale(0.7) translateY(-10px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+.price-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
 }
 
-.egg-particle {
-  animation: eggBurst 1.1s var(--ease-out) forwards;
+.price-card[data-featured="true"] {
+  border-color: var(--ink);
+  box-shadow: var(--shadow);
 }
 
-@keyframes eggBurst {
-  0% { opacity: 0; transform: translate(0, 0) scale(0.4) rotate(0deg); }
-  15% { opacity: 1; }
-  100% { opacity: 0; transform: translate(var(--eggx, 0), 90px) scale(1.1) rotate(180deg); }
+.price-card[data-featured="true"]::before {
+  /* a single crack of light across the recommended card's top edge */
+  content: "";
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  top: -1px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--light);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .egg-pop, .egg-particle {
-    animation: none;
-    opacity: 1;
-  }
-}
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
 
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+}
 
 .faq-item summary::-webkit-details-marker {
   display: none;
+}
+
+.faq-item .plus {
+  transition: transform var(--dur-comp) var(--ease-out);
+}
+
+.faq-item[open] .plus {
+  transform: rotate(45deg);
+}
+
+}
+
+/* ==========================================================================
+   Genesis — hero assembly (CSS only, runs before hydration)
+   ========================================================================== */
+
+.genesis-letter {
+  display: inline-block;
+  animation-duration: 900ms;
+  animation-timing-function: var(--ease-out);
+  animation-fill-mode: both;
+  animation-delay: calc(120ms + var(--i) * 70ms);
+}
+
+
+.shard {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-duration: 1000ms;
+  animation-timing-function: var(--ease-out);
+  animation-fill-mode: both;
+  animation-delay: calc(80ms + var(--i) * 38ms);
+  transition: transform 500ms var(--ease-out);
+}
+
+.sculpture:hover .shard {
+  transform: translate(calc(var(--sx) * 0.05), calc(var(--sy) * 0.05));
+}
+
+.sculpture.is-split .shard {
+  transform: translate(calc(var(--sx) * 0.12), calc(var(--sy) * 0.12)) rotate(calc(var(--sr) * 0.1));
+}
+
+.crack-glow {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: crack-draw 700ms var(--ease-in-out) 900ms forwards;
+}
+
+@keyframes crack-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* returning visitors: a shorter, quieter assembly */
+:root.g-short .genesis-letter,
+:root.g-short .shard {
+  animation-duration: 420ms;
+  animation-delay: calc(var(--i) * 18ms);
+}
+
+
+:root.g-short .crack-glow {
+  animation-delay: 300ms;
+}
+
+/* ==========================================================================
+   Scroll reveals (only armed once JS is running; content visible without JS)
+   ========================================================================== */
+
+:root.js [data-reveal]:not(.is-in) {
+  opacity: 0;
+}
+
+:root.js [data-reveal="rise"]:not(.is-in) {
+  transform: translateY(28px);
+}
+
+:root.js [data-reveal="mask"]:not(.is-in) {
+  opacity: 1;
+  clip-path: inset(100% 0 0 0 round 24px);
+}
+
+:root.js [data-reveal="mask"]:not(.is-in) img {
+  transform: scale(1.08);
+}
+
+:root.js [data-reveal="crack"]:not(.is-in) {
+  opacity: 1;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+[data-reveal] {
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out),
+    clip-path 900ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+[data-reveal] img {
+  transition: transform 1200ms var(--ease-out);
+}
+
+[data-reveal].no-anim,
+[data-reveal].no-anim img {
+  transition: none;
+}
+
+/* ==========================================================================
+   View transitions — page change (crack wipe) and theme (fracture)
+   ========================================================================== */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root.vt-page::view-transition-old(root) {
+  animation: page-out var(--dur-page) var(--ease-in-out) both;
+}
+
+:root.vt-page::view-transition-new(root) {
+  animation: page-in var(--dur-page) var(--ease-out) both;
+}
+
+@keyframes page-out {
+  to {
+    transform: translateX(-2.5%) scale(0.985);
+    opacity: 0.4;
+  }
+}
+
+@keyframes page-in {
+  from {
+    clip-path: polygon(108% 0, 130% 0, 130% 100%, 118% 100%, 124% 64%, 112% 36%);
+  }
+  to {
+    clip-path: polygon(-30% 0, 130% 0, 130% 100%, -12% 100%, -24% 64%, -6% 36%);
+  }
+}
+
+/* fallback when the View Transitions API is missing */
+:root.theme-fade,
+:root.theme-fade * {
+  transition: background-color 320ms var(--ease-out), color 320ms var(--ease-out), border-color 320ms var(--ease-out) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  :root.js [data-reveal]:not(.is-in) {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  :root.vt-page::view-transition-old(root),
+  :root.vt-page::view-transition-new(root) {
+    animation: none;
+  }
 }

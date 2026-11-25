@@ -1,42 +1,23 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>enzo.dev — Création de sites web sur mesure dès 799 €</title>
-    <meta name="description" content="Développeur web freelance : sites vitrines sur mesure, rapides et pensés pour convertir. Essentiel dès 799 €, devis gratuit, réponse sous 48 h." />
-    <meta name="theme-color" content="#08080a" />
-    <link rel="canonical" href="https://portfolio-codeur-enzo.vercel.app/" />
+    <script>(function(){try{var d=document.documentElement,t=localStorage.getItem("enzo-dev-theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.dataset.theme=t;if(localStorage.getItem("enzo-dev-visited")){d.classList.add("g-short")}else{localStorage.setItem("enzo-dev-visited","1")}}catch(e){}})();</script>
+    <title>Enzo — Développeur web : sites rapides pour commerces, dès 799 €</title>
+    <meta name="description" content="Enzo, développeur web freelance en France : sites vitrines rapides et sur mesure pour commerces, artisans et indépendants. Dès 799 €, devis gratuit, réponse sous 48 h." />
+    <meta name="theme-color" content="#f8f6f0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="enzo.dev" />
-    <meta property="og:url" content="https://portfolio-codeur-enzo.vercel.app/" />
-    <meta property="og:title" content="enzo.dev — Création de sites web sur mesure dès 799 €" />
-    <meta property="og:description" content="Développeur web freelance : sites vitrines sur mesure, rapides et pensés pour convertir. Essentiel dès 799 €, devis gratuit, réponse sous 48 h." />
-    <meta property="og:locale" content="fr_FR" />
-    <meta name="twitter:card" content="summary" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "enzo.dev",
-        "description": "Création de sites web sur mesure pour indépendants, commerces et petites entreprises.",
-        "url": "https://portfolio-codeur-enzo.vercel.app/",
-        "email": "enzo.entreprise@hotmail.com",
-        "areaServed": ["FR", "BE", "CH", "LU", "ES", "DE", "IT", "PT", "NL"],
-        "availableLanguage": ["fr", "en", "es", "de", "it", "pt", "nl"],
-        "priceRange": "€€",
-        "makesOffer": [
-          { "@type": "Offer", "name": "Site vitrine Essentiel", "price": "799", "priceCurrency": "EUR" },
-          { "@type": "Offer", "name": "Direction artistique", "price": "990", "priceCurrency": "EUR" },
-          { "@type": "Offer", "name": "Hébergement et nom de domaine", "price": "30", "priceCurrency": "EUR" }
-        ]
-      }
-    </script>
+    <meta property="og:title" content="Enzo — Développeur web : sites rapides pour commerces, dès 799 €" />
+    <meta property="og:description" content="Sites vitrines rapides et sur mesure pour commerces, artisans et indépendants. Dès 799 €." />
+    <meta property="og:image" content="https://portfolio-codeur-enzo.vercel.app/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!--head-extra-->
   </head>
   <body>
-    <noscript>enzo.dev — création de sites web sur mesure dès 799 €. Contact : enzo.entreprise@hotmail.com</noscript>
-    <div id="root"></div>
+    <div id="root"><!--app--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

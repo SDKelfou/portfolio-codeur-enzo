@@ -1,41 +1,24 @@
-import Nav from "../components/Nav";
+import Layout from "../components/Layout";
 import Offers from "../components/Offers";
-import Faq from "../components/Faq";
 import ContactCTA from "../components/ContactCTA";
-import ModeSwitcher from "../components/ModeSwitcher";
-import { GsapReveal } from "../lib/GsapReveal";
+import Faq from "../components/Faq";
 import { useI18n } from "../i18n";
+import { usePageMeta } from "../lib/head";
 
 export default function Contact() {
   const { t } = useI18n();
-  const a = t.about;
+  usePageMeta(t.pages.contact.title, t.pages.contact.description);
   return (
-    <main style={{ background: "var(--home-bg)", color: "var(--home-text)" }}>
-      <a href="#contact-heading" className="skip-link">
-        {t.skip}
-      </a>
-      <Nav />
-
-      <section className="relative px-6 pb-4 pt-32 sm:px-10 sm:pt-40">
-        <GsapReveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-semibold tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-              {a.kicker}
-            </span>
-            <h1 id="contact-heading" tabIndex={-1} className="font-display mt-5 text-3xl font-bold tracking-tight outline-none sm:text-4xl">
-              {a.title1} <span className="text-gradient-ink">{a.title2}</span>
-            </h1>
-            <p className="mt-6 text-base leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
-              {a.text}
-            </p>
-          </div>
-        </GsapReveal>
+    <Layout>
+      <section className="pt-36 sm:pt-44">
+        <div className="wrap grid gap-8 lg:grid-cols-12">
+          <h1 className="font-display text-[clamp(3.6rem,10vw,8.5rem)] italic leading-[0.88] tracking-[-0.03em] lg:col-span-8">{t.about.title}</h1>
+          <p className="muted self-end text-lg lg:col-span-4">{t.about.text}</p>
+        </div>
       </section>
-
       <Offers />
       <ContactCTA />
       <Faq />
-      <ModeSwitcher />
-    </main>
+    </Layout>
   );
 }

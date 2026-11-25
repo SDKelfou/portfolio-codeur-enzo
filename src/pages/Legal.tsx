@@ -1,52 +1,39 @@
-import { useEffect } from "react";
-import { Link } from "wouter";
-import Nav from "../components/Nav";
-import ModeSwitcher from "../components/ModeSwitcher";
+import Layout from "../components/Layout";
+import TLink from "../components/TLink";
 import { useI18n } from "../i18n";
 import { getLegal } from "../legal/content";
 import type { LegalPageKey } from "../legal/content";
+import { usePageMeta } from "../lib/head";
 
 export default function Legal({ page }: { page: LegalPageKey }) {
   const { lang, t } = useI18n();
   const doc = getLegal(lang, page);
-
-  useEffect(() => {
-    document.title = `${doc.title} — enzo.dev`;
-  }, [doc.title]);
+  usePageMeta(`${doc.title} — enzo.dev`, doc.sections[0]?.p[0] ?? doc.title);
 
   return (
-    <main style={{ background: "var(--home-bg)", color: "var(--home-text)" }}>
-      <a href="#legal-heading" className="skip-link">
-        {t.skip}
-      </a>
-      <Nav />
-      <article className="mx-auto max-w-3xl px-6 pb-24 pt-32 sm:px-10 sm:pt-40">
-        <h1 id="legal-heading" tabIndex={-1} className="font-display text-3xl font-bold tracking-tight outline-none sm:text-4xl">
-          {doc.title}
-        </h1>
-        <p className="mt-3 text-xs" style={{ color: "var(--home-text-muted)" }}>
-          {t.legalPage.updated}
-        </p>
+    <Layout>
+      <article className="wrap max-w-4xl pb-24 pt-36 sm:pt-44">
+        <h1 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.92] tracking-[-0.025em]">{doc.title}</h1>
+        <p className="meta mt-4">{t.legalPage.updated}</p>
         {t.legalPage.fallback && lang !== "en" && (
-          <p className="glass-light-solid mt-6 rounded-xl p-4 text-sm" style={{ color: "var(--home-text-muted)" }}>
+          <p className="surface mt-8 p-4 text-sm" style={{ color: "var(--ink-2)", borderRadius: 16 }}>
             {t.legalPage.fallback}
           </p>
         )}
         {doc.sections.map((s) => (
-          <section key={s.h} id={s.id} className="mt-10 scroll-mt-24">
-            <h2 className="font-display text-xl font-bold">{s.h}</h2>
+          <section key={s.h} id={s.id} className="mt-12 scroll-mt-28 border-t pt-8" style={{ borderColor: "var(--line)" }}>
+            <h2 className="text-xl font-extrabold">{s.h}</h2>
             {s.p.map((para) => (
-              <p key={para} className="mt-3 text-sm leading-relaxed sm:text-base" style={{ color: "var(--home-text-muted)" }}>
+              <p key={para} className="muted mt-3 max-w-[68ch]">
                 {para}
               </p>
             ))}
           </section>
         ))}
-        <Link href="/" className="btn-accent mt-14 inline-block rounded-full px-6 py-3 text-sm font-semibold">
+        <TLink href="/" className="btn btn-line mt-14">
           {t.legalPage.back}
-        </Link>
+        </TLink>
       </article>
-      <ModeSwitcher />
-    </main>
+    </Layout>
   );
 }

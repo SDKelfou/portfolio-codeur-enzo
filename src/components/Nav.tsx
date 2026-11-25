@@ -1,200 +1,121 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "wouter";
-import { Code, Menu, Moon, Sun, Cross } from "@getpapillon/papicons";
+import { useEffect, useState } from "react";
+import { Menu, Cross, ArrowRight } from "@getpapillon/papicons";
+import { useLocation } from "wouter";
 import { useI18n } from "../i18n";
+import TLink from "./TLink";
+import ThemeSwitch from "./ThemeSwitch";
 import LangSwitcher from "./LangSwitcher";
-import { useTheme } from "../lib/theme";
-import { useMagnetic } from "../lib/useMagnetic";
+
+export function Mark({ size = 22 }: { size?: number }) {
+  // the sculpture reduced to a mark: a faceted shard split by a lit crack
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 1.5 20.5 7l1.5 9.5L12.6 22.5 3 17.2 2 7.5Z" fill="var(--lav)" stroke="var(--ink)" strokeWidth="1.3" strokeLinejoin="round" />
+      <path d="M12.2 2.5 11 8.6l2.2 4.3-1.6 4.4.9 4.6" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12.2 2.5 11 8.6l2.2 4.3-1.6 4.4.9 4.6" fill="none" stroke="#fff010" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export default function Nav() {
-  const [location, navigate] = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [egg, setEgg] = useState<string | null>(null);
-  const clicksRef = useRef<number[]>([]);
   const { t } = useI18n();
-  const LINKS = [
-    { href: "/", label: t.nav.home },
-    { href: "/projets", label: t.nav.work },
-    { href: "/contact#offres", label: t.nav.pricing },
-    { href: "/contact#contact", label: t.nav.contact },
-  ];
-  const { scheme, toggleScheme } = useTheme();
-  const ctaMag = useMagnetic<HTMLAnchorElement>(0.28);
+  const [location] = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
-  useEffect(() => {
-    if (!egg) return;
-    const t = window.setTimeout(() => setEgg(null), 3000);
-    return () => window.clearTimeout(t);
-  }, [egg]);
+  useEffect(() => setOpen(false), [location]);
 
-  const closeMenu = () => setMenuOpen(false);
-
-  const handleLogoClick = () => {
-    const now = Date.now();
-    const recent = clicksRef.current.filter((t) => now - t < 1600);
-    recent.push(now);
-    clicksRef.current = recent;
-    if (recent.length >= 5) {
-      clicksRef.current = [];
-      setEgg(t.nav.eggs[Math.floor(Math.random() * t.nav.eggs.length)]);
-    }
-  };
+  const links = [
+    { href: "/projets", label: t.nav.work },
+    { href: "/#methode", label: t.nav.method },
+    { href: "/contact#tarifs", label: t.nav.pricing },
+    { href: "/contact#contact", label: t.nav.contact },
+  ];
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
-        scrolled || menuOpen ? "glass-light shadow-[0_8px_30px_-20px_rgba(0,0,0,0.35)]" : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
-        <a
-          href="/"
-          className="flex items-center gap-2 font-display text-lg font-bold select-none"
-          onClick={(e) => {
-            e.preventDefault();
-            handleLogoClick();
-            if (location === "/") window.scrollTo({ top: 0, behavior: "smooth" });
-            else navigate("/");
-          }}
-        >
-          <Code
-            size={20}
-            style={{ color: "var(--accent-ink)", filter: "drop-shadow(0 0 6px rgba(var(--accent-rgb),0.6))" }}
-            aria-hidden="true"
-          />
-          <span className="text-gradient">enzo.dev</span>
-        </a>
+    <>
+      <header className="site-header" data-scrolled={scrolled} data-open={open}>
+        <nav className="wrap flex h-[4.5rem] items-center justify-between gap-4" aria-label={t.nav.menu}>
+          <TLink href="/" aria-label={t.nav.homeLabel} className="flex items-center gap-2.5 text-[1.05rem] font-extrabold tracking-tight no-underline" style={{ color: "var(--ink)" }}>
+            <Mark />
+            enzo.dev
+          </TLink>
 
-        <ul className="hidden items-center gap-6 text-sm font-medium lg:gap-8 md:flex" style={{ color: "var(--home-text-muted)" }}>
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="transition-colors hover:text-[var(--accent-ink)]"
-                style={location === link.href.split("#")[0] && (link.href === "/" || link.href === "/projets") ? { color: "var(--accent-ink)" } : undefined}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-2 sm:gap-3">
-          <LangSwitcher />
-          <button
-            type="button"
-            onClick={toggleScheme}
-            aria-label={scheme === "dark" ? t.nav.toLight : t.nav.toDark}
-            className="flex h-11 w-11 items-center justify-center rounded-full border transition-transform hover:scale-105"
-            style={{ borderColor: "var(--home-border)" }}
-          >
-            {scheme === "dark" ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
-          </button>
-
-          {/* eslint-disable @typescript-eslint/no-explicit-any */}
-          <Link
-            {...({
-              href: "/contact#contact",
-              ref: ctaMag.ref,
-              onPointerMove: ctaMag.onPointerMove,
-              onPointerLeave: ctaMag.onPointerLeave,
-              className: "btn-accent hidden rounded-full px-5 py-2.5 text-sm font-semibold will-change-transform lg:inline-block",
-            } as any)}
-          >
-            {t.nav.cta}
-          </Link>
-          {/* eslint-enable @typescript-eslint/no-explicit-any */}
-
-          <button
-            type="button"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
-            className="flex h-11 w-11 items-center justify-center rounded-full border md:hidden"
-            style={{ borderColor: "var(--home-border)" }}
-          >
-            {menuOpen ? <Cross size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
-          </button>
-        </div>
-      </nav>
-
-      {menuOpen && (
-        <div className="glass-light border-t px-6 py-6 md:hidden" style={{ borderColor: "var(--home-border)" }}>
-          <ul className="flex flex-col gap-5 text-base font-medium">
-            {LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={closeMenu}
-                  style={location === link.href.split("#")[0] && (link.href === "/" || link.href === "/projets") ? { color: "var(--accent-ink)" } : undefined}
+          <ul className="hidden items-center gap-7 text-[0.95rem] font-semibold lg:flex">
+            {links.map((l) => (
+              <li key={l.href}>
+                <TLink
+                  href={l.href}
+                  className="link"
+                  aria-current={l.href === location ? "page" : undefined}
+                  style={{ color: "var(--ink)" }}
                 >
-                  {link.label}
-                </Link>
+                  {l.label}
+                </TLink>
               </li>
             ))}
-            <li>
-              <Link
-                href="/contact#contact"
-                onClick={closeMenu}
-                className="btn-accent inline-block rounded-full px-5 py-2.5 text-sm font-semibold"
-              >
-                {t.nav.cta}
-              </Link>
-            </li>
           </ul>
-        </div>
-      )}
 
-      {egg && (
-        <div className="pointer-events-none fixed inset-0 z-[300] flex items-start justify-center px-6 pt-24" aria-live="polite">
-          <div className="egg-pop glass-light-solid flex items-center gap-3 rounded-full px-6 py-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)]">
-            <Code size={16} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
-            <span className="text-sm font-semibold">{egg}</span>
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <LangSwitcher />
+            </div>
+            <ThemeSwitch />
+            <TLink href="/contact#contact" className="btn btn-light hidden !min-h-[2.75rem] !py-2 md:inline-flex">
+              {t.nav.cta}
+            </TLink>
+            <button
+              type="button"
+              className="theme-switch lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              onClick={() => setOpen((o) => !o)}
+            >
+              {open ? <Cross size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+            </button>
           </div>
-          <EggBurst />
+        </nav>
+      </header>
+
+      {open && (
+        <div id="mobile-menu" className="mobile-panel lg:hidden" role="dialog" aria-modal="true" aria-label={t.nav.menu}>
+          <ul className="flex flex-col gap-2">
+            {[{ href: "/", label: t.nav.home }, ...links].map((l, i) => (
+              <li key={l.href}>
+                <TLink href={l.href} className="big" style={{ ["--i" as string]: i }} onClick={() => setOpen(false)}>
+                  {l.label}
+                </TLink>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
+            <TLink href="/contact#contact" className="btn btn-light flex-1" onClick={() => setOpen(false)}>
+              {t.nav.cta}
+              <ArrowRight size={18} aria-hidden="true" />
+            </TLink>
+            <LangSwitcher up onPick={() => setOpen(false)} />
+          </div>
         </div>
       )}
-    </header>
-  );
-}
-
-function EggBurst() {
-  const symbols = ["✦", "◆", "●", "▲", "✧"];
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {Array.from({ length: 24 }).map((_, i) => (
-        <span
-          key={i}
-          className="egg-particle absolute font-bold"
-          style={{
-            left: `${50 + (Math.random() * 60 - 30)}%`,
-            top: "18%",
-            color: i % 2 === 0 ? "var(--accent)" : "var(--accent-2)",
-            fontSize: `${10 + Math.random() * 10}px`,
-            animationDelay: `${Math.random() * 0.15}s`,
-            ["--eggx" as string]: `${Math.random() * 120 - 60}px`,
-          }}
-        >
-          {symbols[i % symbols.length]}
-        </span>
-      ))}
-    </div>
+    </>
   );
 }

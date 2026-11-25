@@ -1,13 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo } from "react";
 import type { ReactNode } from "react";
-import fr from "./fr";
 import type { Dict } from "./fr";
-import en from "./en";
-import es from "./es";
-import de from "./de";
-import it from "./it";
-import pt from "./pt";
-import nl from "./nl";
 
 export const LANGS = [
   { code: "fr", label: "Français" },
@@ -21,67 +14,69 @@ export const LANGS = [
 
 export type Lang = (typeof LANGS)[number]["code"];
 
-const DICTS: Record<Lang, Dict> = { fr, en, es, de, it, pt, nl };
-const STORAGE_KEY = "enzo-dev-lang";
+/** Only the visitor's language ships with the page: the others are
+ *  separate chunks (switching language is a full page load anyway). */
+const LOADERS: Record<Lang, () => Promise<{ default: Dict }>> = {
+  fr: () => import("./fr"),
+  en: () => import("./en"),
+  es: () => import("./es"),
+  de: () => import("./de"),
+  it: () => import("./it"),
+  pt: () => import("./pt"),
+  nl: () => import("./nl"),
+};
+const cache: Partial<Record<Lang, Dict>> = {};
 
-function isLang(v: unknown): v is Lang {
+export function registerDict(lang: Lang, dict: Dict) {
+  cache[lang] = dict;
+}
+
+export async function loadDict(lang: Lang) {
+  if (!cache[lang]) cache[lang] = (await LOADERS[lang]()).default;
+  return cache[lang]!;
+}
+
+export function isLang(v: unknown): v is Lang {
   return typeof v === "string" && LANGS.some((l) => l.code === v);
 }
 
-/** URL ?lang= wins (shareable links), then the stored choice, then the
- *  browser's language list, then French. */
-function detectLang(): Lang {
-  try {
-    const fromUrl = new URLSearchParams(window.location.search).get("lang");
-    if (isLang(fromUrl)) return fromUrl;
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (isLang(stored)) return stored;
-  } catch {
-    /* ignore */
-  }
-  const prefs = navigator.languages?.length ? navigator.languages : [navigator.language];
-  for (const p of prefs) {
-    const base = p?.slice(0, 2).toLowerCase();
-    if (isLang(base)) return base;
-  }
-  return "fr";
+/** French lives at the root, every other language under its own prefix
+ *  (/en/, /es/…) so each version is a real, indexable URL. */
+export function splitPath(fullPath: string): { lang: Lang; rest: string } {
+  const m = fullPath.match(/^\/([a-z]{2})(\/.*)?$/);
+  if (m && isLang(m[1]) && m[1] !== "fr") return { lang: m[1], rest: m[2] || "/" };
+  return { lang: "fr", rest: fullPath || "/" };
+}
+
+export function langBase(lang: Lang) {
+  return lang === "fr" ? "" : `/${lang}`;
+}
+
+export function localizedPath(lang: Lang, rest: string) {
+  const base = langBase(lang);
+  if (rest === "/" || rest === "") return base || "/";
+  return `${base}${rest}`;
 }
 
 interface I18nApi {
   lang: Lang;
   t: Dict;
-  setLang: (lang: Lang) => void;
 }
 
 const I18nCtx = createContext<I18nApi | null>(null);
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(detectLang);
-  const t = DICTS[lang];
+export function I18nProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
+  const value = useMemo(() => ({ lang, t: (cache[lang] ?? cache.fr)! }), [lang]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
-    document.title = t.meta.title;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", t.meta.description);
-    document.querySelector('meta[property="og:title"]')?.setAttribute("content", t.meta.title);
-    document.querySelector('meta[property="og:description"]')?.setAttribute("content", t.meta.description);
-  }, [lang, t]);
-
-  const setLang = useCallback((next: Lang) => {
-    setLangState(next);
     try {
-      window.localStorage.setItem(STORAGE_KEY, next);
-      const url = new URL(window.location.href);
-      if (url.searchParams.has("lang")) {
-        url.searchParams.set("lang", next);
-        window.history.replaceState(null, "", url);
-      }
+      window.localStorage.setItem("enzo-dev-lang", lang);
     } catch {
       /* ignore */
     }
-  }, []);
+  }, [lang]);
 
-  const value = useMemo(() => ({ lang, t, setLang }), [lang, t, setLang]);
   return <I18nCtx.Provider value={value}>{children}</I18nCtx.Provider>;
 }
 

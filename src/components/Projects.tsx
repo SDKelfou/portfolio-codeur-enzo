@@ -1,97 +1,78 @@
 import { ArrowRightUp } from "@getpapillon/papicons";
-import { GsapReveal as Reveal } from "../lib/GsapReveal";
-import { TiltCard } from "../lib/TiltCard";
 import { useI18n } from "../i18n";
+import { PROJECTS } from "../lib/projects";
 
-const PROJECTS = [
-  {
-    name: "NEXUS",
-    image: "/projets/nexus.webp",
-    type: "Logiciel",
-    text: "Logiciel conçu et développé par moi pour optimiser un PC Windows : nettoyage, monitoring, pilotes, confidentialité et IA locale.",
-    href: "https://nexus-multitools.nexus-multitools.workers.dev/",
-    external: true,
-  },
-  {
-    name: "Café Mistral",
-    image: "/projets/cafe-mistral.webp",
-    type: "Site vitrine · exemple",
-    text: "Un café-bar de village imaginaire : carte, horaires et bouton d'appel visibles dès l'ouverture. À visiter comme le ferait un client.",
-    href: "/exemples/cafe-mistral/",
-    external: false,
-  },
-  {
-    name: "Atelier Lune",
-    image: "/projets/atelier-lune.webp",
-    type: "Site vitrine · exemple",
-    text: "Un salon de coiffure imaginaire, à l'ambiance douce et élégante : tarifs clairs, accès simple, prise de rendez-vous par téléphone.",
-    href: "/exemples/atelier-lune/",
-    external: false,
-  },
-];
-
-export default function Projects() {
+/** PROJECT REVEAL — alternating editorial spreads; screenshots unmask
+ *  from the bottom as they enter, a light sweep crosses them on hover. */
+export default function Projects({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
   const { t } = useI18n();
+  const w = t.work;
+  const H = headingLevel === 1 ? "h1" : "h2";
+
   return (
-    <section id="projets" className="relative overflow-hidden px-6 py-24 sm:px-10 sm:py-32" style={{ background: "var(--home-bg-soft)" }}>
-      <div className="orb-field">
-        <span className="orb orb-b" style={{ opacity: 0.25 }} />
-      </div>
-
-      <Reveal>
-        <div className="relative z-10 mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-            {t.projects.kicker}
-          </span>
-          <h2 className="font-display mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-            {t.projects.title1} <span className="text-gradient-ink">{t.projects.title2}</span>
-          </h2>
+    <section id="realisations" className="cv scroll-mt-24 py-24 sm:py-32" aria-labelledby="work-heading">
+      <div className="wrap">
+        <div className="grid gap-6 lg:grid-cols-12">
+          <H id="work-heading" className="h2 lg:col-span-7" data-reveal="rise">
+            {w.title}
+          </H>
+          <p className="muted max-w-xl self-end text-lg lg:col-span-5" data-reveal="rise" style={{ ["--i" as string]: 1 }}>
+            {w.intro}
+          </p>
         </div>
-      </Reveal>
 
-      <div className="relative z-10 mx-auto mt-14 grid max-w-5xl min-w-0 gap-6 sm:grid-cols-3">
-        {PROJECTS.map((p, i) => (
-          <Reveal key={p.name} dir="up" delay={i * 90} className="min-w-0">
-            <TiltCard
-              as="a"
-              href={p.href}
-              {...(p.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              maxTilt={9}
-              className="group flex h-full rounded-2xl"
-            >
-              <div className="glass-light-solid flex h-full flex-col overflow-hidden rounded-2xl transition-transform duration-300 group-hover:-translate-y-1">
-                <div className="aspect-[16/10] overflow-hidden border-b" style={{ borderColor: "var(--home-border)" }}>
-                  <img
-                    src={p.image}
-                    alt={`${p.name} — aperçu`}
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
+        <ol className="mt-16 space-y-24 sm:mt-24 sm:space-y-32">
+          {PROJECTS.map((p, i) => {
+            const flip = i % 2 === 1;
+            const copy = p.copy === "leos" ? w.leos : w.items[p.copy];
+            return (
+              <li key={p.slug} className="project grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+                <a
+                  href={p.href}
+                  {...(p.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className={`block lg:col-span-7 ${flip ? "lg:order-2 lg:col-start-6" : ""}`}
+                  aria-label={`${p.name} — ${p.example ? w.visitExample : w.visit}`}
+                  tabIndex={-1}
+                >
+                  <div className="project-media" data-reveal="mask">
+                    <img src={p.image} alt="" width={800} height={500} loading="lazy" decoding="async" />
+                  </div>
+                </a>
+
+                <div className={`lg:col-span-5 ${flip ? "lg:order-1 lg:col-start-1" : ""}`}>
+                  <p className="meta tnum" data-reveal="rise">
+                    {String(i + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")} · {copy.type}
+                  </p>
+                  <h3 className="mt-3 font-display text-[clamp(2.6rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.02em]" data-reveal="rise" style={{ ["--i" as string]: 1 }}>
+                    {p.name}
+                  </h3>
+                  {(p.example || p.inProgress) && (
+                    <p className="mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--line-strong)", color: "var(--ink-2)" }}>
+                      {p.inProgress && <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--light)", boxShadow: "0 0 0 1.5px var(--ink)" }} />}
+                      {p.example ? w.example : w.inProgress}
+                    </p>
+                  )}
+                  <p className="muted mt-5 max-w-md text-[1.0625rem]" data-reveal="rise" style={{ ["--i" as string]: 2 }}>
+                    {copy.text}
+                  </p>
+                  {p.tech.length > 0 && (
+                    <p className="meta mt-4">
+                      {w.tech} : {p.tech.join(" · ")}
+                    </p>
+                  )}
+                  <a
+                    href={p.href}
+                    {...(p.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="btn btn-line mt-7"
+                  >
+                    {p.example ? w.visitExample : w.visit}
+                    <ArrowRightUp size={16} className="go" aria-hidden="true" />
+                  </a>
                 </div>
-                <div className="flex flex-1 flex-col p-7">
-                <div className="flex items-start justify-between">
-                  <h3 className="font-display text-xl font-bold">{p.name}</h3>
-                  <ArrowRightUp
-                    size={18}
-                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    style={{ color: "var(--accent-ink)" }}
-                    aria-hidden="true"
-                  />
-                </div>
-                <span className="mt-1 text-xs font-semibold tracking-[0.15em]" style={{ color: "var(--accent-ink)" }}>
-                  {t.projects.items[i].type.toUpperCase()}
-                </span>
-                <p className="mt-4 flex-1 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
-                  {t.projects.items[i].text}
-                </p>
-                </div>
-              </div>
-            </TiltCard>
-          </Reveal>
-        ))}
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );

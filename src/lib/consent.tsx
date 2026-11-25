@@ -42,8 +42,19 @@ function loadAnalytics() {
 }
 
 export function ConsentProvider({ children }: { children: ReactNode }) {
-  const [consent, setConsent] = useState<Consent | null>(readConsent);
-  const [bannerOpen, setBannerOpen] = useState(() => readConsent() === null);
+  // read in an effect: the prerendered HTML has no banner, the browser
+  // decides after hydration (no mismatch, no layout shift on first paint)
+  const [consent, setConsent] = useState<Consent | null>(null);
+  const [bannerOpen, setBannerOpen] = useState(false);
+
+  useEffect(() => {
+    const stored = readConsent();
+    setConsent(stored);
+    if (!stored) {
+      const t = window.setTimeout(() => setBannerOpen(true), 1200);
+      return () => window.clearTimeout(t);
+    }
+  }, []);
 
   useEffect(() => {
     if (consent?.analytics) loadAnalytics();

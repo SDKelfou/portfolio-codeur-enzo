@@ -1,53 +1,37 @@
-import { TextBubble, Code, ArrowRightUp } from "@getpapillon/papicons";
-import { GsapReveal as Reveal } from "../lib/GsapReveal";
-import { TiltCard } from "../lib/TiltCard";
 import { useI18n } from "../i18n";
 
-const STEPS = [
-  { icon: TextBubble, dir: "left" as const },
-  { icon: Code, dir: "up" as const },
-  { icon: ArrowRightUp, dir: "right" as const },
-];
-
+/** The process as editorial lines: when, what, how — split by hairlines
+ *  that draw in like a crack running across the page. */
 export default function Method() {
   const { t } = useI18n();
+  const m = t.method;
   return (
-    <section
-      id="methode"
-      className="relative overflow-hidden px-6 py-24 sm:px-10 sm:py-32"
-      style={{ background: "var(--home-bg-soft)" }}
-    >
-      <div className="orb-field">
-        <span className="orb orb-a" style={{ opacity: 0.28 }} />
-      </div>
-
-      <Reveal>
-        <div className="relative z-10 mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold tracking-[0.3em]" style={{ color: "var(--accent-ink)" }}>
-            {t.method.kicker}
-          </span>
-          <h2 className="font-display mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-            {t.method.title1} <span className="text-gradient-ink">{t.method.title2}</span>
+    <section id="methode" className="cv scroll-mt-24 py-24 sm:py-32" style={{ background: "var(--bg-2)" }} aria-labelledby="method-heading">
+      <div className="wrap">
+        <div className="grid gap-6 lg:grid-cols-12">
+          <h2 id="method-heading" className="h2 lg:col-span-8" data-reveal="rise">
+            {m.title}
           </h2>
+          <p className="muted self-end text-lg lg:col-span-4" data-reveal="rise" style={{ ["--i" as string]: 1 }}>
+            {m.intro}
+          </p>
         </div>
-      </Reveal>
-
-      <div className="relative z-10 mx-auto mt-16 grid max-w-5xl min-w-0 gap-6 sm:grid-cols-3">
-        {STEPS.map((step, i) => (
-          <Reveal key={i} dir={step.dir} delay={i * 90} className="min-w-0">
-            <TiltCard maxTilt={7} className="h-full rounded-2xl">
-              <div className="glass-light-solid h-full rounded-2xl p-8 transition-shadow duration-300 hover:shadow-[0_20px_50px_-24px_rgba(var(--accent-rgb),0.45)]">
-                <step.icon size={26} style={{ color: "var(--accent-ink)" }} aria-hidden="true" />
-                <h3 className="font-display mt-5 text-xl font-bold">
-                  {String(i + 1).padStart(2, "0")} · {t.method.steps[i].title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--home-text-muted)" }}>
-                  {t.method.steps[i].text}
-                </p>
-              </div>
-            </TiltCard>
-          </Reveal>
-        ))}
+        <ol className="mt-14 sm:mt-20">
+          {m.steps.map((s, i) => (
+            <li key={s.title} className="relative grid gap-3 py-9 sm:grid-cols-12 sm:gap-8 sm:py-12">
+              <span className="absolute inset-x-0 top-0 h-px" style={{ background: "var(--line-strong)" }} data-reveal="crack" />
+              <p className="meta tnum font-bold uppercase tracking-[0.08em] sm:col-span-3 sm:pt-3" style={{ color: "var(--ink)" }}>
+                {s.when}
+              </p>
+              <h3 className="font-display text-[clamp(2.4rem,5vw,4rem)] leading-none sm:col-span-4" data-reveal="rise" style={{ ["--i" as string]: i }}>
+                {s.title}
+              </h3>
+              <p className="muted max-w-md text-[1.0625rem] sm:col-span-5 sm:pt-2" data-reveal="rise" style={{ ["--i" as string]: i + 1 }}>
+                {s.text}
+              </p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
