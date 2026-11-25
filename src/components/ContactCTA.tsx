@@ -5,9 +5,6 @@ import { useI18n } from "../i18n";
 import { CONTACT_EMAIL } from "../lib/site";
 import { onQuotePreset } from "../lib/quoteEvents";
 
-/** Quote form that writes the email for the visitor: nothing is sent or
- *  stored by the site, it only opens their mail app (or Gmail/Outlook web)
- *  with subject and body already filled in. */
 export default function ContactCTA() {
   const { t } = useI18n();
   const c = t.contact;
@@ -82,7 +79,7 @@ export default function ContactCTA() {
       setCopied(what);
       window.setTimeout(() => setCopied(null), 2000);
     } catch {
-      /* clipboard blocked: the address stays visible anyway */
+
     }
   };
 

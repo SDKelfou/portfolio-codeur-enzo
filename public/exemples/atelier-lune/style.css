@@ -1,4 +1,4 @@
-/* Atelier Lune · nuit bleue, crème, dessins au trait */
+
 :root {
   --nuit: #0b1330;
   --nuit-2: #16225a;
@@ -27,14 +27,12 @@ address { font-style: normal; }
 em { font-style: italic; color: var(--or); }
 :focus-visible { outline: 2px solid var(--or); outline-offset: 4px; border-radius: 4px; }
 
-/* ---------- barre ---------- */
 .top { position: absolute; z-index: 20; inset: 0 0 auto 0; display: flex; align-items: center; gap: 24px; padding: 16px var(--gut); }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-size: 1.25rem; letter-spacing: .08em; }
 .top nav { margin-left: auto; display: flex; gap: 32px; }
 .top nav a { text-decoration: none; font-size: .9rem; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; background: linear-gradient(var(--or), var(--or)) 0 100% / 0 1px no-repeat; transition: background-size .3s; }
 .top nav a:hover { background-size: 100% 1px; }
 
-/* ---------- boutons ---------- */
 .call {
   display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 30px;
   background: var(--creme); color: var(--nuit); font-family: var(--sans); font-weight: 600; font-size: 1.05rem; letter-spacing: .03em; text-decoration: none;
@@ -46,7 +44,6 @@ em { font-style: italic; color: var(--or); }
 .ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 28px; text-decoration: none; border: 1px solid rgba(243, 234, 216, .55); border-radius: 999px; letter-spacing: .03em; transition: background .3s, border-color .3s; }
 .ghost:hover { background: rgba(243, 234, 216, .1); border-color: var(--creme); }
 
-/* ---------- héro ---------- */
 .hero {
   position: relative; isolation: isolate; overflow: hidden;
   min-height: 100vh; min-height: 100svh;
@@ -66,7 +63,6 @@ em { font-style: italic; color: var(--or); }
 
 .lune { position: relative; z-index: 2; justify-self: end; width: min(100%, calc(88svh * 1.0526)); max-height: 92svh; height: auto; animation: flotte 9s ease-in-out infinite alternate; }
 
-/* tracé des profils */
 .traits path, .traits use { }
 #visage path, .cheveux path { stroke-dasharray: 1; stroke-dashoffset: 0; }
 .traits #visage path, .traits .cheveux path { animation: trace 2.4s cubic-bezier(.4, 0, .2, 1) both; animation-delay: .5s; }
@@ -81,7 +77,6 @@ em { font-style: italic; color: var(--or); }
 .hero .lune { animation: leve 1.8s cubic-bezier(.2, .8, .2, 1) both, flotte 9s ease-in-out 1.8s infinite alternate; }
 @keyframes leve { from { opacity: 0; transform: translateY(60px) scale(.94); } to { opacity: 1; transform: none; } }
 
-/* ---------- sections ---------- */
 .sec { padding: clamp(70px, 9vw, 140px) 0; position: relative; }
 .sec.creme { background: var(--creme); color: var(--nuit); }
 .sec.creme em { color: #7a6530; }
@@ -104,7 +99,6 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; }
 .trio h3 { margin-bottom: 6px; }
 .trio p { color: rgba(243, 234, 216, .8); font-size: 1rem; }
 
-/* tarifs */
 .liste { background: var(--creme-2); border: 1px solid rgba(11, 19, 48, .18); border-radius: 26px; padding: clamp(24px, 2.4vw, 40px); }
 .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 36px); align-items: start; }
 .liste h3 { font-size: 1.9rem; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid rgba(11, 19, 48, .25); }
@@ -113,7 +107,6 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; }
 .liste li b { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; white-space: nowrap; }
 .liste li.lune-li { margin-top: 12px; padding: 14px; background: var(--nuit); color: var(--creme); border-radius: 16px; }
 
-/* horaires */
 .jours { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(12px, 1.8vw, 28px); }
 .jours li { background: var(--nuit-2); border: 1px solid rgba(243, 234, 216, .15); border-radius: 22px; padding: 26px 16px; text-align: center; }
 .phase { width: 56px; height: 56px; margin-bottom: 12px; filter: drop-shadow(0 0 12px rgba(243, 234, 216, .25)); }
@@ -121,13 +114,11 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; }
 .jours p { color: var(--or); }
 .note { margin-top: 30px; max-width: 60ch; color: rgba(243, 234, 216, .8); }
 
-/* accès */
 .plan { width: 100%; height: auto; border-radius: 24px; display: block; }
 address { font-family: var(--serif); font-size: clamp(1.25rem, 1.9vw, 1.7rem); line-height: 1.45; margin: 22px 0; padding-left: 20px; border-left: 2px solid #7a6530; }
 .infos li { position: relative; padding: 6px 0 6px 26px; }
 .infos li::before { content: ""; position: absolute; left: 0; top: 16px; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #7a6530; }
 
-/* contact */
 .contact { text-align: center; overflow: hidden; background: radial-gradient(70% 120% at 50% 110%, #24357a 0%, var(--nuit) 70%); }
 .contact .big { max-width: 38ch; margin: 18px auto 0; }
 .contact::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(120vw, 1100px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(243, 234, 216, .12); box-shadow: 0 0 0 60px rgba(243, 234, 216, .03), 0 0 0 130px rgba(243, 234, 216, .02); pointer-events: none; }
@@ -137,7 +128,6 @@ address { font-family: var(--serif); font-size: clamp(1.25rem, 1.9vw, 1.7rem); l
 .foot-in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px 40px; }
 .foot strong { font-weight: 600; color: var(--creme); }
 
-/* ---------- mobile ---------- */
 @media (max-width: 900px) {
   .top nav { display: none; }
   .top .call-small { margin-left: auto; }
@@ -165,7 +155,6 @@ address { font-family: var(--serif); font-size: clamp(1.25rem, 1.9vw, 1.7rem); l
   .jours li { padding: 18px 8px; }
 }
 
-/* ---------- défilement ---------- */
 @supports (animation-timeline: view()) {
   .reveal { animation: apparait linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
   @keyframes apparait { from { opacity: 0; transform: translateY(40px); filter: blur(5px); } to { opacity: 1; transform: none; filter: none; } }
@@ -180,7 +169,6 @@ address { font-family: var(--serif); font-size: clamp(1.25rem, 1.9vw, 1.7rem); l
   @media (max-width: 900px) { .hero .lune { animation: leve-m 1.8s cubic-bezier(.2, .8, .2, 1) both; } }
 }
 
-/* ---------- mouvement réduit ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }

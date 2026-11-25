@@ -2,8 +2,6 @@ import { ArrowRightUp } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import { PROJECTS } from "../lib/projects";
 
-/** PROJECT REVEAL — alternating editorial spreads; screenshots unmask
- *  from the bottom as they enter, a light sweep crosses them on hover. */
 export default function Projects({ headingLevel = 2 }: { headingLevel?: 1 | 2 }) {
   const { t } = useI18n();
   const w = t.work;
@@ -24,7 +22,7 @@ export default function Projects({ headingLevel = 2 }: { headingLevel?: 1 | 2 })
         <ol className="mt-16 space-y-24 sm:mt-24 sm:space-y-32">
           {PROJECTS.map((p, i) => {
             const flip = i % 2 === 1;
-            const copy = p.copy === "leos" ? w.leos : w.items[p.copy];
+            const copy = p.copy === "leos" ? w.leos : p.copy === "pizza" ? w.pizza : w.items[p.copy];
             return (
               <li key={p.slug} className="project grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
                 <a
@@ -57,10 +55,10 @@ export default function Projects({ headingLevel = 2 }: { headingLevel?: 1 | 2 })
                   <h3 className="mt-3 font-display text-[clamp(2.6rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.02em]" data-reveal="rise" style={{ ["--i" as string]: 1 }}>
                     {p.name}
                   </h3>
-                  {(p.example || p.inProgress) && (
+                  {(p.example || p.inProgress || p.mockup) && (
                     <p className="mt-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--line-strong)", color: "var(--ink-2)" }}>
                       {p.inProgress && <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--light)", boxShadow: "0 0 0 1.5px var(--ink)" }} />}
-                      {p.example ? w.example : w.inProgress}
+                      {p.example ? w.example : p.mockup ? w.mockup : w.inProgress}
                     </p>
                   )}
                   <p className="muted mt-5 max-w-md text-[1.0625rem]" data-reveal="rise" style={{ ["--i" as string]: 2 }}>

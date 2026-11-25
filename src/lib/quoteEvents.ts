@@ -1,5 +1,3 @@
-/** Lets an offer card (or the hosting plan) preselect the contact form,
- *  wherever it sits on the page, then scroll to it. */
 export interface QuotePreset {
   offer?: number;
   care?: boolean;

@@ -2,8 +2,6 @@ import { ArrowRight, Check } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import TLink from "./TLink";
 
-/** The sales argument, split by the visitor's own situation: no site yet,
- *  or a site that should sell better. Each side ends on its own action. */
 export default function Why() {
   const { t } = useI18n();
   const w = t.why;

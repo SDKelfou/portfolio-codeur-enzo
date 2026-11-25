@@ -3,8 +3,6 @@ import { useI18n } from "../i18n";
 import { STRIPE_LINKS } from "../lib/site";
 import { presetQuote } from "../lib/quoteEvents";
 
-/** Index 1 (Direction artistique) keeps the existing "recommended"
- *  intention; index 0 is the only fixed price and may carry Stripe. */
 const FEATURED = 1;
 
 export default function Offers() {

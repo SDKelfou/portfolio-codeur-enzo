@@ -1,7 +1,5 @@
 import { useI18n } from "../i18n";
 
-/** The process as editorial lines: when, what, how — split by hairlines
- *  that draw in like a crack running across the page. */
 export default function Method() {
   const { t } = useI18n();
   const m = t.method;

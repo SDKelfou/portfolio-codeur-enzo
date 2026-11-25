@@ -7,7 +7,7 @@ import ThemeSwitch from "./ThemeSwitch";
 import LangSwitcher from "./LangSwitcher";
 
 export function Mark({ size = 22 }: { size?: number }) {
-  // the sculpture reduced to a mark: a faceted shard split by a lit crack
+
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 1.5 20.5 7l1.5 9.5L12.6 22.5 3 17.2 2 7.5Z" fill="var(--lav)" stroke="var(--ink)" strokeWidth="1.3" strokeLinejoin="round" />

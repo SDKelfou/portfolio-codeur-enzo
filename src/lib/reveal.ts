@@ -1,6 +1,3 @@
-/** Arms [data-reveal] elements once JS runs. Anything already on screen
- *  is marked visible without animating (no flash after hydration); the
- *  rest reveals as it enters. Content stays visible if this never runs. */
 export function armReveals() {
   const root = document.documentElement;
   const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in)"));

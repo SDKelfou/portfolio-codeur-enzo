@@ -1,8 +1,5 @@
 import { flushSync } from "react-dom";
 
-/** Runs a route change inside a View Transition (a crack-shaped wipe,
- *  see index.css). Falls back to an instant change. Repeated clicks skip
- *  the transition in flight instead of queueing. */
 type VT = { finished: Promise<void>; skipTransition: () => void };
 let current: VT | null = null;
 

@@ -14,8 +14,6 @@ export const LANGS = [
 
 export type Lang = (typeof LANGS)[number]["code"];
 
-/** Only the visitor's language ships with the page: the others are
- *  separate chunks (switching language is a full page load anyway). */
 const LOADERS: Record<Lang, () => Promise<{ default: Dict }>> = {
   fr: () => import("./fr"),
   en: () => import("./en"),
@@ -40,8 +38,6 @@ export function isLang(v: unknown): v is Lang {
   return typeof v === "string" && LANGS.some((l) => l.code === v);
 }
 
-/** French lives at the root, every other language under its own prefix
- *  (/en/, /es/…) so each version is a real, indexable URL. */
 export function splitPath(fullPath: string): { lang: Lang; rest: string } {
   const m = fullPath.match(/^\/([a-z]{2})(\/.*)?$/);
   if (m && isLang(m[1]) && m[1] !== "fr") return { lang: m[1], rest: m[2] || "/" };
@@ -73,7 +69,6 @@ export function I18nProvider({ lang, children }: { lang: Lang; children: ReactNo
     try {
       window.localStorage.setItem("enzo-dev-lang", lang);
     } catch {
-      /* ignore */
     }
   }, [lang]);
 

@@ -3,8 +3,6 @@ import { Globe } from "@getpapillon/papicons";
 import { useLocation } from "wouter";
 import { LANGS, localizedPath, useI18n } from "../i18n";
 
-/** Language picker: each language is a real URL (/en/…, /es/…), so the
- *  options are links, which also lets crawlers find every version. */
 export default function LangSwitcher({ onPick, up = false }: { onPick?: () => void; up?: boolean }) {
   const { lang, t } = useI18n();
   const [location] = useLocation();

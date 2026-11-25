@@ -3,30 +3,22 @@
 @import "@fontsource/instrument-serif/latin-400-italic.css";
 @import "@fontsource-variable/manrope/wght.css";
 
-/* ==========================================================================
-   FRACTURE — design tokens
-   Porcelain (light) and Obsidian (dark) share every proportion; only the
-   material changes. Yellow #FFF010 is the single light source: the inside
-   of the cracks, the primary action, the focus ring.
-   ========================================================================== */
-
 :root {
   --font-display: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
   --font-body: "Manrope Variable", "Manrope", "Segoe UI", system-ui, sans-serif;
 
   --light: #fff010;
-  --light-ink: #24222d; /* text set on the yellow */
+  --light-ink: #24222d;
 
-  /* Porcelain */
   --bg: #f8f6f0;
   --bg-2: #efebe1;
   --surface: #ffffff;
   --ink: #24222d;
   --ink-2: #4a4757;
-  --ink-3: #5f5b6e; /* smallest technical text, still 6:1 on --bg */
+  --ink-3: #5f5b6e;
   --lav: #dcd0f5;
   --iris: #a99bcf;
-  --iris-ink: #57488c; /* iris dark enough to be text */
+  --iris-ink: #57488c;
   --cyan: #2f7d7c;
   --line: rgba(36, 34, 45, 0.14);
   --line-strong: rgba(36, 34, 45, 0.32);
@@ -47,7 +39,6 @@
   --dur-reveal: 560ms;
   --dur-page: 460ms;
 
-  /* one radius scale for the whole site: containers, media, controls */
   --r-xl: 28px;
   --r-lg: 20px;
   --r-md: 14px;
@@ -87,9 +78,6 @@
 }
 
 @layer base {
-/* ==========================================================================
-   Base
-   ========================================================================== */
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -127,8 +115,6 @@ h3 {
   text-wrap: balance;
 }
 
-/* sections below the first screen are laid out and painted only when
-   they approach the viewport */
 .cv {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
@@ -178,7 +164,6 @@ h3 {
   padding-inline: var(--gutter);
 }
 
-/* scrollbar themed from the palette */
 * {
   scrollbar-color: var(--line-strong) transparent;
 }
@@ -186,9 +171,6 @@ h3 {
 }
 
 @layer components {
-/* ==========================================================================
-   Controls
-   ========================================================================== */
 
 .btn {
   --press: 0;
@@ -255,7 +237,6 @@ h3 {
   transform: none;
 }
 
-/* text link with a crack-line underline that grows from the left */
 .link {
   position: relative;
   color: inherit;
@@ -341,10 +322,6 @@ h3 {
   border: 0;
 }
 
-/* ==========================================================================
-   Theme switch — the fracture origin
-   ========================================================================== */
-
 .theme-switch {
   position: relative;
   width: 2.75rem;
@@ -389,10 +366,6 @@ h3 {
     transform: scale(0.78);
   }
 }
-
-/* ==========================================================================
-   Header
-   ========================================================================== */
 
 .site-header {
   position: fixed;
@@ -446,11 +419,6 @@ h3 {
   }
 }
 
-
-/* ==========================================================================
-   Projects
-   ========================================================================== */
-
 .project-media {
   position: relative;
   border-radius: var(--r-lg);
@@ -495,10 +463,6 @@ h3 {
   transform: translate(3px, -3px);
 }
 
-/* ==========================================================================
-   Pricing
-   ========================================================================== */
-
 .price-card {
   position: relative;
   display: flex;
@@ -521,7 +485,7 @@ h3 {
 }
 
 .price-card[data-featured="true"]::before {
-  /* a single crack of light across the recommended card's top edge */
+
   content: "";
   position: absolute;
   left: 2rem;
@@ -531,10 +495,6 @@ h3 {
   border-radius: 3px;
   background: var(--light);
 }
-
-/* ==========================================================================
-   FAQ
-   ========================================================================== */
 
 .faq-item summary {
   list-style: none;
@@ -554,10 +514,6 @@ h3 {
 }
 
 }
-
-/* ==========================================================================
-   Scroll reveals (only armed once JS is running; content visible without JS)
-   ========================================================================== */
 
 :root.js [data-reveal]:not(.is-in) {
   opacity: 0;
@@ -598,10 +554,6 @@ h3 {
   transition: none;
 }
 
-/* ==========================================================================
-   View transitions — page change (crack wipe) and theme (fracture)
-   ========================================================================== */
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -632,16 +584,21 @@ h3 {
   }
 }
 
-.fracture-canvas {
+.fracture-lines {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 9999;
   pointer-events: none;
+  z-index: 9999;
+  view-transition-name: fracture-lines;
 }
 
-/* fallback when the View Transitions API is missing */
+::view-transition-group(fracture-lines),
+::view-transition-new(fracture-lines) {
+  animation: none;
+}
+
 :root.theme-fade,
 :root.theme-fade * {
   transition: background-color 320ms var(--ease-out), color 320ms var(--ease-out), border-color 320ms var(--ease-out) !important;
@@ -668,11 +625,6 @@ h3 {
     animation: none;
   }
 }
-
-/* ==========================================================================
-   Hero mock-up — a small client website built live by two cursors.
-   It keeps its own warm palette in both themes: it is "a client's site".
-   ========================================================================== */
 
 .mock {
   margin: 0;
@@ -1011,7 +963,6 @@ h3 {
   }
 }
 
-/* soft lavender light behind the hero, gives the light theme depth */
 .hero-glow {
   position: absolute;
   inset: -20% -10% auto auto;
@@ -1024,7 +975,6 @@ h3 {
   opacity: 0.55;
 }
 
-/* demo site variants: each business has its own look */
 .mock-canvas.v1 {
   color: #f3ead2;
   background:
@@ -1059,10 +1009,6 @@ h3 {
 .mock-canvas.v2 .btn-mock { background: #e8b54a; color: #10203f; }
 .mock-canvas.v2 .card { background: #fff; border-color: rgba(16, 32, 63, 0.12); }
 .mock-canvas.v2 .stars { color: #e8b54a; }
-
-/* ==========================================================================
-   Capabilities — bento of live demos
-   ========================================================================== */
 
 .bento {
   display: grid;
@@ -1114,8 +1060,13 @@ h3 {
     grid-column: 3;
     grid-row: 4;
   }
+  .t-ai {
+    grid-column: 1;
+    grid-row: 5;
+  }
   .t-soft {
-    grid-column: 1 / -1;
+    grid-column: 2 / -1;
+    grid-row: 5;
   }
 }
 
@@ -1182,7 +1133,6 @@ h3 {
   padding: 10px;
 }
 
-/* 3D object */
 .obj-scene {
   position: relative;
   width: 100%;
@@ -1253,7 +1203,6 @@ h3 {
   background: radial-gradient(closest-side, rgba(36, 34, 45, 0.28), transparent);
 }
 
-/* shop */
 .product-thumb {
   width: 52px;
   height: 52px;
@@ -1281,7 +1230,6 @@ h3 {
   }
 }
 
-/* Google result */
 .serp {
   font-family: Arial, var(--font-body);
 }
@@ -1352,7 +1300,6 @@ h3 {
   color: #e0a21c;
 }
 
-/* security */
 .check-row {
   display: flex;
   align-items: center;
@@ -1385,7 +1332,6 @@ h3 {
   color: #fff;
 }
 
-/* languages */
 .hello {
   animation: hello-in 500ms var(--ease-out);
 }
@@ -1404,9 +1350,6 @@ h3 {
   border: 1px solid var(--line);
 }
 
-
-
-/* project showcase: desktop browser + phone */
 .device-pair {
   position: relative;
   padding: 0 7% 9% 0;
@@ -1486,7 +1429,6 @@ h3 {
   transform: translateY(-12px) rotate(-2deg);
 }
 
-/* hero mock-up depth: leans toward the pointer, floats when idle */
 .mock-stage {
   --rx: 3deg;
   --ry: -6deg;
@@ -1503,5 +1445,127 @@ h3 {
 @media (max-width: 1023px), (pointer: coarse), (prefers-reduced-motion: reduce) {
   .mock-stage .mock {
     transform: none;
+  }
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bubble {
+  max-width: 88%;
+  padding: 10px 13px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 360ms var(--ease-out), transform 420ms var(--ease-out);
+}
+
+.bubble[data-on="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.bubble.me {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--bg);
+  border-bottom-right-radius: 4px;
+}
+
+.bubble.bot {
+  align-self: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+  min-height: 2.6em;
+}
+
+.bubble .who {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--iris-ink);
+}
+
+.bubble .dots {
+  display: inline-block;
+  width: 26px;
+  height: 8px;
+  background: radial-gradient(circle, var(--ink-3) 3px, transparent 3.5px) 0 0 / 9px 8px repeat-x;
+  animation: typing 900ms steps(3) infinite;
+}
+
+@keyframes typing {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 -10% 0 0);
+  }
+}
+
+.tile.t-3d {
+  background: radial-gradient(120% 90% at 30% 20%, #3a3256 0%, #24222d 55%, #17151e 100%);
+  border-color: transparent;
+  color: #f8f6f0;
+}
+
+.tile.t-3d p {
+  color: #cfc9e2 !important;
+}
+
+.tile.t-3d .tile-pill {
+  border-color: rgba(248, 246, 240, 0.3);
+  color: #cfc9e2;
+}
+
+.tile.t-3d .obj-shadow {
+  background: radial-gradient(closest-side, rgba(255, 240, 16, 0.25), transparent);
+}
+
+.tile.t-book {
+  background: var(--lav);
+  border-color: transparent;
+  color: #24222d;
+}
+
+.tile.t-book p,
+.tile.t-book .meta {
+  color: #3d3a4a !important;
+}
+
+.tile.t-book .tile-pill,
+.tile.t-book .chip,
+.tile.t-book .slot {
+  border-color: rgba(36, 34, 45, 0.35);
+  color: #24222d;
+}
+
+.tile.t-ai {
+  background: color-mix(in srgb, var(--light) 32%, var(--surface));
+  border-color: transparent;
+}
+
+.tile.t-speed,
+.tile.t-lang {
+  background: transparent;
+  border-style: dashed;
+}
+
+.tile.t-seo {
+  background: transparent;
+  border-color: transparent;
+  padding-inline: 0;
+}
+
+@media (min-width: 1100px) {
+  .tile.t-seo {
+    padding-inline: 6px 22px;
   }
 }

@@ -2,9 +2,6 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { ReactNode } from "react";
 import { inject } from "@vercel/analytics";
 
-/** Consent is stored for 6 months (CNIL recommends asking again after
- *  at most 13 months; 6 keeps it fresh). Analytics only load after an
- *  explicit "yes" — refusing is as easy as accepting. */
 const STORAGE_KEY = "enzo-dev-consent";
 const MAX_AGE_MS = 1000 * 60 * 60 * 24 * 182;
 
@@ -42,8 +39,7 @@ function loadAnalytics() {
 }
 
 export function ConsentProvider({ children }: { children: ReactNode }) {
-  // read in an effect: the prerendered HTML has no banner, the browser
-  // decides after hydration (no mismatch, no layout shift on first paint)
+
   const [consent, setConsent] = useState<Consent | null>(null);
   const [bannerOpen, setBannerOpen] = useState(false);
 
@@ -65,9 +61,8 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     } catch {
-      /* ignore */
     }
-    // Withdrawing consent after the script loaded: reload so it is gone.
+
     if (!analytics && analyticsLoaded) window.location.reload();
     setConsent(next);
     setBannerOpen(false);

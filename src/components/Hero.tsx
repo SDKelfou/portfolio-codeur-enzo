@@ -5,20 +5,11 @@ import { useI18n } from "../i18n";
 import LiveTiming from "./LiveTiming";
 import TLink from "./TLink";
 
-/**
- * The hero says what this is in one line and proves it on the right: two
- * cursors ("Enzo" and "You") build a real little website block by block,
- * publish it, then start the next one for a different kind of business
- * (bakery, hair salon, training). It runs continuously on its own: no
- * pinned scrolling, no empty space.
- */
-
 const STEPS = 6;
 const STEP_MS = 820;
 const HOLD_MS = 2300;
 const RESET_MS = 420;
 
-// cursor targets per step, in % of the mock-up canvas: [enzoX, enzoY, youX, youY]
 const CURSORS: [number, number, number, number][] = [
   [46, 46, 82, 78],
   [34, 9, 86, 72],
@@ -50,7 +41,6 @@ export default function Hero() {
   const [reduced, setReduced] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
 
-  // the mock-up leans toward the pointer (desktop): a real object, not a picture
   const tilt = (e: RPointerEvent<HTMLElement>) => {
     const el = stageRef.current;
     if (!el || e.pointerType !== "mouse" || reduced) return;

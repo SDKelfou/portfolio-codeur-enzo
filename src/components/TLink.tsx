@@ -4,9 +4,6 @@ import { withPageTransition } from "../lib/pageTransition";
 
 type Props = AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
 
-/** Internal link: real <a href> (crawlable, opens in new tab normally),
- *  but a plain click becomes a client-side navigation wrapped in the
- *  crack-wipe page transition. `~/…` hrefs ignore the language base. */
 export default function TLink({ href, onClick, ...rest }: Props) {
   const [location, navigate] = useLocation();
   const { base } = useRouter();

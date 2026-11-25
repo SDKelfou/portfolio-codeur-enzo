@@ -1,8 +1,6 @@
 import { Plus } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 
-/** Native <details>: works without JavaScript and every answer is in the
- *  HTML (also published as FAQPage structured data at prerender). */
 export default function Faq() {
   const { t } = useI18n();
   return (

@@ -4,13 +4,6 @@ import { Check, Lock, Search, ArrowRightUp } from "@getpapillon/papicons";
 import { useI18n } from "../i18n";
 import LiveTiming from "./LiveTiming";
 
-/**
- * Proof of range: every tile is a small working demo, not a picture.
- * 3D object you can spin, a booking flow, a cart that pays, a Google
- * result, the live speed of this page, a security checklist, languages,
- * software. Animations start only when a tile is on screen.
- */
-
 function useInView<T extends Element>(threshold = 0.35) {
   const ref = useRef<T>(null);
   const [seen, setSeen] = useState(false);
@@ -47,7 +40,6 @@ function Tile({ title, text, className = "", children, demo }: { title: string; 
   );
 }
 
-/* ---------- 3D: a draggable faceted object, pure CSS 3D ---------- */
 function Object3D() {
   const ref = useRef<HTMLDivElement>(null);
   const state = useRef({ rx: -18, ry: 32, vx: 0, vy: 0.18, drag: false, lx: 0, ly: 0 });
@@ -122,7 +114,6 @@ function Object3D() {
   );
 }
 
-/* ---------- booking ---------- */
 function Booking() {
   const { t } = useI18n();
   const c = t.caps.book;
@@ -157,7 +148,6 @@ function Booking() {
   );
 }
 
-/* ---------- shop ---------- */
 function Shop() {
   const { t } = useI18n();
   const c = t.caps.shop;
@@ -199,7 +189,6 @@ function Shop() {
   );
 }
 
-/* ---------- Google result ---------- */
 function Serp() {
   const { t } = useI18n();
   const c = t.caps.seo;
@@ -236,7 +225,6 @@ function Serp() {
   );
 }
 
-/* ---------- security checklist ---------- */
 function Security() {
   const { t } = useI18n();
   const items = t.caps.security.items;
@@ -255,7 +243,6 @@ function Security() {
   );
 }
 
-/* ---------- languages ---------- */
 const HELLO = [
   ["fr", "Bonjour"],
   ["en", "Hello"],
@@ -284,6 +271,44 @@ function Languages() {
             {code}
           </span>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function AiChat() {
+  const { t } = useI18n();
+  const c = t.caps.ai;
+  const [ref, seen] = useInView<HTMLDivElement>();
+  const [phase, setPhase] = useState(0);
+  const [typed, setTyped] = useState(0);
+  useEffect(() => {
+    if (!seen) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setPhase(2);
+      setTyped(c.a.length);
+      return;
+    }
+    const t1 = window.setTimeout(() => setPhase(1), 500);
+    const t2 = window.setTimeout(() => setPhase(2), 1500);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, [seen, c.a.length]);
+  useEffect(() => {
+    if (phase !== 2 || typed >= c.a.length) return;
+    const id = window.setTimeout(() => setTyped((x) => x + 2), 18);
+    return () => window.clearTimeout(id);
+  }, [phase, typed, c.a.length]);
+  return (
+    <div ref={ref} className="chat w-full">
+      <p className="bubble me" data-on={phase >= 1}>
+        {c.q}
+      </p>
+      <div className="bubble bot" data-on={phase >= 2}>
+        <span className="who">{c.bot}</span>
+        {phase >= 2 ? c.a.slice(0, typed) : <i className="dots" />}
       </div>
     </div>
   );
@@ -327,6 +352,9 @@ export default function Capabilities() {
           </Tile>
           <Tile className="t-lang" title={c.lang.title} text={c.lang.text} demo={c.demo}>
             <Languages />
+          </Tile>
+          <Tile className="t-ai" title={c.ai.title} text={c.ai.text} demo={c.demo}>
+            <AiChat />
           </Tile>
           <article className="tile t-soft" data-reveal="rise">
             <div className="grid items-center gap-6 md:grid-cols-2">

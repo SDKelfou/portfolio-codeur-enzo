@@ -1,9 +1,7 @@
-// Prerenders every route in every language to static HTML so that search
-// engines and AI crawlers (GEO) read the full content without running JS.
-// Run after `vite build` and `vite build --ssr src/entry-server.tsx`.
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import crypto from "node:crypto";
 
 const SITE = "https://portfolio-codeur-enzo.vercel.app";
 const DIST = path.resolve("dist");
@@ -11,6 +9,12 @@ const ROUTES = ["/", "/projets", "/contact", "/mentions-legales", "/confidential
 const EMAIL = "enzo.entreprise@hotmail.com";
 
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
+
+const inline = template.match(/<script>([\s\S]*?)<\/script>/);
+const hash = inline ? `'sha256-${crypto.createHash("sha256").update(inline[1]).digest("base64")}'` : "";
+if (inline && !fs.readFileSync("vercel.json", "utf8").includes(hash)) {
+  throw new Error(`vercel.json CSP must allow the inline theme script: ${hash}`);
+}
 const mod = await import(pathToFileURL(path.resolve("dist-ssr/entry-server.js")).href);
 const { render, DICTS, LANGS, localizedPath } = mod;
 
@@ -108,7 +112,6 @@ fs.writeFileSync(
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...sitemap, ...examples].join("\n")}\n</urlset>\n`
 );
 
-// llms.txt: a plain summary for AI assistants (generative engine optimisation)
 const fr = DICTS.fr;
 const en = DICTS.en;
 const offersLine = (t) => t.offers.items.map((o) => `- ${o.name}: ${o.price ? `${t.offers.from} ${o.price}` : t.offers.onQuote}. ${o.text}`).join("\n");
@@ -128,6 +131,7 @@ ${fr.offers.note}
 
 ## Réalisations / Work
 - LEOS Export Consulting (${fr.work.inProgress}) — ${fr.work.leos.text} (https://leos-export-consulting.vercel.app/)
+- Pizza'Belle (${fr.work.mockup}) — ${fr.work.pizza.text} (https://pizzabelle-saint-paul.vercel.app/)
 - NEXUS — ${fr.work.items[0].text} (https://nexus-multitools.nexus-multitools.workers.dev/)
 - Café Mistral — ${fr.work.items[1].text} (${SITE}/exemples/cafe-mistral/)
 - Atelier Lune — ${fr.work.items[2].text} (${SITE}/exemples/atelier-lune/)

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "../i18n";
 
-/** Real measurement, not a claim: how long this page took to load on the
- *  visitor's own device (Navigation Timing, load event end). */
 export default function LiveTiming() {
   const { t, lang } = useI18n();
   const [ms, setMs] = useState<number | null>(null);

@@ -1,12 +1,11 @@
-// Minimal static server for checking the production build locally with the
-// same clean-URL behaviour as Vercel (/projets -> projets.html).
-// Usage: node scripts/serve.mjs [port]
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
 
 const root = path.resolve("dist");
+const vercel = JSON.parse(fs.readFileSync("vercel.json", "utf8"));
+const globalHeaders = Object.fromEntries((vercel.headers.find((h) => h.source === "/(.*)")?.headers || []).map((h) => [h.key, h.value]));
 const port = Number(process.argv[2] || 4180);
 const types = {
   ".html": "text/html; charset=utf-8",
@@ -34,13 +33,14 @@ http
     const file = resolve(req.url || "/");
     const target = file || path.join(root, "404.html");
     const ext = path.extname(target);
-    const headers = { "Content-Type": types[ext] || "application/octet-stream" };
+    const headers = { ...globalHeaders, "Content-Type": types[ext] || "application/octet-stream" };
+    delete headers["Strict-Transport-Security"];
     if (target.includes(`${path.sep}assets${path.sep}`)) headers["Cache-Control"] = "public, max-age=31536000, immutable";
     const gzip = /gzip/.test(req.headers["accept-encoding"] || "") && [".html", ".js", ".css", ".svg", ".txt", ".xml"].includes(ext);
     if (gzip) headers["Content-Encoding"] = "gzip";
     res.writeHead(file ? 200 : 404, headers);
     const stream = fs.createReadStream(target);
-    // during a rebuild dist/ is briefly empty: answer 503 instead of crashing
+
     stream.on("error", () => res.end());
     (gzip ? stream.pipe(zlib.createGzip()) : stream).pipe(res);
   })

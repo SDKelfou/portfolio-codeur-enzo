@@ -6,9 +6,6 @@ export interface HeadData {
   status?: number;
 }
 
-/** During prerender the server passes a collector object; pages write
- *  their title/description into it while rendering. In the browser the
- *  same hook updates the live <head> after each route change. */
 export const HeadCollector = createContext<HeadData | null>(null);
 
 function setMeta(selector: string, value: string) {

@@ -11,7 +11,7 @@ export default function Footer() {
   const { openBanner } = useConsent();
   const f = t.footer;
   const [location] = useLocation();
-  // pages that already end on the quote form don't need a second call
+
   const showCta = location !== "/" && location !== "/contact";
 
   return (

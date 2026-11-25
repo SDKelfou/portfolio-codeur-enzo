@@ -54,6 +54,7 @@ const fr: Record<LegalPageKey, LegalDoc> = {
         h: "Données que je traite",
         p: [
           "Demandes de contact et de devis : lorsque vous m'écrivez par e-mail, je reçois votre adresse e-mail, votre nom et le contenu de votre message. Base légale : mesures précontractuelles prises à votre demande. Durée de conservation : 3 ans après notre dernier échange, ou la durée légale de conservation des documents comptables si nous travaillons ensemble.",
+          "Facturation : si nous travaillons ensemble, les informations nécessaires à la facture (nom, adresse, montant) sont transmises à Impérial Boutique, qui émet les factures pour le compte du Prestataire.",
           "Paiement en ligne : les paiements sont traités par Stripe. Je ne reçois ni ne stocke vos données bancaires. Voir stripe.com/fr/privacy.",
           "Hébergement : Vercel enregistre des journaux techniques (adresse IP, navigateur) nécessaires à la sécurité et au bon fonctionnement du site.",
           "Mesure d'audience (uniquement si vous l'acceptez) : Vercel Web Analytics produit des statistiques de visite agrégées et anonymes, sans cookie publicitaire et sans suivi d'un site à l'autre.",
@@ -108,6 +109,7 @@ const fr: Record<LegalPageKey, LegalDoc> = {
         h: "4. Paiement",
         p: [
           "Un acompte, dont le montant est indiqué sur le devis, est demandé au lancement du projet ; le solde est dû à la livraison. Le paiement s'effectue par carte bancaire via Stripe (paiement sécurisé) ou par virement.",
+          "Dans l'attente de l'immatriculation de la structure du Prestataire, les factures sont émises et les paiements encaissés par Impérial Boutique (Saint-Paul-Trois-Châteaux), pour le compte du Prestataire.",
           "Pour les clients professionnels, tout retard de paiement entraîne des pénalités au taux légal en vigueur et une indemnité forfaitaire de 40 € pour frais de recouvrement.",
         ],
       },
@@ -190,6 +192,7 @@ const en: Record<LegalPageKey, LegalDoc> = {
         h: "Data I process",
         p: [
           "Contact and quote requests: when you email me, I receive your email address, your name and your message. Legal basis: pre-contractual steps taken at your request. Retention: 3 years after our last exchange, or the legal retention period for accounting records if we work together.",
+          "Invoicing: if we work together, the details needed for the invoice (name, address, amount) are shared with Impérial Boutique, which issues invoices on the Provider's behalf.",
           "Online payments are processed by Stripe. I never receive or store your card details. See stripe.com/privacy.",
           "Hosting: Vercel keeps technical logs (IP address, browser) required for security and operation of the site.",
           "Audience measurement (only if you accept): Vercel Web Analytics produces aggregated, anonymous visit statistics, with no advertising cookies and no cross-site tracking.",
@@ -238,6 +241,7 @@ const en: Record<LegalPageKey, LegalDoc> = {
         h: "4. Payment",
         p: [
           "A deposit, stated on the quote, is due when the project starts; the balance is due on delivery. Payment by card via Stripe (secure) or by bank transfer.",
+          "Until the Provider's own business is registered, invoices are issued and payments collected by Impérial Boutique (Saint-Paul-Trois-Châteaux) on the Provider's behalf.",
           "For business clients, late payment incurs penalties at the statutory rate plus a €40 fixed recovery fee.",
         ],
       },

@@ -11,8 +11,6 @@ const app = (
   </StrictMode>
 );
 
-// load the page's language first, then hydrate the prerendered HTML
-// (the dev server serves an empty root and renders fresh)
 loadDict(splitPath(window.location.pathname.replace(/\/+$/, "") || "/").lang).then(() => {
   if (el.firstElementChild) hydrateRoot(el, app);
   else createRoot(el).render(app);

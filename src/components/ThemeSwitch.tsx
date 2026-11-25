@@ -4,8 +4,6 @@ import { currentTheme } from "../lib/theme";
 import type { Theme } from "../lib/theme";
 import { fractureTheme, preloadFracture } from "../lib/fracture";
 
-/** The fracture origin. The half-yellow core rotates to show the side
- *  you are on; clicking cracks the screen open from this exact button. */
 export default function ThemeSwitch({ className = "" }: { className?: string }) {
   const { t } = useI18n();
   const [theme, setTheme] = useState<Theme>("light");

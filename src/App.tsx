@@ -26,8 +26,6 @@ function Routes() {
   );
 }
 
-/** The language is the first path segment (none for French); everything
- *  below it runs inside a router based on that prefix. */
 function Shell({ ssrPath }: { ssrPath?: string }) {
   const [fullPath] = useLocation();
   const { lang } = splitPath(fullPath.replace(/\/+$/, "") || "/");

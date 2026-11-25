@@ -5,12 +5,13 @@ export interface Project {
   external: boolean;
   example: boolean;
   inProgress?: boolean;
-  /** which translated copy to use: work.items[n] or work.leos */
-  copy: number | "leos";
+  mockup?: boolean;
+
+  copy: number | "leos" | "pizza";
   image: string;
-  /** phone-width capture of the same site */
+
   mobile: string;
-  /** only what is actually known about how it was built */
+
   tech: string[];
 }
 
@@ -25,6 +26,18 @@ export const PROJECTS: Project[] = [
     copy: "leos",
     image: "/projets/leos-export.webp",
     mobile: "/projets/leos-export-m.webp",
+    tech: [],
+  },
+  {
+    slug: "pizzabelle",
+    name: "Pizza'Belle",
+    href: "https://pizzabelle-saint-paul.vercel.app/",
+    external: true,
+    example: false,
+    mockup: true,
+    copy: "pizza",
+    image: "/projets/pizzabelle.webp",
+    mobile: "/projets/pizzabelle-m.webp",
     tech: [],
   },
   {
